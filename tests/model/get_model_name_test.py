@@ -2,7 +2,7 @@
 import mock
 import pytest
 
-from bravado_core.model import _get_model_name
+from easy_esi_core.model import _get_model_name
 
 
 @pytest.mark.parametrize(

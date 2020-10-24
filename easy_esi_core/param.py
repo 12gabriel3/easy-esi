@@ -7,18 +7,18 @@ import six
 import typing
 from six.moves.urllib.parse import quote
 
-from bravado_core import schema
-from bravado_core.content_type import APP_JSON
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.marshal import marshal_schema_object
-from bravado_core.unmarshal import unmarshal_schema_object
-from bravado_core.validate import validate_schema_object
+from easy_esi_core import schema
+from easy_esi_core.content_type import APP_JSON
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.marshal import marshal_schema_object
+from easy_esi_core.unmarshal import unmarshal_schema_object
+from easy_esi_core.validate import validate_schema_object
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from bravado_core.operation import Operation
-    from bravado_core.spec import Spec
-    from bravado_core._compat_typing import JSONDict
+    from easy_esi_core.operation import Operation
+    from easy_esi_core.spec import Spec
+    from easy_esi_core._compat_typing import JSONDict
 
 
 log = logging.getLogger(__name__)
@@ -44,8 +44,8 @@ class Param(object):
     """Thin wrapper around a param_spec dict that provides convenience functions
     for commonly requested parameter information.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
-    :type op: :class:`bravado_core.operation.Operation`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
+    :type op: :class:`easy_esi_core.operation.Operation`
     :type param_spec: parameter specification in dict form
     """
 
@@ -85,7 +85,7 @@ def get_param_type_spec(param):
     parameter. The notable exception is when the location is 'body' and the
     spec for the type is in param_spec['schema']
 
-    :type param: :class:`bravado_core.param.Param`
+    :type param: :class:`easy_esi_core.param.Param`
 
     :rtype: dict
     :returns: the param spec that contains 'type'
@@ -112,7 +112,7 @@ def marshal_param(param, value, request):
         - body - can accept any type
         - formData - can accept primitive and array of primitive types
 
-    :type param: :class:`bravado_core.param.Param`
+    :type param: :class:`easy_esi_core.param.Param`
     :param value: The value to assign to the parameter
     :type request: dict
     """
@@ -162,8 +162,8 @@ def marshal_param(param, value, request):
 def unmarshal_param(param, request):
     """Unmarshal the given parameter from the passed in request like object.
 
-    :type param: :class:`bravado_core.param.Param`
-    :type request: :class:`bravado_core.request.IncomingRequest`
+    :type param: :class:`easy_esi_core.param.Param`
+    :type request: :class:`easy_esi_core.request.IncomingRequest`
     :return: value of parameter
     """
     swagger_spec = param.swagger_spec
@@ -319,7 +319,7 @@ def encode_request_param(param_type, param_name, param_value):
 def add_file(param, value, request):
     """Add a parameter of type 'file' to the given request.
 
-    :type param: :class;`bravado_core.param.Param`
+    :type param: :class;`easy_esi_core.param.Param`
     :param value: The raw content of the file to be uploaded
     :type request: dict
     """
@@ -356,7 +356,7 @@ def add_file(param, value, request):
 def marshal_collection_format(swagger_spec, param_spec, value):
     """For an array, apply the collection format and return the result.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :param param_spec: spec of the parameter with 'type': 'array'
     :param value: array value of the parameter
 
@@ -391,7 +391,7 @@ def unmarshal_collection_format(swagger_spec, param_spec, value):
     Output:
         ['pending', 'completed', 'started']
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :param param_spec: param_spec of the parameter with 'type': 'array'
     :type param_spec: dict
     :param value: parameter value

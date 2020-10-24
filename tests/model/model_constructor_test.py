@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado_core.schema import collapsed_properties
+from easy_esi_core.schema import collapsed_properties
 
 
 def test_simple(user_type, user_kwargs):

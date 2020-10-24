@@ -8,14 +8,14 @@ from enum import Enum
 from six import iteritems
 from six import iterkeys
 
-from bravado_core._compat import get_function_spec
-from bravado_core._compat import wraps
-from bravado_core.schema import is_dict_like
-from bravado_core.schema import is_list_like
+from easy_esi_core._compat import get_function_spec
+from easy_esi_core._compat import wraps
+from easy_esi_core.schema import is_dict_like
+from easy_esi_core.schema import is_list_like
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from bravado_core._compat_typing import FuncType
-    from bravado_core._compat_typing import JSONDict
+    from easy_esi_core._compat_typing import FuncType
+    from easy_esi_core._compat_typing import JSONDict
 
     CacheKey = typing.Tuple[typing.Tuple[typing.Text, int], ...]
     T = typing.TypeVar('T')
@@ -223,7 +223,7 @@ def determine_object_type(object_dict, default_type_to_object=None):
     the four types of object that could be references in the specs: parameter, path item, response and schema.
 
     :type object_dict: dict
-    :default_type_to_object: Default object type attribute to object if missing (as from bravado_core.spec.Spec config)
+    :default_type_to_object: Default object type attribute to object if missing (as from easy_esi_core.spec.Spec config)
     :type default_type_to_object: bool
 
     :return: determined type of ``object_dict``. The return values is an ObjectType

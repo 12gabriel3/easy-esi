@@ -5,9 +5,9 @@ from collections import defaultdict
 
 import pytest
 
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.marshal import marshal_schema_object
-from bravado_core.spec import Spec
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.marshal import marshal_schema_object
+from easy_esi_core.spec import Spec
 
 
 def test_dicts_can_be_used_instead_of_models(petstore_dict):

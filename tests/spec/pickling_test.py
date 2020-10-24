@@ -4,7 +4,7 @@ import pytest
 from six.moves.cPickle import dumps
 from six.moves.cPickle import loads
 
-from bravado_core.spec import Spec
+from easy_esi_core.spec import Spec
 from tests.conftest import get_url
 
 
@@ -23,9 +23,9 @@ def test_ensure_spec_is_pickleable(petstore_dict, petstore_abspath, internally_d
 
 
 def test_ensure_warning_presence_in_case_of_version_mismatch(petstore_spec):
-    with mock.patch('bravado_core.spec._version', '0.0.0'):
+    with mock.patch('easy_esi_core.spec._version', '0.0.0'):
         petstore_pickle = dumps(petstore_spec)
 
-    with pytest.warns(UserWarning, match='different bravado-core version.*created by version 0.0.0, current version'):
+    with pytest.warns(UserWarning, match='different easy-esi-core version.*created by version 0.0.0, current version'):
         restored_petstore_spec = loads(petstore_pickle)
     assert petstore_spec.is_equal(restored_petstore_spec)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from bravado_core.model import create_model_docstring
+from easy_esi_core.model import create_model_docstring
 
 
 def test_pet(petstore_spec):

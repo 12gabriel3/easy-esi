@@ -9,11 +9,11 @@ from jsonschema.exceptions import ValidationError
 from jsonschema.validators import Draft4Validator
 from swagger_spec_validator.ref_validators import in_scope
 
-from bravado_core.model import MODEL_MARKER
-from bravado_core.schema import is_param_spec
-from bravado_core.schema import is_prop_nullable
-from bravado_core.schema import is_required
-from bravado_core.util import memoize_by_id
+from easy_esi_core.model import MODEL_MARKER
+from easy_esi_core.schema import is_param_spec
+from easy_esi_core.schema import is_prop_nullable
+from easy_esi_core.schema import is_required
+from easy_esi_core.util import memoize_by_id
 
 
 """Draft4Validator is not completely compatible with Swagger 2.0 schema
@@ -23,8 +23,8 @@ validator.
 """
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from bravado_core._compat_typing import JSONDict
-    from bravado_core.spec import Spec
+    from easy_esi_core._compat_typing import JSONDict
+    from easy_esi_core.spec import Spec
 
     class ValidatorType(typing.Protocol):
         def __init__(
@@ -90,7 +90,7 @@ def type_validator(
     In all other cases, delegate to the existing Draft4 `type` validator.
 
     :param swagger_spec: needed for access to deref()
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :param validator: Validator class used to validate the object
     :type validator: :class:`Swagger20Validator` or
         :class:`jsonschema.validators.Draft4Validator`
@@ -122,7 +122,7 @@ def required_validator(
     but a list of properties everywhere else.
 
     :param swagger_spec: needed for access to deref()
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :param validator: Validator class used to validate the object
     :type validator: :class:`Swagger20Validator` or
         :class:`jsonschema.validators.Draft4Validator`
@@ -152,7 +152,7 @@ def enum_validator(
     arrays, like query parameter (collectionFormat: multi)
 
     :param swagger_spec: needed for access to deref()
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :param validator: Validator class used to validate the object
     :type validator: :class: `Swagger20Validator` or
         :class: `jsonschema.validators.Draft4Validator`
@@ -198,7 +198,7 @@ def discriminator_validator(
     NOTE: discriminator_validator assumes that discriminator_attribute is not None or empty
 
     :param swagger_spec: needed for access to deref()
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :param validator: Validator class used to validate the object
     :type validator: :class: `Swagger20Validator` or
         :class: `jsonschema.validators.Draft4Validator`
@@ -254,7 +254,7 @@ def discriminator_validator(
         for all_of_schema in new_schema['allOf']
     ]
 
-    from bravado_core.validate import validate_object  # Local import due to circular dependency
+    from easy_esi_core.validate import validate_object  # Local import due to circular dependency
     validate_object(swagger_spec=swagger_spec, object_spec=new_schema, value=instance)
 
 
@@ -271,7 +271,7 @@ def ref_validator(
      the full scope built when ingesting the spec from its root
      (#/ in swagger.json). So, we need to modify the behavior of ref
      validation to use the `x-scope` annotations that were created during spec
-     ingestion (see model_discovery in bravado_core/model.py).
+     ingestion (see model_discovery in easy_esi_core/model.py).
 
     :param validator: Validator class used to validate the object
     :type validator: :class: `Swagger20Validator` or

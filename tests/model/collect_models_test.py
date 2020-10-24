@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado_core.model import _collect_models
-from bravado_core.model import create_model_type
-from bravado_core.spec import Spec
+from easy_esi_core.model import _collect_models
+from easy_esi_core.model import create_model_type
+from easy_esi_core.spec import Spec
 
 
 @pytest.fixture
@@ -43,7 +43,7 @@ def test_no_model_type_generation_for_not_object_type(minimal_swagger_dict):
 
     This is needed because even if "x-model" is present it could be related to a not object type
     (ie. array or string) and for those cases it does not make sense to generate a python model type.
-    Additionally, even if this type has been generated it won't be used by bravado-core during
+    Additionally, even if this type has been generated it won't be used by easy-esi-core during
     marshaling/unmarshaling process.
 
     Ensuring that for those cases a model type is not generated simplifies type checking.

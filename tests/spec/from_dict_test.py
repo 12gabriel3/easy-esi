@@ -5,8 +5,8 @@ import pytest
 import simplejson as json
 import yaml
 
-from bravado_core.response import get_response_spec
-from bravado_core.spec import Spec
+from easy_esi_core.response import get_response_spec
+from easy_esi_core.spec import Spec
 from tests.conftest import _read_json
 from tests.conftest import get_url
 
@@ -172,13 +172,13 @@ def test_flattened_multi_file_multi_directory_specs(
 
 def test_swagger_spec_in_operation_is_the_swagger_spec_that_contains_the_operation(multi_file_multi_directory_spec):
     """
-    The objective of this test is to guarantee that bravado_core.spec.Spec object referenced by
+    The objective of this test is to guarantee that easy_esi_core.spec.Spec object referenced by
     operation objects is the same object that contains the resources that points to the operation
 
     Referencing to the same object means that they share the same memory space
 
     More details about the issue that we want to prevent with this tests are available on
-    https://github.com/Yelp/bravado-core/issues/275
+    https://github.com/Yelp/easy-esi-core/issues/275
     """
     def first(_iterable):
         return next(iter(_iterable))

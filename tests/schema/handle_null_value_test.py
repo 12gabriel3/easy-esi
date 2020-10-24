@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.schema import handle_null_value
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.schema import handle_null_value
 
 
 def test_default(empty_swagger_spec):

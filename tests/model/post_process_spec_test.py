@@ -3,8 +3,8 @@ import functools
 
 from mock import Mock
 
-from bravado_core.model import _post_process_spec
-from bravado_core.spec import Spec
+from easy_esi_core.model import _post_process_spec
+from easy_esi_core.spec import Spec
 
 
 def test_empty():

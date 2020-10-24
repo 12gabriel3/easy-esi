@@ -7,10 +7,10 @@ import six
 from mock import patch
 from pytz import timezone
 
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.formatter import SwaggerFormat
-from bravado_core.formatter import to_wire
-from bravado_core.spec import Spec
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.formatter import SwaggerFormat
+from easy_esi_core.formatter import to_wire
+from easy_esi_core.spec import Spec
 
 
 if not six.PY2:
@@ -53,7 +53,7 @@ def test_localized_datetime(minimal_swagger_spec):
     )
 
 
-@patch('bravado_core.spec.warnings.warn')
+@patch('easy_esi_core.spec.warnings.warn')
 def test_no_registered_format_returns_value_as_is(mock_warn, minimal_swagger_spec):
     string_spec = {'type': 'string', 'format': 'bar'}
     assert 'baz' == to_wire(minimal_swagger_spec, string_spec, 'baz')

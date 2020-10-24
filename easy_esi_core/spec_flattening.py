@@ -17,14 +17,14 @@ from six.moves.urllib.request import pathname2url
 from six.moves.urllib.request import url2pathname
 from swagger_spec_validator.ref_validators import in_scope
 
-from bravado_core.model import model_discovery
-from bravado_core.model import MODEL_MARKER
-from bravado_core.schema import is_dict_like
-from bravado_core.schema import is_list_like
-from bravado_core.schema import is_ref
-from bravado_core.util import cached_property
-from bravado_core.util import determine_object_type
-from bravado_core.util import ObjectType
+from easy_esi_core.model import model_discovery
+from easy_esi_core.model import MODEL_MARKER
+from easy_esi_core.schema import is_dict_like
+from easy_esi_core.schema import is_list_like
+from easy_esi_core.schema import is_ref
+from easy_esi_core.util import cached_property
+from easy_esi_core.util import determine_object_type
+from easy_esi_core.util import ObjectType
 
 
 MARSHAL_REPLACEMENT_PATTERNS = {
@@ -305,7 +305,7 @@ class _SpecFlattener(object):
 
     def model_discovery(self):
         # local imports due to circular dependency
-        from bravado_core.spec import Spec
+        from easy_esi_core.spec import Spec
 
         # Run model-discovery in order to tag the models available in known_mappings['definitions']
         # This is a required step that removes duplications of models due to the presence of models
@@ -433,8 +433,8 @@ def flattened_spec(swagger_spec, marshal_uri_function=_marshal_uri):
     Please make sure to use only those two parameters.
     Until the deprecation is not effective you can still pass all the parameters but it's strongly discouraged.
 
-    :param swagger_spec: bravado-core Spec object
-    :type swagger_spec: bravado_core.spec.Spec
+    :param swagger_spec: easy-esi-core Spec object
+    :type swagger_spec: easy_esi_core.spec.Spec
     :param marshal_uri_function: function used to marshal uris in string suitable to be keys in Swagger Specs.
     :type marshal_uri_function: Callable with the same signature of ``_marshal_uri``
 

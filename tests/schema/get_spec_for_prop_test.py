@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.schema import get_spec_for_prop
-from bravado_core.spec import Spec
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.schema import get_spec_for_prop
+from easy_esi_core.spec import Spec
 
 
 @pytest.fixture
@@ -125,7 +125,7 @@ def test_additionalProperties_not_dict_like(minimal_swagger_spec, address_spec, 
 
 @pytest.mark.filterwarnings("ignore:.*with siblings that will be overwritten")
 def test_get_spec_for_prop_with_x_nullable_and_reference(minimal_swagger_dict):
-    # TODO: remove is_nullable support once https://github.com/Yelp/bravado-core/issues/335 is addressed
+    # TODO: remove is_nullable support once https://github.com/Yelp/easy-esi-core/issues/335 is addressed
     minimal_swagger_dict['definitions'] = {
         'referenced': {
             'type': 'string',

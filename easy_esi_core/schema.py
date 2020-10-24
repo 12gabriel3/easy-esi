@@ -5,13 +5,13 @@ import typing
 from six import iteritems
 from six import string_types
 
-from bravado_core._compat import Mapping
-from bravado_core.exception import SwaggerMappingError
+from easy_esi_core._compat import Mapping
+from easy_esi_core.exception import SwaggerMappingError
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from bravado_core.spec import Spec
-    from bravado_core._compat_typing import JSONDict
+    from easy_esi_core.spec import Spec
+    from easy_esi_core._compat_typing import JSONDict
 
 
 # 'object' and 'array' are omitted since this should really be read as
@@ -111,7 +111,7 @@ def get_spec_for_prop(
      given property taking 'additionalProperties' into consideration.
 
     :param swagger_spec: Spec object
-    :type swagger_spec: bravado_core.spec.Spec
+    :type swagger_spec: easy_esi_core.spec.Spec
     :param object_spec: spec for a jsonschema 'object' in dict form
     :param object_value: jsonschema object containing the given property. Only
         used in error message.
@@ -127,7 +127,7 @@ def get_spec_for_prop(
         properties = collapsed_properties(deref(object_spec), swagger_spec)
     prop_spec = properties.get(prop_name)
 
-    # TODO: remove is_nullable support once https://github.com/Yelp/bravado-core/issues/335 is addressed
+    # TODO: remove is_nullable support once https://github.com/Yelp/easy-esi-core/issues/335 is addressed
     if prop_spec is not None:
         result_spec = deref(prop_spec)
         # If the de-referenced specification is for a x-nullable property
@@ -165,7 +165,7 @@ def handle_null_value(swagger_spec, schema_object_spec):
      if so and raises an exception otherwise.
 
     :param swagger_spec: Spec object
-    :type swagger_spec: bravado_core.spec.Spec
+    :type swagger_spec: easy_esi_core.spec.Spec
     :param schema_object_spec: dict
     :return: The default if there is a default value, None if the spec is nullable
     :raises: SwaggerMappingError if the spec is not nullable and no default exists
@@ -191,7 +191,7 @@ def collapsed_properties(model_spec, swagger_spec):
 
     :param model_spec: model specification (must be dereferenced already)
     :type model_spec: dict
-    :param swagger_spec: :class:`bravado_core.spec.Spec`
+    :param swagger_spec: :class:`easy_esi_core.spec.Spec`
     :returns: dict
     """
 
@@ -223,7 +223,7 @@ def collapsed_required(model_spec, swagger_spec):
 
     :param model_spec: model specification (must be dereferenced already)
     :type model_spec: dict
-    :param swagger_spec: :class:`bravado_core.spec.Spec`
+    :param swagger_spec: :class:`easy_esi_core.spec.Spec`
     :returns: Set of required properties.
     """
     required = set(model_spec.get('required', []))

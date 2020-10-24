@@ -12,19 +12,19 @@ from six import iteritems
 from six import string_types
 from swagger_spec_validator.ref_validators import attach_scope
 
-from bravado_core.schema import collapsed_properties
-from bravado_core.schema import is_dict_like
-from bravado_core.schema import is_list_like
-from bravado_core.schema import is_ref
-from bravado_core.schema import SWAGGER_PRIMITIVES
-from bravado_core.util import determine_object_type
-from bravado_core.util import lazy_class_attribute
-from bravado_core.util import ObjectType
-from bravado_core.util import strip_xscope
+from easy_esi_core.schema import collapsed_properties
+from easy_esi_core.schema import is_dict_like
+from easy_esi_core.schema import is_list_like
+from easy_esi_core.schema import is_ref
+from easy_esi_core.schema import SWAGGER_PRIMITIVES
+from easy_esi_core.util import determine_object_type
+from easy_esi_core.util import lazy_class_attribute
+from easy_esi_core.util import ObjectType
+from easy_esi_core.util import strip_xscope
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from bravado_core._compat_typing import JSONDict
-    from bravado_core.spec import Spec
+    from easy_esi_core._compat_typing import JSONDict
+    from easy_esi_core.spec import Spec
 
 
 log = logging.getLogger(__name__)
@@ -64,7 +64,7 @@ def _register_visited_model(json_reference, model_spec, model_name, visited_mode
     :type visited_models: dict (k,v) == (model_name, path)
     :param is_blessed: flag that determines if the model name has been obtained by blessing
     :type is_blessed: bool
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     """
     log.debug('Found model: %s (is_blessed %s)', model_name, is_blessed)
     if model_name in visited_models:
@@ -101,7 +101,7 @@ def _tag_models(container, json_reference, visited_models, swagger_spec):
     :param json_reference: URI of the current container
     :type json_reference: str
     :type visited_models: dict (k,v) == (model_name, path)
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     """
     if not re.match('^[^#]*#/definitions/[^/]+$', json_reference):
         return
@@ -146,7 +146,7 @@ def _bless_models(container, json_reference, visited_models, swagger_spec):
     :param json_reference: URI of the current container
     :type json_reference: str
     :type visited_models: dict (k,v) == (model_name, path)
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     """
     if not is_dict_like(container):
         return
@@ -194,7 +194,7 @@ def _collect_models(container, json_reference, models, swagger_spec):
     :param json_reference: URI of the current container
     :type json_reference: str
     :param models: created model types are placed here
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     """
     key = json_reference.split('/')[-1]
     if key == MODEL_MARKER and is_object(swagger_spec, container):
@@ -265,7 +265,7 @@ class ModelMeta(abc.ABCMeta):
                     cls._abc_negative_cache.remove(subclass)
                     cls._abc_cache.add(subclass)
             except AttributeError:
-                # Attribute error is possible if the passed subclass is not a `bravado_core.model.Model` class or subclass
+                # Attribute error is possible if the passed subclass is not a `easy_esi_core.model.Model` class or subclass
                 pass
 
         return is_subclass
@@ -301,7 +301,7 @@ class Model(object):
     .. attribute:: _swagger_spec
 
         Class attribute that must be assigned on subclasses.
-        :class:`bravado_core.spec.Spec` the model was created from.
+        :class:`easy_esi_core.spec.Spec` the model was created from.
 
     .. attribute:: _model_spec
 
@@ -317,7 +317,7 @@ class Model(object):
 
         Class attribute that must be assigned on subclasses.
         Dict mapping property names to their specs. See
-        :func:`bravado_core.schema.collapsed_properties`.
+        :func:`easy_esi_core.schema.collapsed_properties`.
 
     .. attribute:: _inherits_from
 
@@ -573,7 +573,7 @@ class Model(object):
 
         :rtype: dict
         """
-        from bravado_core.marshal import marshal_schema_object
+        from easy_esi_core.marshal import marshal_schema_object
         return marshal_schema_object(self._swagger_spec, self._model_spec, self)
 
     @classmethod
@@ -591,7 +591,7 @@ class Model(object):
         :type val: dict
         :rtype: .Model
         """
-        from bravado_core.unmarshal import unmarshal_schema_object
+        from easy_esi_core.unmarshal import unmarshal_schema_object
         return unmarshal_schema_object(cls._swagger_spec, cls._model_spec, val)
 
     @classmethod
@@ -645,7 +645,7 @@ def create_model_type(swagger_spec, model_name, model_spec, bases=(Model,), json
     the docstring is relatively expensive, and would only be used in rare
     cases for interactive debugging in a REPL.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :param model_name: model name
     :param model_spec: json-like dict that describes a model.
     :param tuple bases: Base classes for type. At least one should be
@@ -669,7 +669,7 @@ def create_model_type(swagger_spec, model_name, model_spec, bases=(Model,), json
 
 def is_model(swagger_spec, schema_object_spec):
     """
-    :param swagger_spec: :class:`bravado_core.spec.Spec`
+    :param swagger_spec: :class:`easy_esi_core.spec.Spec`
     :param schema_object_spec: specification for a swagger object
     :type schema_object_spec: dict
     :return: True if the spec has been "marked" as a model type, false
@@ -689,10 +689,10 @@ def is_object(
     """
     A schema definition is of type object if its type is object or if it uses
     model composition (i.e. it has an allOf property).
-    :param swagger_spec: :class:`bravado_core.spec.Spec`
+    :param swagger_spec: :class:`easy_esi_core.spec.Spec`
     :param object_spec: specification for a swagger object
     :type object_spec: dict
-    :param no_default_type: ignore bravado-core 'default_type_to_object' configuration
+    :param no_default_type: ignore easy-esi-core 'default_type_to_object' configuration
     :type no_default_type: bool
     :return: True if the spec describes an object, False otherwise.
     """
@@ -704,7 +704,7 @@ def is_object(
 
 def create_model_docstring(swagger_spec, model_spec):
     """
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :param model_spec: specification for a model in dict form
     :rtype: string or unicode
     """
@@ -898,7 +898,7 @@ def _get_unprocessed_uri(swagger_spec, processed_uris):
     """
     Retrieve an un-process URI from swagger spec referred URIs
 
-    :type swagger_spec: bravado_core.spec.Spec
+    :type swagger_spec: easy_esi_core.spec.Spec
     :param processed_uris: URIs of the already processed URIs
 
     :rtype: str
@@ -915,7 +915,7 @@ def model_discovery(swagger_spec):
     _run_post_processing(swagger_spec)
 
     if swagger_spec.config['internally_dereference_refs']:
-        from bravado_core.spec import Spec  # Local import to avoid circular import
+        from easy_esi_core.spec import Spec  # Local import to avoid circular import
         deref_flattened_spec = swagger_spec.deref_flattened_spec
         tmp_spec = Spec(deref_flattened_spec, swagger_spec.origin_url, swagger_spec.http_client, swagger_spec.config)
 
@@ -936,7 +936,7 @@ def _to_pickleable_representation(model_name, model_type):
     (via ``_from_pickleable_representation``).
 
     NOTE:   This API should not be considered a public API and is meant
-            only to be used by bravado_core.spec.Spec.__getstate__ .
+            only to be used by easy_esi_core.spec.Spec.__getstate__ .
     """
     return {
         'swagger_spec': model_type._swagger_spec,
@@ -954,6 +954,6 @@ def _from_pickleable_representation(model_pickleable_representation):
     ``model_pickleable_representation`` is supposed to be the output of ``_to_pickleable_representation``.
 
     NOTE:   This API should not be considered a public API and is meant
-            only to be used by bravado_core.spec.Spec.__getstate__ .
+            only to be used by easy_esi_core.spec.Spec.__getstate__ .
     """
     return create_model_type(**model_pickleable_representation)

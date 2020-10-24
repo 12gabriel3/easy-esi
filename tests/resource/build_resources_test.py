@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado_core.param import Param
-from bravado_core.resource import build_resources
-from bravado_core.spec import Spec
+from easy_esi_core.param import Param
+from easy_esi_core.resource import build_resources
+from easy_esi_core.spec import Spec
 
 
 def test_empty():

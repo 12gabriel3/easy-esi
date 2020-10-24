@@ -4,9 +4,9 @@ import datetime
 import pytest
 from dateutil.tz import tzutc
 
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.spec import Spec
-from bravado_core.unmarshal import unmarshal_model
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.spec import Spec
+from easy_esi_core.unmarshal import unmarshal_model
 
 
 @pytest.fixture

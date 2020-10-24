@@ -3,8 +3,8 @@ import pytest
 from jsonschema.exceptions import ValidationError
 from six import iteritems
 
-from bravado_core.spec import Spec
-from bravado_core.validate import validate_object
+from easy_esi_core.spec import Spec
+from easy_esi_core.validate import validate_object
 from tests.conftest import get_url
 from tests.validate.conftest import email_address_format
 
@@ -460,7 +460,7 @@ def test_validate_object_with_recursive_definition(
     # The goal of this test is to ensure that recursive definitions are properly handled
     # even if internally_dereference_refs is enabled.
     # Introduce a recursion definition into vendor extensions, this "trick" could be used
-    # to force bravado-core to recognize models that are defined on #/definitions of
+    # to force easy-esi-core to recognize models that are defined on #/definitions of
     # referenced files or defined on un-referenced files
     polymorphic_dict['definitions']['GenericPet']['x-referred-schema'] = [
         {'$ref': '#/definitions/{}'.format(definition_key)}
@@ -493,7 +493,7 @@ def test_validate_object_with_recursive_definition(
 def test_validate_object_raises_ValidationError_if_discriminator_key_is_missing(
     minimal_swagger_dict,
 ):
-    # More context for this test on https://github.com/Yelp/bravado-core/issues/301
+    # More context for this test on https://github.com/Yelp/easy-esi-core/issues/301
     minimal_swagger_dict['definitions'] = {
         'Model': {
             "type": 'object',

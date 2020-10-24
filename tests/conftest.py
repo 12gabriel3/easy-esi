@@ -14,8 +14,8 @@ from six.moves.urllib.request import pathname2url
 from six.moves.urllib.request import url2pathname
 from swagger_spec_validator.common import SwaggerValidationWarning
 
-from bravado_core.spec import CONFIG_DEFAULTS
-from bravado_core.spec import Spec
+from easy_esi_core.spec import CONFIG_DEFAULTS
+from easy_esi_core.spec import Spec
 
 
 @pytest.fixture

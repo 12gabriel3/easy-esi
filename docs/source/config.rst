@@ -5,7 +5,7 @@ All configuration is stored in a ``dict``.
 
 .. code-block:: python
 
-    from bravado_core.spec import Spec
+    from easy_esi_core.spec import Spec
 
     spec_dict = json.loads(open('swagger.json', 'r').read())
 

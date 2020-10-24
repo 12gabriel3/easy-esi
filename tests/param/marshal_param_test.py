@@ -8,14 +8,14 @@ from jsonschema import ValidationError
 from mock import Mock
 from mock import patch
 
-from bravado_core.content_type import APP_JSON
-from bravado_core.operation import Operation
-from bravado_core.param import encode_request_param
-from bravado_core.param import marshal_param
-from bravado_core.param import Param
-from bravado_core.param import unmarshal_param
-from bravado_core.request import IncomingRequest
-from bravado_core.spec import Spec
+from easy_esi_core.content_type import APP_JSON
+from easy_esi_core.operation import Operation
+from easy_esi_core.param import encode_request_param
+from easy_esi_core.param import marshal_param
+from easy_esi_core.param import Param
+from easy_esi_core.param import unmarshal_param
+from easy_esi_core.request import IncomingRequest
+from easy_esi_core.spec import Spec
 
 
 @pytest.fixture
@@ -194,7 +194,7 @@ def test_formData_file(empty_swagger_spec, param_spec, request_dict):
 
 
 def assert_validate_call_count(expected_call_count, config, petstore_dict):
-    with patch('bravado_core.param.validate_schema_object') as m_validate:
+    with patch('easy_esi_core.param.validate_schema_object') as m_validate:
         petstore_spec = Spec.from_dict(petstore_dict, config=config)
         request = {'url': '/pet/{petId}'}
         op = petstore_spec.resources['pet'].operations['getPetById']

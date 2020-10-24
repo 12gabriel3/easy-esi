@@ -4,12 +4,12 @@ import logging
 import six
 import typing
 
-from bravado_core.exception import SwaggerSchemaError
+from easy_esi_core.exception import SwaggerSchemaError
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from bravado_core._compat_typing import JSONDict
-    from bravado_core.security_definition import SecurityDefinition
-    from bravado_core.spec import Spec
+    from easy_esi_core._compat_typing import JSONDict
+    from easy_esi_core.security_definition import SecurityDefinition
+    from easy_esi_core.spec import Spec
 
     T = typing.TypeVar('T')
 
@@ -22,7 +22,7 @@ class SecurityRequirement(object):
     Wrapper of security requirement object (http://swagger.io/specification/#securityRequirementObject)
 
     :param swagger_spec: Spec object
-    :type swagger_spec: bravado_core.spec.Spec
+    :type swagger_spec: easy_esi_core.spec.Spec
     :param security_requirement_spec: security requirement specification in dict form
     """
 

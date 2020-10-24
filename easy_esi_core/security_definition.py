@@ -6,8 +6,8 @@ import typing
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from bravado_core._compat_typing import JSONDict
-    from bravado_core.spec import Spec
+    from easy_esi_core._compat_typing import JSONDict
+    from easy_esi_core.spec import Spec
 
 
 log = logging.getLogger(__name__)
@@ -17,7 +17,7 @@ class SecurityDefinition(object):
     """
     Wrapper of security definition object (http://swagger.io/specification/#securityDefinitionsObject)
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :type security_definition_spec: security definition specification in dict form
     """
 

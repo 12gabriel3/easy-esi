@@ -3,13 +3,13 @@ import pytest
 from jsonschema import ValidationError
 from mock import patch
 
-from bravado_core.exception import SwaggerValidationError
-from bravado_core.formatter import SwaggerFormat
-from bravado_core.swagger20_validator import format_validator
-from bravado_core.validate import validate_object
+from easy_esi_core.exception import SwaggerValidationError
+from easy_esi_core.formatter import SwaggerFormat
+from easy_esi_core.swagger20_validator import format_validator
+from easy_esi_core.validate import validate_object
 
 
-@patch('bravado_core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
+@patch('easy_esi_core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
 def test_skip_when_validating_a_parameter_schema_and_parameter_value_is_None(
     m_format_validator, minimal_swagger_spec,
 ):
@@ -31,7 +31,7 @@ def test_skip_when_validating_a_parameter_schema_and_parameter_value_is_None(
     assert m_format_validator.call_count == 0
 
 
-@patch('bravado_core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
+@patch('easy_esi_core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
 def test_validate_when_parameter_schema_and_parameter_value_is_not_None(
     m_format_validator, minimal_swagger_spec,
 ):
@@ -49,7 +49,7 @@ def test_validate_when_parameter_schema_and_parameter_value_is_not_None(
     m_format_validator.assert_called_once_with(*args)
 
 
-@patch('bravado_core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
+@patch('easy_esi_core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
 def test_validate_when_not_a_parameter_schema(
     m_format_validator, minimal_swagger_spec,
 ):
@@ -66,7 +66,7 @@ def test_validate_when_not_a_parameter_schema(
     m_format_validator.assert_called_once_with(*args)
 
 
-@patch('bravado_core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
+@patch('easy_esi_core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
 def test_skip_when_nullable_property_schema_and_value_is_None(
     m_format_validator, minimal_swagger_spec,
 ):
@@ -87,7 +87,7 @@ def test_skip_when_nullable_property_schema_and_value_is_None(
     assert m_format_validator.call_count == 0
 
 
-@patch('bravado_core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
+@patch('easy_esi_core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
 def test_validate_when_not_nullable_property_schema_and_value_is_None(
     m_format_validator, minimal_swagger_spec,
 ):

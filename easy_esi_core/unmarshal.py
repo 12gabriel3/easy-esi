@@ -3,7 +3,7 @@
 The module exposes unmarshaling capabilities.
 
 Unmarshaling is the operation that converts a "JSON" object into its python representation.
-The operation should also take care of converting types accordingly to the defined :class:`bravado_core.formatter.SwaggerFormat`s.
+The operation should also take care of converting types accordingly to the defined :class:`easy_esi_core.formatter.SwaggerFormat`s.
 """
 import warnings
 from functools import partial
@@ -11,25 +11,25 @@ from functools import partial
 import typing
 from six import iteritems
 
-from bravado_core import _decorators
-from bravado_core import schema
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.model import MODEL_MARKER
-from bravado_core.schema import collapsed_properties
-from bravado_core.schema import collapsed_required
-from bravado_core.schema import get_type_from_schema
-from bravado_core.schema import is_dict_like
-from bravado_core.schema import is_list_like
-from bravado_core.schema import SWAGGER_PRIMITIVES
-from bravado_core.util import memoize_by_id
+from easy_esi_core import _decorators
+from easy_esi_core import schema
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.model import MODEL_MARKER
+from easy_esi_core.schema import collapsed_properties
+from easy_esi_core.schema import collapsed_required
+from easy_esi_core.schema import get_type_from_schema
+from easy_esi_core.schema import is_dict_like
+from easy_esi_core.schema import is_list_like
+from easy_esi_core.schema import SWAGGER_PRIMITIVES
+from easy_esi_core.util import memoize_by_id
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from bravado_core._compat_typing import JSONDict
-    from bravado_core._compat_typing import NoReturn
-    from bravado_core._compat_typing import UnmarshalingMethod
-    from bravado_core.model import Model
-    from bravado_core.spec import Spec
+    from easy_esi_core._compat_typing import JSONDict
+    from easy_esi_core._compat_typing import NoReturn
+    from easy_esi_core._compat_typing import UnmarshalingMethod
+    from easy_esi_core.model import Model
+    from easy_esi_core.spec import Spec
 
 
 _NOT_FOUND = object()
@@ -49,7 +49,7 @@ def unmarshal_schema_object(swagger_spec, schema_object_spec, value):
     - return the value in a form suitable for use. e.g. conversion to a Model
       type.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :type schema_object_spec: dict
     :type value: int, float, long, string, unicode, boolean, list, dict, etc
 
@@ -65,7 +65,7 @@ def unmarshal_primitive(swagger_spec, primitive_spec, value):
     # type: (Spec, JSONDict, typing.Any) -> typing.Any
     """Unmarshal a jsonschema primitive type into a python primitive.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :type primitive_spec: dict
     :type value: int, long, float, boolean, string, unicode, etc
 
@@ -88,7 +88,7 @@ def unmarshal_array(swagger_spec, array_spec, array_value):
     # type: (Spec, JSONDict, typing.Any) -> typing.Any
     """Unmarshal a jsonschema type of 'array' into a python list.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :type array_spec: dict
     :type array_value: list
     :rtype: list
@@ -108,7 +108,7 @@ def unmarshal_object(swagger_spec, object_spec, object_value):
     # type: (Spec, JSONDict, typing.Any) -> typing.Any
     """Unmarshal a jsonschema type of 'object' into a python dict.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :type object_spec: dict
     :type object_value: dict
     :rtype: dict
@@ -128,7 +128,7 @@ def unmarshal_model(swagger_spec, model_spec, model_value):
     # type: (Spec, JSONDict, typing.Any) -> typing.Any
     """Unmarshal a dict into a Model instance.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :type model_spec: dict
     :type model_value: dict
     :rtype: Model instance
@@ -156,7 +156,7 @@ def _get_unmarshaling_method(swagger_spec, object_schema, is_nullable=True):
 
     :param swagger_spec: Spec object
     :param object_schema: Schema of the object type
-    # TODO: remove is_nullable support once https://github.com/Yelp/bravado-core/issues/335 is addressed
+    # TODO: remove is_nullable support once https://github.com/Yelp/easy-esi-core/issues/335 is addressed
     :param is_nullable: Flag set to `True` if the current schema is nullable.
                         The flag will be set to `True` if the schema is not required or `x-nullable`
                         attribute is set to true by the "parent" schema
@@ -172,7 +172,7 @@ def _get_unmarshaling_method(swagger_spec, object_schema, is_nullable=True):
     if object_type == 'array':
         return null_decorator(_unmarshaling_method_array(swagger_spec, object_schema))
     elif object_type == 'file':
-        # TODO: Type file is not a valid type. It is present to support parameter unmarshaling (move to bravado_core.param)  # noqa: E501
+        # TODO: Type file is not a valid type. It is present to support parameter unmarshaling (move to easy_esi_core.param)  # noqa: E501
         return null_decorator(_unmarshaling_method_file(swagger_spec, object_schema))
     elif object_type == 'object':
         return null_decorator(_unmarshaling_method_object(swagger_spec, object_schema))
@@ -247,7 +247,7 @@ def _unmarshaling_method_array(swagger_spec, object_schema):
 
 def _unmarshaling_method_file(swagger_spec, object_schema):
     # type: (Spec, JSONDict) -> UnmarshalingMethod
-    # TODO: Type file is not a valid type. It is present to support parameter unmarshaling (move to bravado_core.param)  # noqa: E501
+    # TODO: Type file is not a valid type. It is present to support parameter unmarshaling (move to easy_esi_core.param)  # noqa: E501
     return _no_op_unmarshaling
 
 
@@ -266,7 +266,7 @@ def _unmarshal_object(
     Unmarshal a dict into a Model instance or a dictionary (according to the 'use_models' swagger_spec configuration).
 
     :param swagger_spec: Spec object
-    :param model_type: Type of the return value (:class:`dict` or a subclass of :class:`bravado_core.model.Model`)
+    :param model_type: Type of the return value (:class:`dict` or a subclass of :class:`easy_esi_core.model.Model`)
     :param properties_to_unmarshaling_function: Mapping between property name and associated unmarshaling method
     :param additional_properties_unmarshaling_function: Unmarshaling function of eventual additional properties
     :param properties_to_default_value: Mapping between property name and the associated unmarshaled default value
@@ -394,7 +394,7 @@ def _unmarshaling_method_primitive_type(swagger_spec, object_schema):
     """
     Determine the unmarshaling method needed for a schema of a primitive type.
 
-    The method will be responsible for the identification of the eventual :class:`bravado_core.formatter.SwaggerFormat`
+    The method will be responsible for the identification of the eventual :class:`easy_esi_core.formatter.SwaggerFormat`
     transformation to apply.
 
     :param swagger_spec: Spec object

@@ -4,7 +4,7 @@ from jsonschema.validators import RefResolver
 from mock import MagicMock
 from mock import Mock
 
-from bravado_core.swagger20_validator import ref_validator
+from easy_esi_core.swagger20_validator import ref_validator
 
 
 @pytest.fixture

@@ -51,7 +51,7 @@ properties becomes a reality:
 
 .. code-block:: python
 
-    from bravado_core.spec import Spec
+    from easy_esi_core.spec import Spec
 
     spec = Spec.from_dict(...)
     Pet = spec.definitions['Pet']
@@ -67,20 +67,20 @@ properties becomes a reality:
 
 Configuring Models as Python Types
 ----------------------------------
-bravado-core supports models as both dicts and python types.
+easy-esi-core supports models as both dicts and python types.
 
 The feature to use python types for models is enabled by default. You can
 always disable it if necessary.
 
 .. code-block:: python
 
-    from bravado_core.spec import Spec
+    from easy_esi_core.spec import Spec
     swagger_dict = {..}
     spec = Spec.from_dict(swagger_dict, config={'use_models': False})
 
 Allowing null values for properties
 -----------------------------------
-Typically, bravado-core will complain during validation if it encounters fields with ``null`` values.
+Typically, easy-esi-core will complain during validation if it encounters fields with ``null`` values.
 This can be problematic, especially when you're adding Swagger support to pre-existing
 APIs. In that case, declare your model properties as ``x-nullable``:
 
@@ -104,7 +104,7 @@ version of Swagger.
 
 Sensitive Data
 -----------------------------------
-Typically, if bravado-core encounters an error validaing a request or a
+Typically, if easy-esi-core encounters an error validaing a request or a
 response, the value will be included in the exception message. If you have
 sensitive data, this can be problematic. To prevent a sensitive value from
 appearing in the exception details, declare the field as ``x-sensitive``:
@@ -128,7 +128,7 @@ extension can be applied to arrays and primitives as well as objects.
 
 Model Discovery
 ---------------
-Keep in mind that bravado-core has to do some extra legwork to figure out which
+Keep in mind that easy-esi-core has to do some extra legwork to figure out which
 parts of your spec represent Swagger models and which parts don't to make this
 feature work automagically. With a single-file Swagger spec, this is pretty
 straight forward - almost everything under ``#/definitions`` is a model. However, with

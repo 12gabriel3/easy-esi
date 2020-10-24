@@ -8,11 +8,11 @@ import pytest
 from six.moves.urllib.parse import urlparse
 from swagger_spec_validator import validator20
 
-from bravado_core import spec
-from bravado_core.spec import CONFIG_DEFAULTS
-from bravado_core.spec import Spec
-from bravado_core.spec_flattening import _marshal_uri
-from bravado_core.spec_flattening import _SpecFlattener
+from easy_esi_core import spec
+from easy_esi_core.spec import CONFIG_DEFAULTS
+from easy_esi_core.spec import Spec
+from easy_esi_core.spec_flattening import _marshal_uri
+from easy_esi_core.spec_flattening import _SpecFlattener
 from tests.conftest import _read_json
 from tests.conftest import get_url
 
@@ -32,12 +32,12 @@ def spec_flattener(minimal_swagger_spec):
     return _spec_flattener(minimal_swagger_spec)
 
 
-@mock.patch('bravado_core.spec_flattening.warnings')
+@mock.patch('easy_esi_core.spec_flattening.warnings')
 def test_no_warning_for_clashed_uris(mock_warnings, spec_flattener):
     spec_flattener.warn_if_uri_clash_on_same_marshaled_representation({})
 
 
-@mock.patch('bravado_core.spec_flattening.warnings')
+@mock.patch('easy_esi_core.spec_flattening.warnings')
 def test_warning_for_clashed_uris(mock_warnings, spec_flattener):
     clashing_uris = ['path1', 'path2']
     marshaled_uri = 'SameString'
@@ -116,7 +116,7 @@ def test_marshal_url(target, expected_marshaled_uri):
     assert marshaled_uri == expected_marshaled_uri
 
 
-@mock.patch('bravado_core.spec.log', autospec=True)
+@mock.patch('easy_esi_core.spec.log', autospec=True)
 def test_flattened_spec_warns_if_configured_to_not_validate_swagger_specs(
     mock_log, minimal_swagger_dict,
 ):
@@ -131,9 +131,9 @@ def test_flattened_spec_warns_if_configured_to_not_validate_swagger_specs(
 @pytest.mark.parametrize(
     'has_origin_url', [True, False],
 )
-@mock.patch('bravado_core.spec_flattening.warnings')
-@mock.patch('bravado_core.spec.build_http_handlers')
-@mock.patch('bravado_core.spec.flattened_spec', wraps=spec.flattened_spec)
+@mock.patch('easy_esi_core.spec_flattening.warnings')
+@mock.patch('easy_esi_core.spec.build_http_handlers')
+@mock.patch('easy_esi_core.spec.flattened_spec', wraps=spec.flattened_spec)
 def test_flattened_spec_warning_if_no_origin_url(
     wrap_flattened_spec, mock_build_http_handlers, mock_warnings, petstore_spec, has_origin_url,
 ):
@@ -153,9 +153,9 @@ def test_flattened_spec_warning_if_no_origin_url(
         )
 
 
-@mock.patch('bravado_core.spec.warnings')
-@mock.patch('bravado_core.spec.build_http_handlers')
-@mock.patch('bravado_core.spec.flattened_spec')
+@mock.patch('easy_esi_core.spec.warnings')
+@mock.patch('easy_esi_core.spec.build_http_handlers')
+@mock.patch('easy_esi_core.spec.flattened_spec')
 def test_flattened_spec_cached_result(mock_flattened_spec, mock_build_http_handlers, mock_warnings, petstore_spec):
     petstore_spec.flattened_spec
     petstore_spec.flattened_spec

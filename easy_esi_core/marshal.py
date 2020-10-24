@@ -5,26 +5,26 @@ from functools import partial
 import typing
 from six import iteritems
 
-from bravado_core import _decorators
-from bravado_core import schema
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.model import Model
-from bravado_core.model import MODEL_MARKER
-from bravado_core.schema import collapsed_properties
-from bravado_core.schema import collapsed_required
-from bravado_core.schema import get_type_from_schema
-from bravado_core.schema import is_dict_like
-from bravado_core.schema import is_list_like
-from bravado_core.schema import SWAGGER_PRIMITIVES
-from bravado_core.util import memoize_by_id
+from easy_esi_core import _decorators
+from easy_esi_core import schema
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.model import Model
+from easy_esi_core.model import MODEL_MARKER
+from easy_esi_core.schema import collapsed_properties
+from easy_esi_core.schema import collapsed_required
+from easy_esi_core.schema import get_type_from_schema
+from easy_esi_core.schema import is_dict_like
+from easy_esi_core.schema import is_list_like
+from easy_esi_core.schema import SWAGGER_PRIMITIVES
+from easy_esi_core.util import memoize_by_id
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from bravado_core._compat_typing import JSONDict
-    from bravado_core._compat_typing import MarshalingMethod
-    from bravado_core._compat_typing import NoReturn
-    from bravado_core.spec import Spec
-    from bravado_core.formatter import SwaggerFormat
+    from easy_esi_core._compat_typing import JSONDict
+    from easy_esi_core._compat_typing import MarshalingMethod
+    from easy_esi_core._compat_typing import NoReturn
+    from easy_esi_core.spec import Spec
+    from easy_esi_core.formatter import SwaggerFormat
 
 
 _NOT_FOUND = object()
@@ -42,7 +42,7 @@ def marshal_schema_object(swagger_spec, schema_object_spec, value):
     - transform the value according to 'format' if available
     - return the value in a form suitable for 'on-the-wire' transmission
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :type schema_object_spec: dict
     :type value: int, long, string, unicode, boolean, list, dict, Model type
 
@@ -58,7 +58,7 @@ def marshal_primitive(swagger_spec, primitive_spec, value):
     # type: (Spec, JSONDict, typing.Any) -> typing.Any
     """Marshal a python primitive type into a jsonschema primitive.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :type primitive_spec: dict
     :type value: int, long, float, boolean, string, unicode, or an object
         based on 'format'
@@ -84,7 +84,7 @@ def marshal_array(swagger_spec, array_spec, array_value):
     # type: (Spec, JSONDict, typing.Any) -> typing.Any
     """Marshal a jsonschema type of 'array' into a json-like list.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :type array_spec: dict
     :type array_value: list
     :rtype: list
@@ -107,7 +107,7 @@ def marshal_object(swagger_spec, object_spec, object_value):
     # type: (Spec, JSONDict, typing.Any) -> typing.Any
     """Marshal a python dict to json dict.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :type object_spec: dict
     :type object_value: dict
 
@@ -131,7 +131,7 @@ def marshal_model(swagger_spec, model_spec, model_value):
     # type: (Spec, JSONDict, typing.Any) -> typing.Any
     """Marshal a Model instance into a json-like dict.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :type model_spec: dict
     :type model_value: Model instance
     :rtype: dict
@@ -159,7 +159,7 @@ def _get_marshaling_method(swagger_spec, object_schema, required=False):
     The returned method will accept a single positional parameter that represent the value
     to be marshaled.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :type object_schema: dict
     """
     object_schema = swagger_spec.deref(object_schema)
@@ -247,7 +247,7 @@ def _marshaling_method_array(swagger_spec, object_schema):
 
 def _marshaling_method_file(swagger_spec, object_schema):
     # type: (Spec, JSONDict) -> MarshalingMethod
-    # TODO: Type file is not a valid type. It is present to support parameter marshaling (move to bravado_core.param)  # noqa: E501
+    # TODO: Type file is not a valid type. It is present to support parameter marshaling (move to easy_esi_core.param)  # noqa: E501
     return _no_op_marshaling
 
 
@@ -407,7 +407,7 @@ def _marshaling_method_primitive_type(swagger_spec, object_schema):
     """
     Determine the marshaling method needed for a schema of a primitive type.
 
-    The method will be responsible for the identification of the eventual :class:`bravado_core.formatter.SwaggerFormat`
+    The method will be responsible for the identification of the eventual :class:`easy_esi_core.formatter.SwaggerFormat`
     transformation to apply.
 
     :param swagger_spec: Spec object

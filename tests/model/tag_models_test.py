@@ -4,9 +4,9 @@ import copy
 import mock
 import pytest
 
-from bravado_core import model
-from bravado_core.model import _tag_models
-from bravado_core.spec import Spec
+from easy_esi_core import model
+from easy_esi_core.model import _tag_models
+from easy_esi_core.spec import Spec
 
 
 @pytest.fixture

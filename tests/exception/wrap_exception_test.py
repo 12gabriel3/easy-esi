@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado_core.exception import wrap_exception
+from easy_esi_core.exception import wrap_exception
 
 
 def test_exception_gets_correctly_wrapped():

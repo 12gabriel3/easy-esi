@@ -36,7 +36,7 @@ Changelog
 -------------------
 - Add option to automatically base64-encode/decode strings with byte format - `PR #351`_ - Thanks nickgaya for your contribution!
 - Ensure `PEP-561`_ compatibility - `PR #352`_ Thanks nickgaya for your contribution!
-- Enhance documentation, typing of ``bravado_core.model.Model`` - `PR #354`_ - Thanks nickgaya for your contribution!
+- Enhance documentation, typing of ``easy_esi_core.model.Model`` - `PR #354`_ - Thanks nickgaya for your contribution!
 - Update Model equality method - `PR #355`_
 
 5.13.2 (2019-09-04)
@@ -56,9 +56,9 @@ Changelog
 - ``Model`` instances use ``__slots__`` and ``@lazy_class_attribute`` to reduce ``Model`` class footprint - `PR #330`_
 - ``unmarshal_schema_object`` honours the additional properties and default values - `PR #333`_
 - ``unmarshal_model``/``unmarshal_object`` do not raise ``SwaggerMappingError`` in case of unknown polymorphic objects (better distinction between unmarshalling and validating processes) - `PR #333`_
-- Refactor ``bravado_core.unmarshal`` module to enhance runtime performances - `PR #336`_
+- Refactor ``easy_esi_core.unmarshal`` module to enhance runtime performances - `PR #336`_
 - ``@memoize_by_id`` performance improvements when used with ``kwargs`` only - `PR #337`_
-- Refactor ``bravado_core.marshal`` module to enhance runtime performance - `PR #339`_
+- Refactor ``easy_esi_core.marshal`` module to enhance runtime performance - `PR #339`_
 
 5.12.1 (2019-05-07)
 -------------------
@@ -125,15 +125,15 @@ Changelog
 
 5.0.0 (2018-05-30)
 ------------------
-- Refactor: model discovery is now handled in ``bravado_core.model`` - `PR #270`_
+- Refactor: model discovery is now handled in ``easy_esi_core.model`` - `PR #270`_
 - Remove deprecated methods from Model type - `PR #270`_
-- Remove deprecated parameters from ``bravado_core.spec_flattening.flattened_spec`` - `PR #269`_
+- Remove deprecated parameters from ``easy_esi_core.spec_flattening.flattened_spec`` - `PR #269`_
 - Ensure that models in ``#/definitions`` of referenced files are discovered - `PR #273`_
 
 .. warning::
     This release contains breaking changes!
-    The signature of ``bravado_core.spec_flattening.flattened_spec`` has been updated.
-    The following methods have been removed from the public interface: ``bravado_core.model.tag_models``, ``bravado_core.model.bless_models``, ``bravado_core.model.collect_models`` and ``bravado_core.spec.post_process_spec``.
+    The signature of ``easy_esi_core.spec_flattening.flattened_spec`` has been updated.
+    The following methods have been removed from the public interface: ``easy_esi_core.model.tag_models``, ``easy_esi_core.model.bless_models``, ``easy_esi_core.model.collect_models`` and ``easy_esi_core.spec.post_process_spec``.
 
 4.13.4 (2018-05-24)
 -------------------
@@ -361,12 +361,12 @@ Changelog
 
 3.1.0 (2015-10-19)
 ------------------
-- Added http ``headers`` to ``bravado_core.response.IncomingResponse``.
+- Added http ``headers`` to ``easy_esi_core.response.IncomingResponse``.
 
 3.0.2 (2015-10-12)
 ------------------
 - Added docs on how to use `User-Defined Formats`_.
-- Added docs on how to `Configure`_ bravado-core.
+- Added docs on how to `Configure`_ easy-esi-core.
 - formats added as a config option
 
 
@@ -377,7 +377,7 @@ Changelog
 3.0.0 (2015-10-07)
 ------------------
 - User-defined formats are now scoped to a Swagger spec - `Issue #50`_ (this is a non-backwards compatible change)
-- Deprecated bravado_core.request.RequestLike and renamed to bravado_core.request.IncomingRequest
+- Deprecated easy_esi_core.request.RequestLike and renamed to easy_esi_core.request.IncomingRequest
 - Added ``make docs`` target and updated docs (still needs a lot of work though)
 
 2.4.1 (2015-09-30)
@@ -430,167 +430,167 @@ Changelog
 - Initial release
 
 .. Links Section
-.. _Issue #7: https://github.com/Yelp/bravado-core/issues/7
-.. _Issue #35: https://github.com/Yelp/bravado-core/issues/35
-.. _Issue #42: https://github.com/Yelp/bravado-core/issues/42
-.. _Issue #45: https://github.com/Yelp/bravado-core/issues/45
-.. _Issue #47: https://github.com/Yelp/bravado-core/issues/47
-.. _Issue #48: https://github.com/Yelp/bravado-core/issues/48
-.. _Issue #50: https://github.com/Yelp/bravado-core/issues/50
-.. _Issue #66: https://github.com/Yelp/bravado-core/issues/66
-.. _Issue #68: https://github.com/Yelp/bravado-core/issues/68
-.. _Issue #70: https://github.com/Yelp/bravado-core/issues/70
-.. _Issue #77: https://github.com/Yelp/bravado-core/issues/77
-.. _Issue #78: https://github.com/Yelp/bravado-core/issues/78
-.. _Issue #82: https://github.com/Yelp/bravado-core/issues/82
-.. _Issue #108: https://github.com/Yelp/bravado-core/issues/108
-.. _Issue #125: https://github.com/Yelp/bravado-core/issues/125
-.. _Issue #160: https://github.com/Yelp/bravado-core/issues/160
-.. _Issue #163: https://github.com/Yelp/bravado-core/issues/163
-.. _Issue #166: https://github.com/Yelp/bravado-core/issues/166
-.. _Issue #185: https://github.com/Yelp/bravado-core/issues/185
-.. _Issue #200: https://github.com/Yelp/bravado-core/issues/200
-.. _Issue #214: https://github.com/Yelp/bravado-core/issues/214
-.. _Issue #227: https://github.com/Yelp/bravado-core/issues/227
-.. _Issue #235: https://github.com/Yelp/bravado-core/issues/235
-.. _Issue #258: https://github.com/Yelp/bravado-core/issues/258
-.. _Issue #275: https://github.com/Yelp/bravado-core/issues/275
-.. _Issue #278: https://github.com/Yelp/bravado-core/issues/278
-.. _Issue #281: https://github.com/Yelp/bravado-core/issues/281
-.. _Issue #318: https://github.com/Yelp/bravado-core/issues/318
-.. _Issue #321: https://github.com/Yelp/bravado-core/issues/321
-.. _Issue #359: https://github.com/Yelp/bravado-core/issues/359
-.. _PR #61: https://github.com/Yelp/bravado-core/pull/61
-.. _PR #63: https://github.com/Yelp/bravado-core/pull/63
-.. _PR #64: https://github.com/Yelp/bravado-core/pull/64
-.. _PR #75: https://github.com/Yelp/bravado-core/pull/75
-.. _PR #76: https://github.com/Yelp/bravado-core/pull/76
-.. _PR #87: https://github.com/Yelp/bravado-core/pull/87
-.. _PR #95: https://github.com/Yelp/bravado-core/pull/95
-.. _PR #103: https://github.com/Yelp/bravado-core/pull/103
-.. _PR #106: https://github.com/Yelp/bravado-core/pull/106
-.. _PR #107: https://github.com/Yelp/bravado-core/pull/107
-.. _PR #109: https://github.com/Yelp/bravado-core/pull/109
-.. _PR #110: https://github.com/Yelp/bravado-core/pull/110
-.. _PR #111: https://github.com/Yelp/bravado-core/pull/111
-.. _PR #112: https://github.com/Yelp/bravado-core/pull/112
-.. _PR #113: https://github.com/Yelp/bravado-core/pull/113
-.. _PR #115: https://github.com/Yelp/bravado-core/pull/115
-.. _PR #120: https://github.com/Yelp/bravado-core/pull/120
-.. _PR #121: https://github.com/Yelp/bravado-core/pull/121
-.. _PR #124: https://github.com/Yelp/bravado-core/pull/124
-.. _PR #126: https://github.com/Yelp/bravado-core/pull/126
-.. _PR #128: https://github.com/Yelp/bravado-core/pull/128
-.. _PR #143: https://github.com/Yelp/bravado-core/pull/143
-.. _PR #147: https://github.com/Yelp/bravado-core/pull/147
-.. _PR #148: https://github.com/Yelp/bravado-core/pull/148
-.. _PR #152: https://github.com/Yelp/bravado-core/pull/152
-.. _PR #154: https://github.com/Yelp/bravado-core/pull/154
-.. _PR #155: https://github.com/Yelp/bravado-core/pull/155
-.. _PR #158: https://github.com/Yelp/bravado-core/pull/158
-.. _PR #159: https://github.com/Yelp/bravado-core/pull/159
-.. _PR #161: https://github.com/Yelp/bravado-core/pull/161
-.. _PR #165: https://github.com/Yelp/bravado-core/pull/165
-.. _PR #167: https://github.com/Yelp/bravado-core/pull/167
-.. _PR #171: https://github.com/Yelp/bravado-core/pull/171
-.. _PR #175: https://github.com/Yelp/bravado-core/pull/175
-.. _PR #177: https://github.com/Yelp/bravado-core/pull/177
-.. _PR #179: https://github.com/Yelp/bravado-core/pull/179
-.. _PR #182: https://github.com/Yelp/bravado-core/pull/182
-.. _PR #183: https://github.com/Yelp/bravado-core/pull/183
-.. _PR #184: https://github.com/Yelp/bravado-core/pull/184
-.. _PR #186: https://github.com/Yelp/bravado-core/pull/186
-.. _PR #188: https://github.com/Yelp/bravado-core/pull/188
-.. _PR #189: https://github.com/Yelp/bravado-core/pull/189
-.. _PR #191: https://github.com/Yelp/bravado-core/pull/191
-.. _PR #192: https://github.com/Yelp/bravado-core/pull/192
-.. _PR #193: https://github.com/Yelp/bravado-core/pull/193
-.. _PR #194: https://github.com/Yelp/bravado-core/pull/194
-.. _PR #196: https://github.com/Yelp/bravado-core/pull/196
-.. _PR #199: https://github.com/Yelp/bravado-core/pull/199
-.. _PR #204: https://github.com/Yelp/bravado-core/pull/204
-.. _PR #207: https://github.com/Yelp/bravado-core/pull/207
-.. _PR #208: https://github.com/Yelp/bravado-core/pull/208
-.. _PR #213: https://github.com/Yelp/bravado-core/pull/213
-.. _PR #216: https://github.com/Yelp/bravado-core/pull/216
-.. _PR #218: https://github.com/Yelp/bravado-core/pull/218
-.. _PR #226: https://github.com/Yelp/bravado-core/pull/226
-.. _PR #228: https://github.com/Yelp/bravado-core/pull/228
-.. _PR #234: https://github.com/Yelp/bravado-core/pull/234
-.. _PR #236: https://github.com/Yelp/bravado-core/pull/236
-.. _PR #237: https://github.com/Yelp/bravado-core/pull/237
-.. _PR #238: https://github.com/Yelp/bravado-core/pull/238
-.. _PR #240: https://github.com/Yelp/bravado-core/pull/240
-.. _PR #241: https://github.com/Yelp/bravado-core/pull/241
-.. _PR #242: https://github.com/Yelp/bravado-core/pull/242
-.. _PR #243: https://github.com/Yelp/bravado-core/pull/243
-.. _PR #244: https://github.com/Yelp/bravado-core/pull/244
-.. _PR #245: https://github.com/Yelp/bravado-core/pull/245
-.. _PR #246: https://github.com/Yelp/bravado-core/pull/246
-.. _PR #247: https://github.com/Yelp/bravado-core/pull/247
-.. _PR #249: https://github.com/Yelp/bravado-core/pull/249
-.. _PR #253: https://github.com/Yelp/bravado-core/pull/253
-.. _PR #254: https://github.com/Yelp/bravado-core/pull/254
-.. _PR #259: https://github.com/Yelp/bravado-core/pull/259
-.. _PR #260: https://github.com/Yelp/bravado-core/pull/260
-.. _PR #262: https://github.com/Yelp/bravado-core/pull/262
-.. _PR #263: https://github.com/Yelp/bravado-core/pull/263
-.. _PR #268: https://github.com/Yelp/bravado-core/pull/268
-.. _PR #269: https://github.com/Yelp/bravado-core/pull/269
-.. _PR #270: https://github.com/Yelp/bravado-core/pull/270
-.. _PR #273: https://github.com/Yelp/bravado-core/pull/273
-.. _PR #274: https://github.com/Yelp/bravado-core/pull/274
-.. _PR #276: https://github.com/Yelp/bravado-core/pull/276
-.. _PR #279: https://github.com/Yelp/bravado-core/pull/279
-.. _PR #282: https://github.com/Yelp/bravado-core/pull/282
-.. _PR #284: https://github.com/Yelp/bravado-core/pull/284
-.. _PR #285: https://github.com/Yelp/bravado-core/pull/285
-.. _PR #286: https://github.com/Yelp/bravado-core/pull/286
-.. _PR #292: https://github.com/Yelp/bravado-core/pull/292
-.. _PR #293: https://github.com/Yelp/bravado-core/pull/293
-.. _PR #294: https://github.com/Yelp/bravado-core/pull/294
-.. _PR #295: https://github.com/Yelp/bravado-core/pull/295
-.. _PR #297: https://github.com/Yelp/bravado-core/pull/297
-.. _PR #300: https://github.com/Yelp/bravado-core/pull/300
-.. _PR #302: https://github.com/Yelp/bravado-core/pull/302
-.. _PR #304: https://github.com/Yelp/bravado-core/pull/304
-.. _PR #315: https://github.com/Yelp/bravado-core/pull/315
-.. _PR #319: https://github.com/Yelp/bravado-core/pull/319
-.. _PR #320: https://github.com/Yelp/bravado-core/pull/320
-.. _PR #322: https://github.com/Yelp/bravado-core/pull/322
-.. _PR #323: https://github.com/Yelp/bravado-core/pull/323
-.. _PR #324: https://github.com/Yelp/bravado-core/pull/324
-.. _PR #325: https://github.com/Yelp/bravado-core/pull/325
-.. _PR #326: https://github.com/Yelp/bravado-core/pull/326
-.. _PR #327: https://github.com/Yelp/bravado-core/pull/327
-.. _PR #328: https://github.com/Yelp/bravado-core/pull/328
-.. _PR #330: https://github.com/Yelp/bravado-core/pull/330
-.. _PR #333: https://github.com/Yelp/bravado-core/pull/333
-.. _PR #336: https://github.com/Yelp/bravado-core/pull/336
-.. _PR #337: https://github.com/Yelp/bravado-core/pull/337
-.. _PR #339: https://github.com/Yelp/bravado-core/pull/339
-.. _PR #345: https://github.com/Yelp/bravado-core/pull/345
-.. _PR #347: https://github.com/Yelp/bravado-core/pull/347
-.. _PR #350: https://github.com/Yelp/bravado-core/pull/350
-.. _PR #351: https://github.com/Yelp/bravado-core/pull/351
-.. _PR #352: https://github.com/Yelp/bravado-core/pull/352
-.. _PR #354: https://github.com/Yelp/bravado-core/pull/354
-.. _PR #355: https://github.com/Yelp/bravado-core/pull/355
-.. _PR #356: https://github.com/Yelp/bravado-core/pull/356
-.. _PR #358: https://github.com/Yelp/bravado-core/pull/358
-.. _PR #360: https://github.com/Yelp/bravado-core/pull/360
-.. _PR #361: https://github.com/Yelp/bravado-core/pull/361
-.. _PR #363: https://github.com/Yelp/bravado-core/pull/363
-.. _PR #364: https://github.com/Yelp/bravado-core/pull/364
-.. _PR #366: https://github.com/Yelp/bravado-core/pull/366
-.. _PR #367: https://github.com/Yelp/bravado-core/pull/367
-.. _PR #368: https://github.com/Yelp/bravado-core/pull/368
-.. _PR #371: https://github.com/Yelp/bravado-core/pull/371
-.. _PR #372: https://github.com/Yelp/bravado-core/pull/372
+.. _Issue #7: https://github.com/Yelp/easy-esi-core/issues/7
+.. _Issue #35: https://github.com/Yelp/easy-esi-core/issues/35
+.. _Issue #42: https://github.com/Yelp/easy-esi-core/issues/42
+.. _Issue #45: https://github.com/Yelp/easy-esi-core/issues/45
+.. _Issue #47: https://github.com/Yelp/easy-esi-core/issues/47
+.. _Issue #48: https://github.com/Yelp/easy-esi-core/issues/48
+.. _Issue #50: https://github.com/Yelp/easy-esi-core/issues/50
+.. _Issue #66: https://github.com/Yelp/easy-esi-core/issues/66
+.. _Issue #68: https://github.com/Yelp/easy-esi-core/issues/68
+.. _Issue #70: https://github.com/Yelp/easy-esi-core/issues/70
+.. _Issue #77: https://github.com/Yelp/easy-esi-core/issues/77
+.. _Issue #78: https://github.com/Yelp/easy-esi-core/issues/78
+.. _Issue #82: https://github.com/Yelp/easy-esi-core/issues/82
+.. _Issue #108: https://github.com/Yelp/easy-esi-core/issues/108
+.. _Issue #125: https://github.com/Yelp/easy-esi-core/issues/125
+.. _Issue #160: https://github.com/Yelp/easy-esi-core/issues/160
+.. _Issue #163: https://github.com/Yelp/easy-esi-core/issues/163
+.. _Issue #166: https://github.com/Yelp/easy-esi-core/issues/166
+.. _Issue #185: https://github.com/Yelp/easy-esi-core/issues/185
+.. _Issue #200: https://github.com/Yelp/easy-esi-core/issues/200
+.. _Issue #214: https://github.com/Yelp/easy-esi-core/issues/214
+.. _Issue #227: https://github.com/Yelp/easy-esi-core/issues/227
+.. _Issue #235: https://github.com/Yelp/easy-esi-core/issues/235
+.. _Issue #258: https://github.com/Yelp/easy-esi-core/issues/258
+.. _Issue #275: https://github.com/Yelp/easy-esi-core/issues/275
+.. _Issue #278: https://github.com/Yelp/easy-esi-core/issues/278
+.. _Issue #281: https://github.com/Yelp/easy-esi-core/issues/281
+.. _Issue #318: https://github.com/Yelp/easy-esi-core/issues/318
+.. _Issue #321: https://github.com/Yelp/easy-esi-core/issues/321
+.. _Issue #359: https://github.com/Yelp/easy-esi-core/issues/359
+.. _PR #61: https://github.com/Yelp/easy-esi-core/pull/61
+.. _PR #63: https://github.com/Yelp/easy-esi-core/pull/63
+.. _PR #64: https://github.com/Yelp/easy-esi-core/pull/64
+.. _PR #75: https://github.com/Yelp/easy-esi-core/pull/75
+.. _PR #76: https://github.com/Yelp/easy-esi-core/pull/76
+.. _PR #87: https://github.com/Yelp/easy-esi-core/pull/87
+.. _PR #95: https://github.com/Yelp/easy-esi-core/pull/95
+.. _PR #103: https://github.com/Yelp/easy-esi-core/pull/103
+.. _PR #106: https://github.com/Yelp/easy-esi-core/pull/106
+.. _PR #107: https://github.com/Yelp/easy-esi-core/pull/107
+.. _PR #109: https://github.com/Yelp/easy-esi-core/pull/109
+.. _PR #110: https://github.com/Yelp/easy-esi-core/pull/110
+.. _PR #111: https://github.com/Yelp/easy-esi-core/pull/111
+.. _PR #112: https://github.com/Yelp/easy-esi-core/pull/112
+.. _PR #113: https://github.com/Yelp/easy-esi-core/pull/113
+.. _PR #115: https://github.com/Yelp/easy-esi-core/pull/115
+.. _PR #120: https://github.com/Yelp/easy-esi-core/pull/120
+.. _PR #121: https://github.com/Yelp/easy-esi-core/pull/121
+.. _PR #124: https://github.com/Yelp/easy-esi-core/pull/124
+.. _PR #126: https://github.com/Yelp/easy-esi-core/pull/126
+.. _PR #128: https://github.com/Yelp/easy-esi-core/pull/128
+.. _PR #143: https://github.com/Yelp/easy-esi-core/pull/143
+.. _PR #147: https://github.com/Yelp/easy-esi-core/pull/147
+.. _PR #148: https://github.com/Yelp/easy-esi-core/pull/148
+.. _PR #152: https://github.com/Yelp/easy-esi-core/pull/152
+.. _PR #154: https://github.com/Yelp/easy-esi-core/pull/154
+.. _PR #155: https://github.com/Yelp/easy-esi-core/pull/155
+.. _PR #158: https://github.com/Yelp/easy-esi-core/pull/158
+.. _PR #159: https://github.com/Yelp/easy-esi-core/pull/159
+.. _PR #161: https://github.com/Yelp/easy-esi-core/pull/161
+.. _PR #165: https://github.com/Yelp/easy-esi-core/pull/165
+.. _PR #167: https://github.com/Yelp/easy-esi-core/pull/167
+.. _PR #171: https://github.com/Yelp/easy-esi-core/pull/171
+.. _PR #175: https://github.com/Yelp/easy-esi-core/pull/175
+.. _PR #177: https://github.com/Yelp/easy-esi-core/pull/177
+.. _PR #179: https://github.com/Yelp/easy-esi-core/pull/179
+.. _PR #182: https://github.com/Yelp/easy-esi-core/pull/182
+.. _PR #183: https://github.com/Yelp/easy-esi-core/pull/183
+.. _PR #184: https://github.com/Yelp/easy-esi-core/pull/184
+.. _PR #186: https://github.com/Yelp/easy-esi-core/pull/186
+.. _PR #188: https://github.com/Yelp/easy-esi-core/pull/188
+.. _PR #189: https://github.com/Yelp/easy-esi-core/pull/189
+.. _PR #191: https://github.com/Yelp/easy-esi-core/pull/191
+.. _PR #192: https://github.com/Yelp/easy-esi-core/pull/192
+.. _PR #193: https://github.com/Yelp/easy-esi-core/pull/193
+.. _PR #194: https://github.com/Yelp/easy-esi-core/pull/194
+.. _PR #196: https://github.com/Yelp/easy-esi-core/pull/196
+.. _PR #199: https://github.com/Yelp/easy-esi-core/pull/199
+.. _PR #204: https://github.com/Yelp/easy-esi-core/pull/204
+.. _PR #207: https://github.com/Yelp/easy-esi-core/pull/207
+.. _PR #208: https://github.com/Yelp/easy-esi-core/pull/208
+.. _PR #213: https://github.com/Yelp/easy-esi-core/pull/213
+.. _PR #216: https://github.com/Yelp/easy-esi-core/pull/216
+.. _PR #218: https://github.com/Yelp/easy-esi-core/pull/218
+.. _PR #226: https://github.com/Yelp/easy-esi-core/pull/226
+.. _PR #228: https://github.com/Yelp/easy-esi-core/pull/228
+.. _PR #234: https://github.com/Yelp/easy-esi-core/pull/234
+.. _PR #236: https://github.com/Yelp/easy-esi-core/pull/236
+.. _PR #237: https://github.com/Yelp/easy-esi-core/pull/237
+.. _PR #238: https://github.com/Yelp/easy-esi-core/pull/238
+.. _PR #240: https://github.com/Yelp/easy-esi-core/pull/240
+.. _PR #241: https://github.com/Yelp/easy-esi-core/pull/241
+.. _PR #242: https://github.com/Yelp/easy-esi-core/pull/242
+.. _PR #243: https://github.com/Yelp/easy-esi-core/pull/243
+.. _PR #244: https://github.com/Yelp/easy-esi-core/pull/244
+.. _PR #245: https://github.com/Yelp/easy-esi-core/pull/245
+.. _PR #246: https://github.com/Yelp/easy-esi-core/pull/246
+.. _PR #247: https://github.com/Yelp/easy-esi-core/pull/247
+.. _PR #249: https://github.com/Yelp/easy-esi-core/pull/249
+.. _PR #253: https://github.com/Yelp/easy-esi-core/pull/253
+.. _PR #254: https://github.com/Yelp/easy-esi-core/pull/254
+.. _PR #259: https://github.com/Yelp/easy-esi-core/pull/259
+.. _PR #260: https://github.com/Yelp/easy-esi-core/pull/260
+.. _PR #262: https://github.com/Yelp/easy-esi-core/pull/262
+.. _PR #263: https://github.com/Yelp/easy-esi-core/pull/263
+.. _PR #268: https://github.com/Yelp/easy-esi-core/pull/268
+.. _PR #269: https://github.com/Yelp/easy-esi-core/pull/269
+.. _PR #270: https://github.com/Yelp/easy-esi-core/pull/270
+.. _PR #273: https://github.com/Yelp/easy-esi-core/pull/273
+.. _PR #274: https://github.com/Yelp/easy-esi-core/pull/274
+.. _PR #276: https://github.com/Yelp/easy-esi-core/pull/276
+.. _PR #279: https://github.com/Yelp/easy-esi-core/pull/279
+.. _PR #282: https://github.com/Yelp/easy-esi-core/pull/282
+.. _PR #284: https://github.com/Yelp/easy-esi-core/pull/284
+.. _PR #285: https://github.com/Yelp/easy-esi-core/pull/285
+.. _PR #286: https://github.com/Yelp/easy-esi-core/pull/286
+.. _PR #292: https://github.com/Yelp/easy-esi-core/pull/292
+.. _PR #293: https://github.com/Yelp/easy-esi-core/pull/293
+.. _PR #294: https://github.com/Yelp/easy-esi-core/pull/294
+.. _PR #295: https://github.com/Yelp/easy-esi-core/pull/295
+.. _PR #297: https://github.com/Yelp/easy-esi-core/pull/297
+.. _PR #300: https://github.com/Yelp/easy-esi-core/pull/300
+.. _PR #302: https://github.com/Yelp/easy-esi-core/pull/302
+.. _PR #304: https://github.com/Yelp/easy-esi-core/pull/304
+.. _PR #315: https://github.com/Yelp/easy-esi-core/pull/315
+.. _PR #319: https://github.com/Yelp/easy-esi-core/pull/319
+.. _PR #320: https://github.com/Yelp/easy-esi-core/pull/320
+.. _PR #322: https://github.com/Yelp/easy-esi-core/pull/322
+.. _PR #323: https://github.com/Yelp/easy-esi-core/pull/323
+.. _PR #324: https://github.com/Yelp/easy-esi-core/pull/324
+.. _PR #325: https://github.com/Yelp/easy-esi-core/pull/325
+.. _PR #326: https://github.com/Yelp/easy-esi-core/pull/326
+.. _PR #327: https://github.com/Yelp/easy-esi-core/pull/327
+.. _PR #328: https://github.com/Yelp/easy-esi-core/pull/328
+.. _PR #330: https://github.com/Yelp/easy-esi-core/pull/330
+.. _PR #333: https://github.com/Yelp/easy-esi-core/pull/333
+.. _PR #336: https://github.com/Yelp/easy-esi-core/pull/336
+.. _PR #337: https://github.com/Yelp/easy-esi-core/pull/337
+.. _PR #339: https://github.com/Yelp/easy-esi-core/pull/339
+.. _PR #345: https://github.com/Yelp/easy-esi-core/pull/345
+.. _PR #347: https://github.com/Yelp/easy-esi-core/pull/347
+.. _PR #350: https://github.com/Yelp/easy-esi-core/pull/350
+.. _PR #351: https://github.com/Yelp/easy-esi-core/pull/351
+.. _PR #352: https://github.com/Yelp/easy-esi-core/pull/352
+.. _PR #354: https://github.com/Yelp/easy-esi-core/pull/354
+.. _PR #355: https://github.com/Yelp/easy-esi-core/pull/355
+.. _PR #356: https://github.com/Yelp/easy-esi-core/pull/356
+.. _PR #358: https://github.com/Yelp/easy-esi-core/pull/358
+.. _PR #360: https://github.com/Yelp/easy-esi-core/pull/360
+.. _PR #361: https://github.com/Yelp/easy-esi-core/pull/361
+.. _PR #363: https://github.com/Yelp/easy-esi-core/pull/363
+.. _PR #364: https://github.com/Yelp/easy-esi-core/pull/364
+.. _PR #366: https://github.com/Yelp/easy-esi-core/pull/366
+.. _PR #367: https://github.com/Yelp/easy-esi-core/pull/367
+.. _PR #368: https://github.com/Yelp/easy-esi-core/pull/368
+.. _PR #371: https://github.com/Yelp/easy-esi-core/pull/371
+.. _PR #372: https://github.com/Yelp/easy-esi-core/pull/372
 
 .. Link To Documentation pages
-.. _Configure: https://bravado-core.readthedocs.org/en/latest/config.html
-.. _Model Discovery: https://bravado-core.readthedocs.org/en/latest/models.html#model-discovery
-.. _User-Defined Formats: https://bravado-core.readthedocs.org/en/latest/formats.html
-.. _Sensitive Data: https://bravado-core.readthedocs.io/en/latest/models.html#sensitive-data
+.. _Configure: https://easy-esi-core.readthedocs.org/en/latest/config.html
+.. _Model Discovery: https://easy-esi-core.readthedocs.org/en/latest/models.html#model-discovery
+.. _User-Defined Formats: https://easy-esi-core.readthedocs.org/en/latest/formats.html
+.. _Sensitive Data: https://easy-esi-core.readthedocs.io/en/latest/models.html#sensitive-data
 .. _PEP-561: https://www.python.org/dev/peps/pep-0561/

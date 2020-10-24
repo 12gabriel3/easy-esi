@@ -2,7 +2,7 @@
 import pytest
 from jsonschema.exceptions import ValidationError
 
-from bravado_core.validate import validate_primitive
+from easy_esi_core.validate import validate_primitive
 from tests.validate.conftest import email_address_format
 
 

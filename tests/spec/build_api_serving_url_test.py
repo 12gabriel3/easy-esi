@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado_core.exception import SwaggerSchemaError
-from bravado_core.spec import build_api_serving_url
+from easy_esi_core.exception import SwaggerSchemaError
+from easy_esi_core.spec import build_api_serving_url
 
 
 @pytest.fixture

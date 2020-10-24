@@ -3,7 +3,7 @@ import uuid
 
 import pytest
 
-from bravado_core.spec import Spec
+from easy_esi_core.spec import Spec
 
 
 @pytest.fixture(

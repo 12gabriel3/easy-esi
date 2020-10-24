@@ -4,15 +4,15 @@ from inspect import getcallargs
 import mock
 import pytest
 
-from bravado_core.util import AliasKeyDict
-from bravado_core.util import cached_property
-from bravado_core.util import determine_object_type
-from bravado_core.util import lazy_class_attribute
-from bravado_core.util import memoize_by_id
-from bravado_core.util import ObjectType
-from bravado_core.util import RecursiveCallException
-from bravado_core.util import sanitize_name
-from bravado_core.util import strip_xscope
+from easy_esi_core.util import AliasKeyDict
+from easy_esi_core.util import cached_property
+from easy_esi_core.util import determine_object_type
+from easy_esi_core.util import lazy_class_attribute
+from easy_esi_core.util import memoize_by_id
+from easy_esi_core.util import ObjectType
+from easy_esi_core.util import RecursiveCallException
+from easy_esi_core.util import sanitize_name
+from easy_esi_core.util import strip_xscope
 
 
 def test_cached_property():
@@ -114,7 +114,7 @@ def test_memoize_by_id_decorator():
     assert calls == [[1, None], [2, 3], [1, None]]
 
 
-@mock.patch('bravado_core.util.inspect.getcallargs', wraps=getcallargs)
+@mock.patch('easy_esi_core.util.inspect.getcallargs', wraps=getcallargs)
 def test_memoize_by_id_do_not_use_inspect_if_only_kwargs_are_provided(mock_getcallargs):
     calls = []
 

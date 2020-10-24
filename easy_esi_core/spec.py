@@ -25,28 +25,28 @@ try:
 except ImportError:
     from yaml import SafeLoader  # type: ignore
 
-from bravado_core import formatter
-from bravado_core import version as _version
-from bravado_core.exception import SwaggerSchemaError
-from bravado_core.exception import SwaggerValidationError
-from bravado_core.formatter import return_true_wrapper
-from bravado_core.model import _from_pickleable_representation
-from bravado_core.model import _to_pickleable_representation
-from bravado_core.model import Model
-from bravado_core.model import model_discovery
-from bravado_core.resource import build_resources
-from bravado_core.schema import is_dict_like
-from bravado_core.schema import is_list_like
-from bravado_core.schema import is_ref
-from bravado_core.security_definition import SecurityDefinition
-from bravado_core.spec_flattening import flattened_spec
-from bravado_core.util import cached_property
-from bravado_core.util import memoize_by_id
-from bravado_core.util import strip_xscope
+from easy_esi_core import formatter
+from easy_esi_core import version as _version
+from easy_esi_core.exception import SwaggerSchemaError
+from easy_esi_core.exception import SwaggerValidationError
+from easy_esi_core.formatter import return_true_wrapper
+from easy_esi_core.model import _from_pickleable_representation
+from easy_esi_core.model import _to_pickleable_representation
+from easy_esi_core.model import Model
+from easy_esi_core.model import model_discovery
+from easy_esi_core.resource import build_resources
+from easy_esi_core.schema import is_dict_like
+from easy_esi_core.schema import is_list_like
+from easy_esi_core.schema import is_ref
+from easy_esi_core.security_definition import SecurityDefinition
+from easy_esi_core.spec_flattening import flattened_spec
+from easy_esi_core.util import cached_property
+from easy_esi_core.util import memoize_by_id
+from easy_esi_core.util import strip_xscope
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from bravado_core.formatter import SwaggerFormat
+    from easy_esi_core.formatter import SwaggerFormat
 
     T = typing.TypeVar('T')
 
@@ -75,7 +75,7 @@ CONFIG_DEFAULTS = {
     'use_models': True,
 
     # List of user-defined formats of type
-    # :class:`bravado_core.formatter.SwaggerFormat`. These formats are in
+    # :class:`easy_esi_core.formatter.SwaggerFormat`. These formats are in
     # addition to the formats already supported by the Swagger 2.0
     # Specification.
     'formats': [],
@@ -264,7 +264,7 @@ class Spec(object):
                 'resolver',
                 # Exclude definitions because it contain runtime defined type and those
                 # are not directly pickleable.
-                # Check bravado_core.model._to_pickleable_representation for details.
+                # Check easy_esi_core.model._to_pickleable_representation for details.
                 'definitions',
             )
         }
@@ -277,16 +277,16 @@ class Spec(object):
             model_name: _to_pickleable_representation(model_name, model_type)
             for model_name, model_type in iteritems(self.definitions)
         }
-        # Store the bravado-core version used to create the Spec state
-        state['__bravado_core_version__'] = _version
+        # Store the easy-esi-core version used to create the Spec state
+        state['__easy_esi_core_version__'] = _version
         return state
 
     def __setstate__(self, state):
-        state_version = state.pop('__bravado_core_version__')
+        state_version = state.pop('__easy_esi_core_version__')
         if state_version != _version:
             warnings.warn(
                 'You are creating a Spec instance from a state created by a different '
-                'bravado-core version. We are not going to guarantee that the created '
+                'easy-esi-core version. We are not going to guarantee that the created '
                 'Spec instance will be correct. '
                 'State created by version {state_version}, current version {_version}'.format(
                     state_version=state_version,
@@ -425,7 +425,7 @@ class Spec(object):
         :param path_pattern: request path pattern. e.g. /foo/{bar}/baz/{id}
 
         :returns: the matching operation or None if a match couldn't be found
-        :rtype: :class:`bravado_core.operation.Operation`
+        :rtype: :class:`easy_esi_core.operation.Operation`
         """
         if self._request_to_op_map is None:
             # lazy initialization
@@ -444,7 +444,7 @@ class Spec(object):
         """Registers a user-defined format to be used with this spec.
 
         :type user_defined_format:
-            :class:`bravado_core.formatter.SwaggerFormat`
+            :class:`easy_esi_core.formatter.SwaggerFormat`
         """
         name = user_defined_format.format
         self.user_defined_formats[name] = user_defined_format
@@ -455,7 +455,7 @@ class Spec(object):
         # type: (typing.Text) -> SwaggerFormat
         """
         :param name: Name of the format to retrieve
-        :rtype: :class:`bravado_core.formatter.SwaggerFormat`
+        :rtype: :class:`easy_esi_core.formatter.SwaggerFormat`
         """
         user_defined_format = self.user_defined_formats.get(name)
         if user_defined_format is None:
@@ -465,7 +465,7 @@ class Spec(object):
 
         if user_defined_format is None:
             warnings.warn(
-                message='{0} format is not registered with bravado-core!'.format(name),
+                message='{0} format is not registered with easy-esi-core!'.format(name),
                 category=Warning,
             )
         return user_defined_format

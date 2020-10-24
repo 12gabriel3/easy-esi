@@ -3,12 +3,12 @@ import pytest
 from mock import Mock
 from six import iteritems
 
-from bravado_core.exception import SwaggerSchemaError
-from bravado_core.exception import SwaggerSecurityValidationError
-from bravado_core.request import IncomingRequest
-from bravado_core.request import unmarshal_request
-from bravado_core.resource import build_resources
-from bravado_core.spec import Spec
+from easy_esi_core.exception import SwaggerSchemaError
+from easy_esi_core.exception import SwaggerSecurityValidationError
+from easy_esi_core.request import IncomingRequest
+from easy_esi_core.request import unmarshal_request
+from easy_esi_core.resource import build_resources
+from easy_esi_core.spec import Spec
 from tests.operation.conftest import SECURITY_DEFINITIONS
 from tests.operation.conftest import SECURITY_OBJECTS
 

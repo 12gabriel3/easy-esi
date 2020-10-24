@@ -1,9 +1,9 @@
-bravado_core documentation
+easy_esi_core documentation
 ==========================
 
-bravado_core is a Python library that implements the `Swagger 2.0 <https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md>`_ Specification.
+easy_esi_core is a Python library that implements the `Swagger 2.0 <https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md>`_ Specification.
 
-Client and servers alike can use bravado_core to implement these features:
+Client and servers alike can use easy_esi_core to implement these features:
 
 * Swagger Schema ingestion and validation
 * Validation and marshalling of requests and responses
@@ -12,8 +12,8 @@ Client and servers alike can use bravado_core to implement these features:
 
 For example:
 
-* `bravado <http://github.com/Yelp/bravado>`_ uses bravado-core to implement a fully functional Swagger client.
-* `pyramid_swagger <http://github.com/striglia/pyramid_swagger>`_ uses bravado-core to seamlessly add Swagger support to Pyramid webapps.
+* `bravado <http://github.com/Yelp/bravado>`_ uses easy-esi-core to implement a fully functional Swagger client.
+* `pyramid_swagger <http://github.com/striglia/pyramid_swagger>`_ uses easy-esi-core to seamlessly add Swagger support to Pyramid webapps.
 
 Contents:
 

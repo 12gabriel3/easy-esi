@@ -4,7 +4,7 @@ from jsonschema.exceptions import ValidationError
 from mock import Mock
 from mock import patch
 
-from bravado_core.swagger20_validator import required_validator
+from easy_esi_core.swagger20_validator import required_validator
 
 
 @pytest.fixture
@@ -49,7 +49,7 @@ def test_pass_if_not_required_parameter_and_not_present(
     assert len(errors) == 0
 
 
-@patch('bravado_core.swagger20_validator._DRAFT4_REQUIRED_VALIDATOR')
+@patch('easy_esi_core.swagger20_validator._DRAFT4_REQUIRED_VALIDATOR')
 def test_call_to_jsonschema_if_not_param(jsonschema_required_validator, minimal_swagger_spec):
     property_spec = {'type': 'integer'}
     validator = Mock()

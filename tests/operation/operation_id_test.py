@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado_core.operation import Operation
-from bravado_core.spec import Spec
+from easy_esi_core.operation import Operation
+from easy_esi_core.spec import Spec
 
 
 def test_returns_operation_id_from_operation_spec():

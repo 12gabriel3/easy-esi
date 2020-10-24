@@ -2,11 +2,11 @@
 import mock
 import pytest
 
-from bravado_core.model import _bless_models
-from bravado_core.spec import Spec
+from easy_esi_core.model import _bless_models
+from easy_esi_core.spec import Spec
 
 
-@mock.patch('bravado_core.model.is_dict_like', return_value=False)
+@mock.patch('easy_esi_core.model.is_dict_like', return_value=False)
 def test_bless_models_short_circuit_if_no_dict_like_container(mock_is_dict_like, minimal_swagger_dict):
     minimal_swagger_dict['paths'] = {
         '/endpoint': {
@@ -36,7 +36,7 @@ def test_bless_models_short_circuit_if_no_dict_like_container(mock_is_dict_like,
         {'x-model': 'string'},  # deref(model_spec.get('x-model'))
     ),
 )
-@mock.patch('bravado_core.model._get_model_name')
+@mock.patch('easy_esi_core.model._get_model_name')
 def test_bless_models_gets_out_if_initial_pre_conditions_are_not_met(
     mock__get_model_name, minimal_swagger_dict, response_schema,
 ):

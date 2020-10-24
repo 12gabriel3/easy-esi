@@ -45,14 +45,14 @@ that makes them easy to work with.
 
         ...
 
-We would also like CIDRs to be validated by bravado-core whenever they are
+We would also like CIDRs to be validated by easy-esi-core whenever they are
 part of a HTTP request or response.
 
-Create a ``bravado_core.formatter.SwaggerFormat`` to define the CIDR format:
+Create a ``easy_esi_core.formatter.SwaggerFormat`` to define the CIDR format:
 
 .. code-block:: python
 
-    from bravado_core.formatter import SwaggerFormat
+    from easy_esi_core.formatter import SwaggerFormat
 
     def validate_cidr(cidr_string):
         if '/' not in cidr_string:
@@ -80,7 +80,7 @@ Now that we have a ``cidr_format``, just pass it to a ``Spec`` as part of the
 
 .. code-block:: python
 
-    from bravado_core.spec import Spec
+    from easy_esi_core.spec import Spec
 
     spec_dict = json.loads(open('swagger.json', 'r').read())
     config = {
@@ -132,9 +132,9 @@ CIDR objects back from the response.
 
 .. code-block:: python
 
-    from bravado_core.spec import Spec
-    from bravado_core.response import unmarshal_response
-    from bravado_core.param import marshal_param
+    from easy_esi_core.spec import Spec
+    from easy_esi_core.response import unmarshal_response
+    from easy_esi_core.param import marshal_param
 
     # Retrieve the swagger spec from the server and json.load() it
     spec_dict = ...
@@ -142,7 +142,7 @@ CIDR objects back from the response.
     # Create cidr_format add it to the config dict
     config = ...
 
-    # Create a bravado_core.spec.Spec
+    # Create a easy_esi_core.spec.Spec
     swagger_spec = Spec.from_dict(spec_dict, config=config)
 
     # Get the operation to invoke
@@ -187,7 +187,7 @@ You'd define the type:
     def validate_decimaltype(x):
       """Validate input is a str in valid decimal format"""
       if not (isinstance(x, str) and is_decimal.match(x)):
-          raise bravado_core.exception.SwaggerValidationError()
+          raise easy_esi_core.exception.SwaggerValidationError()
 
     mydouble = SwaggerFormat(
       format='double',
@@ -206,7 +206,7 @@ Then in your config block you include this format:
 	...
     }
 
-    # Create a bravado_core.spec.Spec
+    # Create a easy_esi_core.spec.Spec
     swagger_spec = Spec.from_dict(spec_dict, config=config)
 
 Note about using precise Decimal format in Spec

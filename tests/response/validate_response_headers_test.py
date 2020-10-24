@@ -3,9 +3,9 @@ import pytest
 from jsonschema.exceptions import ValidationError
 from mock import Mock
 
-from bravado_core.operation import Operation
-from bravado_core.response import OutgoingResponse
-from bravado_core.response import validate_response_headers
+from easy_esi_core.operation import Operation
+from easy_esi_core.response import OutgoingResponse
+from easy_esi_core.response import validate_response_headers
 
 
 @pytest.fixture

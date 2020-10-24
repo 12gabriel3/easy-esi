@@ -3,10 +3,10 @@ from functools import partial
 
 import pytest
 
-from bravado_core._decorators import handle_null_value
-from bravado_core._decorators import wrap_recursive_call_exception
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.util import memoize_by_id
+from easy_esi_core._decorators import handle_null_value
+from easy_esi_core._decorators import wrap_recursive_call_exception
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.util import memoize_by_id
 
 
 @pytest.mark.parametrize(

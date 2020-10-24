@@ -2,10 +2,10 @@
 import pytest
 from mock import Mock
 
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.operation import Operation
-from bravado_core.request import IncomingRequest
-from bravado_core.request import unmarshal_request
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.operation import Operation
+from easy_esi_core.request import IncomingRequest
+from easy_esi_core.request import unmarshal_request
 
 
 def test_request_with_path_parameter(getPetByIdPetstoreOperation):

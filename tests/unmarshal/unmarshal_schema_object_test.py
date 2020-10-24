@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.spec import Spec
-from bravado_core.unmarshal import unmarshal_schema_object
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.spec import Spec
+from easy_esi_core.unmarshal import unmarshal_schema_object
 from tests.conftest import get_url
 
 

@@ -3,12 +3,12 @@ import msgpack
 import pytest
 from mock import Mock
 
-from bravado_core.content_type import APP_MSGPACK
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.operation import Operation
-from bravado_core.response import EMPTY_BODIES
-from bravado_core.response import OutgoingResponse
-from bravado_core.response import validate_response_body
+from easy_esi_core.content_type import APP_MSGPACK
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.operation import Operation
+from easy_esi_core.response import EMPTY_BODIES
+from easy_esi_core.response import OutgoingResponse
+from easy_esi_core.response import validate_response_body
 
 
 def test_success_spec_empty_and_body_empty(minimal_swagger_spec):
@@ -120,7 +120,7 @@ def test_failure_response_content_type_not_supported_by_operation(minimal_swagge
     assert 'is not supported' in str(excinfo.value)
 
 
-def test_failure_response_content_type_not_supported_by_bravado_core(minimal_swagger_spec):
+def test_failure_response_content_type_not_supported_by_easy_esi_core(minimal_swagger_spec):
     response_spec = {
         'description': 'I return an int',
         'schema': {

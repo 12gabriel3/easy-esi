@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from bravado_core.spec import Spec
+from easy_esi_core.spec import Spec
 
 
 def test_found_with_no_basepath(petstore_dict):

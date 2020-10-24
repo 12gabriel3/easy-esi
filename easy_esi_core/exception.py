@@ -6,11 +6,11 @@ import typing
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from bravado_core._compat_typing import FuncType
+    from easy_esi_core._compat_typing import FuncType
 
 
 class SwaggerError(Exception):
-    """Base exception class which all bravado-core specific exceptions
+    """Base exception class which all easy-esi-core specific exceptions
     inherit from.
     """
 

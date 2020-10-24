@@ -6,7 +6,7 @@ from six import iterkeys
 from six.moves.urllib.request import pathname2url
 from swagger_spec_validator.common import SwaggerValidationError
 
-from bravado_core.spec import Spec
+from easy_esi_core.spec import Spec
 from tests.conftest import get_url
 from tests.conftest import get_url_path
 from tests.validate.conftest import email_address_format
@@ -14,7 +14,7 @@ from tests.validate.conftest import email_address_format
 
 def assert_validate_call_count(expected_call_count, config, petstore_dict):
     spec = Spec(petstore_dict, config=config)
-    with patch('bravado_core.spec.validator20.validate_spec') as m_validate:
+    with patch('easy_esi_core.spec.validator20.validate_spec') as m_validate:
         spec.deref = Mock(return_value={})
         spec.build()
     assert expected_call_count == m_validate.call_count

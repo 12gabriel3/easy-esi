@@ -13,15 +13,15 @@ import pytz
 import six
 import typing
 
-from bravado_core import schema
-from bravado_core.exception import SwaggerMappingError
+from easy_esi_core import schema
+from easy_esi_core.exception import SwaggerMappingError
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from bravado_core._compat_typing import JSONDict
-    from bravado_core._compat_typing import MarshalingMethod  # noqa: F401
-    from bravado_core._compat_typing import UnmarshalingMethod  # noqa: F401
-    from bravado_core.spec import Spec
+    from easy_esi_core._compat_typing import JSONDict
+    from easy_esi_core._compat_typing import MarshalingMethod  # noqa: F401
+    from easy_esi_core._compat_typing import UnmarshalingMethod  # noqa: F401
+    from easy_esi_core.spec import Spec
 
     T = typing.TypeVar('T')
 
@@ -44,7 +44,7 @@ def to_wire(
     """Converts a python primitive or object to a reasonable wire
     representation if it has an associated Swagger `format`.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :param primitive_spec: spec for a primitive type as a dict
     :param value: primitive to convert to wire representation
     :type value: int, long, float, boolean, string, unicode, object, etc
@@ -77,7 +77,7 @@ def to_python(
     """Converts a value in wire format to its python representation if
      it has an associated Swagger `format`.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :param primitive_spec: spec for a primitive type as a dict
     :type value: int, long, float, boolean, string, unicode, etc
     :rtype: int, long, float, boolean, string, object, etc
@@ -102,7 +102,7 @@ class SwaggerFormat(
     ),
 ):
     """User-defined format which can be registered with a
-    :class:`bravado_core.spec.Spec` to handle marshalling to wire format,
+    :class:`easy_esi_core.spec.Spec` to handle marshalling to wire format,
     unmarshalling to a python type, and format specific validation.
 
     :param format: Name for the user-defined format.
@@ -111,7 +111,7 @@ class SwaggerFormat(
     :param to_wire: function to marshal a value of this format
         Eg. lambda val_py: base64.b64encode(val_py)
     :param validate: function to validate the correctness of the `wire` value.
-        It should raise :class:`bravado_core.exception.SwaggerValidationError`
+        It should raise :class:`easy_esi_core.exception.SwaggerValidationError`
         if the value does not conform to the format.
     :param description: Short description of the format and conversion logic.
     """

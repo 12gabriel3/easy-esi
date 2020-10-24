@@ -5,9 +5,9 @@ from datetime import datetime
 import six
 from mock import patch
 
-from bravado_core.formatter import SwaggerFormat
-from bravado_core.formatter import to_python
-from bravado_core.spec import Spec
+from easy_esi_core.formatter import SwaggerFormat
+from easy_esi_core.formatter import to_python
+from easy_esi_core.spec import Spec
 
 
 if not six.PY2:
@@ -39,7 +39,7 @@ def test_datetime(minimal_swagger_spec):
     assert datetime(2015, 3, 22, 13, 19, 54) == result
 
 
-@patch('bravado_core.spec.warnings.warn')
+@patch('easy_esi_core.spec.warnings.warn')
 def test_no_registered_format_returns_value_as_is_and_issues_warning(mock_warn, minimal_swagger_spec):
     string_spec = {'type': 'string', 'format': 'bar'}
     assert 'baz' == to_python(minimal_swagger_spec, string_spec, 'baz')

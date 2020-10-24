@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from six import itervalues
 
-from bravado_core.operation import log
-from bravado_core.param import unmarshal_param
-from bravado_core.validate import validate_security_object
+from easy_esi_core.operation import log
+from easy_esi_core.param import unmarshal_param
+from easy_esi_core.validate import validate_security_object
 
 
 class IncomingRequest(object):
@@ -59,8 +59,8 @@ def unmarshal_request(request, op):
     """Unmarshal Swagger request parameters from the passed in request like
     object.
 
-    :type request: :class: `bravado_core.request.IncomingRequest`.
-    :type op: :class:`bravado_core.operation.Operation`
+    :type request: :class: `easy_esi_core.request.IncomingRequest`.
+    :type op: :class:`easy_esi_core.operation.Operation`
     :returns: dict where (key, value) = (param_name, param_value)
     """
     request_data = {}

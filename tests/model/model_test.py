@@ -6,15 +6,15 @@ import pytest
 from mock import Mock
 from six import add_metaclass
 
-from bravado_core.content_type import APP_JSON
-from bravado_core.model import Model
-from bravado_core.model import ModelMeta
-from bravado_core.response import IncomingResponse
-from bravado_core.response import unmarshal_response
-from bravado_core.schema import collapsed_properties
-from bravado_core.schema import is_ref
-from bravado_core.spec import Spec
-from bravado_core.unmarshal import unmarshal_model
+from easy_esi_core.content_type import APP_JSON
+from easy_esi_core.model import Model
+from easy_esi_core.model import ModelMeta
+from easy_esi_core.response import IncomingResponse
+from easy_esi_core.response import unmarshal_response
+from easy_esi_core.schema import collapsed_properties
+from easy_esi_core.schema import is_ref
+from easy_esi_core.spec import Spec
+from easy_esi_core.unmarshal import unmarshal_model
 
 
 @add_metaclass(ModelMeta)

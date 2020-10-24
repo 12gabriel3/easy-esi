@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.param import COLLECTION_FORMATS
-from bravado_core.param import unmarshal_collection_format
-from bravado_core.spec import Spec
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.param import COLLECTION_FORMATS
+from easy_esi_core.param import unmarshal_collection_format
+from easy_esi_core.spec import Spec
 
 
 @pytest.fixture

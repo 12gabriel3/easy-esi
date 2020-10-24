@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from bravado_core.exception import SwaggerValidationError
-from bravado_core.formatter import SwaggerFormat
+from easy_esi_core.exception import SwaggerValidationError
+from easy_esi_core.formatter import SwaggerFormat
 
 
 def validate_email_address(email_address):

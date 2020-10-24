@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.resource import convert_path_to_resource
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.resource import convert_path_to_resource
 
 
 def test_success():

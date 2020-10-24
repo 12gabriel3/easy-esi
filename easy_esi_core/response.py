@@ -3,12 +3,12 @@ import msgpack
 from jsonschema import ValidationError
 from six import iteritems
 
-from bravado_core.content_type import APP_JSON
-from bravado_core.content_type import APP_MSGPACK
-from bravado_core.exception import MatchingResponseNotFound
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.unmarshal import unmarshal_schema_object
-from bravado_core.validate import validate_schema_object
+from easy_esi_core.content_type import APP_JSON
+from easy_esi_core.content_type import APP_MSGPACK
+from easy_esi_core.exception import MatchingResponseNotFound
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.unmarshal import unmarshal_schema_object
+from easy_esi_core.validate import validate_schema_object
 
 # Response bodies considered to be empty
 EMPTY_BODIES = (None, '', '{}', 'null')
@@ -96,8 +96,8 @@ def unmarshal_response(response, op):
     """Unmarshal incoming http response into a value based on the
     response specification.
 
-    :type response: :class:`bravado_core.response.IncomingResponse`
-    :type op: :class:`bravado_core.operation.Operation`
+    :type response: :class:`easy_esi_core.response.IncomingResponse`
+    :type op: :class:`easy_esi_core.operation.Operation`
     :returns: value where type(value) matches response_spec['schema']['type']
         if it exists, None otherwise.
     """
@@ -137,7 +137,7 @@ def get_response_spec(status_code, op):
                         {response}
 
     :type status_code: int
-    :type op: :class:`bravado_core.operation.Operation`
+    :type op: :class:`easy_esi_core.operation.Operation`
 
     :return: response specification
     :rtype: dict
@@ -166,8 +166,8 @@ def validate_response(response_spec, op, response):
     """Validate an outgoing response against its Swagger specification.
 
     :type response_spec: dict
-    :type op: :class:`bravado_core.operation.Operation`
-    :type response: :class:`bravado_core.response.OutgoingResponse`
+    :type op: :class:`easy_esi_core.operation.Operation`
+    :type response: :class:`easy_esi_core.response.OutgoingResponse`
     """
     if not op.swagger_spec.config['validate_responses']:
         return
@@ -180,9 +180,9 @@ def validate_response_body(op, response_spec, response):
     """Validate an outgoing response's body against the response's Swagger
     specification.
 
-    :type op: :class:`bravado_core.operation.Operation`
+    :type op: :class:`easy_esi_core.operation.Operation`
     :type response_spec: dict
-    :type response: :class:`bravado_core.response.OutgoingResponse`
+    :type response: :class:`easy_esi_core.response.OutgoingResponse`
 
     :raises: SwaggerMappingError
     """
@@ -228,9 +228,9 @@ def validate_response_headers(op, response_spec, response):
     """Validate an outgoing response's headers against the response's Swagger
     specification.
 
-    :type op: :class:`bravado_core.operation.Operation`
+    :type op: :class:`easy_esi_core.operation.Operation`
     :type response_spec: dict
-    :type response: :class:`bravado_core.response.OutgoingResponse`
+    :type response: :class:`easy_esi_core.response.OutgoingResponse`
     """
     deref = op.swagger_spec.deref
 

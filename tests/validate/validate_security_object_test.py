@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado_core.exception import SwaggerValidationError
-from bravado_core.validate import validate_security_object
+from easy_esi_core.exception import SwaggerValidationError
+from easy_esi_core.validate import validate_security_object
 
 
 @pytest.mark.parametrize(

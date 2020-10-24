@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from bravado_core.docstring import create_operation_docstring
-from bravado_core.operation import Operation
+from easy_esi_core.docstring import create_operation_docstring
+from easy_esi_core.operation import Operation
 
 
 def test_simple(op_spec, empty_swagger_spec):

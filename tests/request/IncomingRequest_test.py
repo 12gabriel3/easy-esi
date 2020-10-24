@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado_core.request import IncomingRequest
+from easy_esi_core.request import IncomingRequest
 
 
 def test_required_attr_returned():

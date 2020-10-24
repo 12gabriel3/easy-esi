@@ -3,9 +3,9 @@ from six import iterkeys
 from six import itervalues
 from typing import Any
 
-from bravado_core.schema import is_dict_like
-from bravado_core.schema import is_list_like
-from bravado_core.spec import Spec
+from easy_esi_core.schema import is_dict_like
+from easy_esi_core.schema import is_list_like
+from easy_esi_core.spec import Spec
 from tests.conftest import get_url
 
 

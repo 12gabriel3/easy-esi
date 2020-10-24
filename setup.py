@@ -7,7 +7,7 @@ import sys
 
 from setuptools import setup
 
-import bravado_core
+import easy_esi_core
 
 install_requires = [
     "jsonref",
@@ -26,8 +26,8 @@ if sys.version_info < (3, 5):
     install_requires.append('pyrsistent<0.17')
 
 setup(
-    name="bravado-core",
-    version=bravado_core.version,
+    name="easy-esi-core",
+    version=easy_esi_core.version,
     license="BSD 3-Clause License",
     description="Library for adding Swagger support to clients and servers",
     long_description=open(
@@ -37,9 +37,9 @@ setup(
         ),
     ).read(),
     author="Digium, Inc. and Yelp, Inc.",
-    author_email="opensource+bravado-core@yelp.com",
-    url="https://github.com/Yelp/bravado-core",
-    packages=["bravado_core"],
+    author_email="opensource+easy-esi-core@yelp.com",
+    url="https://github.com/Yelp/easy-esi-core",
+    packages=["easy_esi_core"],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
@@ -52,7 +52,7 @@ setup(
     ],
     install_requires=install_requires,
     package_data={
-        'bravado_core': ['py.typed'],
+        'easy_esi_core': ['py.typed'],
     },
     # https://mypy.readthedocs.io/en/latest/installed_packages.html
     zip_safe=False,

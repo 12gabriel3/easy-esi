@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado_core.model import is_object
-from bravado_core.spec import Spec
+from easy_esi_core.model import is_object
+from easy_esi_core.spec import Spec
 
 
 # deref = swagger_spec.deref

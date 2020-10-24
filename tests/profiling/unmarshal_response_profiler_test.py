@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from bravado_core.response import IncomingResponse
-from bravado_core.response import unmarshal_response
+from easy_esi_core.response import IncomingResponse
+from easy_esi_core.response import unmarshal_response
 
 
 class FakeJsonResponse(IncomingResponse):

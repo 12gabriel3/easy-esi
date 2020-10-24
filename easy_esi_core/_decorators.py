@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
 import typing
 
-from bravado_core import schema
-from bravado_core._compat import wraps
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.util import memoize_by_id
-from bravado_core.util import RecursiveCallException
+from easy_esi_core import schema
+from easy_esi_core._compat import wraps
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.util import memoize_by_id
+from easy_esi_core.util import RecursiveCallException
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from bravado_core.spec import Spec
-    from bravado_core._compat_typing import JSONDict
-    from bravado_core._compat_typing import FuncType
+    from easy_esi_core.spec import Spec
+    from easy_esi_core._compat_typing import JSONDict
+    from easy_esi_core._compat_typing import FuncType
 
 
 @memoize_by_id
 def handle_null_value(swagger_spec, object_schema, is_nullable=False, is_marshaling_operation=False):
     # type: (Spec, JSONDict, bool, bool) -> typing.Callable[[FuncType], FuncType]
-    # TODO: remove is_nullable support once https://github.com/Yelp/bravado-core/issues/335 is addressed
+    # TODO: remove is_nullable support once https://github.com/Yelp/easy-esi-core/issues/335 is addressed
     """
     Function wrapper that performs some check to the wrapped function parameter.
 
@@ -25,7 +25,7 @@ def handle_null_value(swagger_spec, object_schema, is_nullable=False, is_marshal
     the default value is used or that the null value is properly handled.
 
     NOTES:
-     * the decorator is meant to be used in bravado_core.marshal and bravado_core.unmarshal modules.
+     * the decorator is meant to be used in easy_esi_core.marshal and easy_esi_core.unmarshal modules.
      * the decorator could be used as wrapper of functions that accept a single value as parameter.
        Such value will be used for the checks mentioned above
      * nullable parameter is needed to ensure that x-nullable is propagated in the case it is defined
@@ -62,7 +62,7 @@ def handle_null_value(swagger_spec, object_schema, is_nullable=False, is_marshal
 def wrap_recursive_call_exception(func):
     # type: (FuncType) -> FuncType
     """
-    The bravado_core.marshaling and bravado_core.unmarshaling modules might
+    The easy_esi_core.marshaling and easy_esi_core.unmarshaling modules might
     take advantage of caching the return value of determined function calls.
 
     In the case of higher level function, so functions that return functions

@@ -1,24 +1,24 @@
-.. image:: https://img.shields.io/travis/Yelp/bravado-core/master.svg?label=Linux+Build
-  :target: https://travis-ci.org/Yelp/bravado-core?branch=master
+.. image:: https://img.shields.io/travis/Yelp/easy-esi-core/master.svg?label=Linux+Build
+  :target: https://travis-ci.org/Yelp/easy-esi-core?branch=master
 
-.. image:: https://img.shields.io/coveralls/Yelp/bravado-core.svg
-  :target: https://coveralls.io/r/Yelp/bravado-core
+.. image:: https://img.shields.io/coveralls/Yelp/easy-esi-core.svg
+  :target: https://coveralls.io/r/Yelp/easy-esi-core
 
-.. image:: https://img.shields.io/pypi/v/bravado-core.svg
-    :target: https://pypi.python.org/pypi/bravado-core/
+.. image:: https://img.shields.io/pypi/v/easy-esi-core.svg
+    :target: https://pypi.python.org/pypi/easy-esi-core/
     :alt: PyPi version
 
-.. image:: https://img.shields.io/pypi/pyversions/bravado_core.svg
-    :target: https://pypi.python.org/pypi/bravado-core/
+.. image:: https://img.shields.io/pypi/pyversions/easy_esi_core.svg
+    :target: https://pypi.python.org/pypi/easy-esi-core/
     :alt: Supported Python versions
 
-bravado-core
+easy-esi-core
 ============
 
 About
 -----
 
-bravado-core is a Python library that adds client-side and server-side support
+easy-esi-core is a Python library that adds client-side and server-side support
 for the `OpenAPI Specification v2.0 <https://github.com/OAI/OpenAPI-Specification>`__.
 
 Features
@@ -31,7 +31,7 @@ Features
 Documentation
 -------------
 
-Documentation is available at `readthedocs.org <http://bravado-core.readthedocs.org>`__
+Documentation is available at `readthedocs.org <http://easy-esi-core.readthedocs.org>`__
 
 
 Installation
@@ -39,7 +39,7 @@ Installation
 
 ::
 
-    $ pip install bravado-core
+    $ pip install easy-esi-core
 
 
 Related Projects
@@ -70,7 +70,7 @@ Setup
 Contributing
 ------------
 
-1. Fork it ( http://github.com/Yelp/bravado-core/fork )
+1. Fork it ( http://github.com/Yelp/easy-esi-core/fork )
 2. Create your feature branch (``git checkout -b my-new-feature``)
 3. Add your modifications
 4. Add short summary of your modifications on ``CHANGELOG.rst``

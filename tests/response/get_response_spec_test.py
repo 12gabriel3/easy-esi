@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado_core.exception import MatchingResponseNotFound
-from bravado_core.operation import Operation
-from bravado_core.response import get_response_spec
+from easy_esi_core.exception import MatchingResponseNotFound
+from easy_esi_core.operation import Operation
+from easy_esi_core.response import get_response_spec
 
 
 @pytest.fixture

@@ -21,7 +21,7 @@ def operation_docstring_wrapper(operation):
     >> pet = petstore.pet
     >> help(pet.getPetById)
 
-    Help on function getPetById in module bravado_core.resource:
+    Help on function getPetById in module easy_esi_core.resource:
 
     getPetById(**kwargs)
         [GET] Find pet by ID
@@ -50,7 +50,7 @@ def operation_docstring_wrapper(operation):
 def create_operation_docstring(op):
     """Builds a comprehensive docstring for an Operation.
 
-    :param op: :class:`bravado_core.operation.Operation`
+    :param op: :class:`easy_esi_core.operation.Operation`
     :rtype: str or unicode
 
     Example: ::

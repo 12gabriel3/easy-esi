@@ -2,10 +2,10 @@
 import pytest
 from mock import Mock
 
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.operation import Operation
-from bravado_core.param import add_file
-from bravado_core.param import Param
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.operation import Operation
+from easy_esi_core.param import add_file
+from easy_esi_core.param import Param
 
 
 def test_single_file(empty_swagger_spec):

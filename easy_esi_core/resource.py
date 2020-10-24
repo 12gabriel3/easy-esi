@@ -9,14 +9,14 @@ from six import iteritems
 from six import iterkeys
 from six import PY2
 
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.operation import Operation
-from bravado_core.util import AliasKeyDict
-from bravado_core.util import sanitize_name
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.operation import Operation
+from easy_esi_core.util import AliasKeyDict
+from easy_esi_core.util import sanitize_name
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from bravado_core.spec import Spec
+    from easy_esi_core.spec import Spec
 
 
 log = logging.getLogger(__name__)
@@ -51,7 +51,7 @@ def build_resources(swagger_spec):
     """Transforms the REST resources in the json-like swagger_spec into rich
     :Resource: objects that have associated :Operation:s.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :returns: dict where (key,value) = (resource name, Resource)
     """
     # Map operations to resources using operation tags if available.
@@ -139,7 +139,7 @@ class Resource(object):
         # type: (typing.Text) -> Operation
         """
         :param item: name of the operation to return
-        :rtype: :class:`bravado_core.operation.Operation`
+        :rtype: :class:`easy_esi_core.operation.Operation`
         """
         op = self.operations.get(item)
         if not op:

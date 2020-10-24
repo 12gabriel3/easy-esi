@@ -5,17 +5,17 @@ import typing
 from six import iteritems
 from six import PY2
 
-from bravado_core.exception import SwaggerSchemaError
-from bravado_core.param import Param
-from bravado_core.security_requirement import SecurityRequirement
-from bravado_core.util import AliasKeyDict
-from bravado_core.util import cached_property
-from bravado_core.util import sanitize_name
+from easy_esi_core.exception import SwaggerSchemaError
+from easy_esi_core.param import Param
+from easy_esi_core.security_requirement import SecurityRequirement
+from easy_esi_core.util import AliasKeyDict
+from easy_esi_core.util import cached_property
+from easy_esi_core.util import sanitize_name
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from bravado_core._compat_typing import JSONDict
-    from bravado_core.spec import Spec
+    from easy_esi_core._compat_typing import JSONDict
+    from easy_esi_core.spec import Spec
 
 
 log = logging.getLogger(__name__)
@@ -205,7 +205,7 @@ def build_params(op):
     """Builds up the list of this operation's parameters taking into account
     parameters that may be available for this operation's path component.
 
-    :type op: :class:`bravado_core.operation.Operation`
+    :type op: :class:`easy_esi_core.operation.Operation`
 
     :returns: dict where (k,v) is (param_name, Param)
     """

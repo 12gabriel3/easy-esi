@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from bravado_core.schema import collapsed_properties
+from easy_esi_core.schema import collapsed_properties
 
 
 def test_allOf(users_spec, users_swagger_spec):

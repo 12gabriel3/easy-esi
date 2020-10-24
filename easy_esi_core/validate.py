@@ -11,19 +11,19 @@ import typing
 from six import itervalues
 from six import reraise
 
-from bravado_core._compat import wraps
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.exception import SwaggerSecurityValidationError
-from bravado_core.model import is_object
-from bravado_core.schema import SWAGGER_PRIMITIVES
-from bravado_core.swagger20_validator import get_validator_type
+from easy_esi_core._compat import wraps
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.exception import SwaggerSecurityValidationError
+from easy_esi_core.model import is_object
+from easy_esi_core.schema import SWAGGER_PRIMITIVES
+from easy_esi_core.swagger20_validator import get_validator_type
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from bravado_core._compat_typing import JSONDict
-    from bravado_core._compat_typing import FuncType
-    from bravado_core.operation import Operation
-    from bravado_core.spec import Spec
+    from easy_esi_core._compat_typing import JSONDict
+    from easy_esi_core._compat_typing import FuncType
+    from easy_esi_core.operation import Operation
+    from easy_esi_core.spec import Spec
 
 
 def scrub_sensitive_value(func):
@@ -90,7 +90,7 @@ def validate_primitive(
 ):
     # type: (...) -> None
     """
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :param primitive_spec: spec for a swagger primitive type in dict form
     :type value: int, string, float, long, etc
     """
@@ -109,7 +109,7 @@ def validate_array(
 ):
     # type: (...) -> None
     """
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :param array_spec: spec for an 'array' type in dict form
     :type value: list
     """
@@ -128,7 +128,7 @@ def validate_object(
 ):
     # type: (...) -> None
     """
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     :param object_spec: spec for an 'object' type in dict form
     :type value: dict
     """
@@ -148,7 +148,7 @@ def validate_security_object(
     Checks that one security option is used at time.
 
     :param op: operation to be considered
-    :type op: :class:`bravado_core.operation.Operation`
+    :type op: :class:`easy_esi_core.operation.Operation`
     :param request_data:
     :type request_data: dict
     :raise: SwaggerSecurityValidationError
