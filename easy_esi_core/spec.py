@@ -2,11 +2,11 @@
 import json
 import logging
 import os.path
+import typing
 import warnings
 from copy import deepcopy
 from itertools import chain
 
-import typing
 import yaml
 from jsonref import JsonRef
 from jsonschema import FormatChecker

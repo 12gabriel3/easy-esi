@@ -96,4 +96,4 @@ def test_raise_error_if_duplicate_models_are_identified(minimal_swagger_dict, pe
         'New model spec: "{pet_model_spec}"'.format(pet_model_spec=pet_model_spec),
         'TIP: enforce different model naming by using {MODEL_MARKER}'.format(MODEL_MARKER='x-model'),
     ]
-    assert all(l in str(excinfo.value) for l in expected_lines)
+    assert all(line in str(excinfo.value) for line in expected_lines)

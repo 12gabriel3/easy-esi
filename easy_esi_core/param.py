@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import logging
+import typing
 from functools import partial
 
 import simplejson as json
 import six
-import typing
 from six.moves.urllib.parse import quote
 
 from easy_esi_core import schema

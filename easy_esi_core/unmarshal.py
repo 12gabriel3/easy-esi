@@ -3,12 +3,13 @@
 The module exposes unmarshaling capabilities.
 
 Unmarshaling is the operation that converts a "JSON" object into its python representation.
-The operation should also take care of converting types accordingly to the defined :class:`easy_esi_core.formatter.SwaggerFormat`s.
+The operation should also take care of converting types
+ accordingly to the defined :class:`easy_esi_core.formatter.SwaggerFormat`s.
 """
+import typing
 import warnings
 from functools import partial
 
-import typing
 from six import iteritems
 
 from easy_esi_core import _decorators

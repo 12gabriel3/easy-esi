@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+from typing import Any
+
 from six import iterkeys
 from six import itervalues
-from typing import Any
 
 from easy_esi_core.schema import is_dict_like
 from easy_esi_core.schema import is_list_like

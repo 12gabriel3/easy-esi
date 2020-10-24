@@ -11,12 +11,12 @@ from easy_esi_core.util import RecursiveCallException
 if getattr(typing, 'TYPE_CHECKING', False):
     from easy_esi_core.spec import Spec
     from easy_esi_core._compat_typing import JSONDict
-    from easy_esi_core._compat_typing import FuncType
+    from easy_esi_core._compat_typing import Func
 
 
 @memoize_by_id
 def handle_null_value(swagger_spec, object_schema, is_nullable=False, is_marshaling_operation=False):
-    # type: (Spec, JSONDict, bool, bool) -> typing.Callable[[FuncType], FuncType]
+    # type: (Spec, JSONDict, bool, bool) -> typing.Callable[[Func], Func]
     # TODO: remove is_nullable support once https://github.com/Yelp/easy-esi-core/issues/335 is addressed
     """
     Function wrapper that performs some check to the wrapped function parameter.
@@ -36,7 +36,7 @@ def handle_null_value(swagger_spec, object_schema, is_nullable=False, is_marshal
     is_nullable = is_nullable or schema.is_prop_nullable(swagger_spec, object_schema)
 
     def external_wrapper(func):
-        # type: (FuncType) -> FuncType
+        # type: (Func) -> Func
         @wraps(func)
         def wrapper(value):
             # type: (typing.Any) -> typing.Any
@@ -60,7 +60,7 @@ def handle_null_value(swagger_spec, object_schema, is_nullable=False, is_marshal
 
 
 def wrap_recursive_call_exception(func):
-    # type: (FuncType) -> FuncType
+    # type: (Func) -> Func
     """
     The easy_esi_core.marshaling and easy_esi_core.unmarshaling modules might
     take advantage of caching the return value of determined function calls.
