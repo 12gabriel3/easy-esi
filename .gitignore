@@ -13,4 +13,5 @@
 build
 cover/
 dist/
+venv/
 nosetests.xml
