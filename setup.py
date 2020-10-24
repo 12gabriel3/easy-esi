@@ -36,9 +36,9 @@ setup(
             "README.rst",
         ),
     ).read(),
-    author="Digium, Inc. and Yelp, Inc.",
-    author_email="opensource+easy-esi-core@yelp.com",
-    url="https://github.com/Yelp/easy-esi-core",
+    author="Digium, Inc., Yelp, Inc. and Gabriel Aguiar",
+    author_email="gabriel+aguiargab@gmail.com",
+    url="https://github.com/12gabriel3/easy-esi-core",
     packages=["easy_esi_core"],
     classifiers=[
         "Development Status :: 5 - Production/Stable",

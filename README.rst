@@ -1,16 +1,8 @@
-.. image:: https://img.shields.io/travis/Yelp/easy-esi-core/master.svg?label=Linux+Build
-  :target: https://travis-ci.org/Yelp/easy-esi-core?branch=master
+.. image:: https://travis-ci.com/12gabriel3/easy-esi-core.svg?branch=renaming
+    :target: https://travis-ci.com/12gabriel3/easy-esi-core
 
-.. image:: https://img.shields.io/coveralls/Yelp/easy-esi-core.svg
-  :target: https://coveralls.io/r/Yelp/easy-esi-core
-
-.. image:: https://img.shields.io/pypi/v/easy-esi-core.svg
-    :target: https://pypi.python.org/pypi/easy-esi-core/
-    :alt: PyPi version
-
-.. image:: https://img.shields.io/pypi/pyversions/easy_esi_core.svg
-    :target: https://pypi.python.org/pypi/easy-esi-core/
-    :alt: Supported Python versions
+.. image:: https://coveralls.io/repos/github/12gabriel3/easy-esi-core/badge.svg
+   :target: https://coveralls.io/github/12gabriel3/easy-esi-core
 
 easy-esi-core
 ============
@@ -70,7 +62,7 @@ Setup
 Contributing
 ------------
 
-1. Fork it ( http://github.com/Yelp/easy-esi-core/fork )
+1. Fork it ( http://github.com/12gabriel3/easy-esi-core/fork )
 2. Create your feature branch (``git checkout -b my-new-feature``)
 3. Add your modifications
 4. Add short summary of your modifications on ``CHANGELOG.rst``
