@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import typing
-from bravado_core.response import IncomingResponse
+from easy_esi_core.response import IncomingResponse
 from six import with_metaclass
 
 try:
@@ -65,7 +65,7 @@ class HTTPError(with_metaclass(HTTPErrorType, IOError)):
     ):
         # type: (...) -> None
         """
-        :type response: :class:`bravado_core.response.IncomingResponse`
+        :type response: :class:`easy_esi_core.response.IncomingResponse`
         :param message: Optional string message
         :param swagger_result: If the response for this HTTPError is
             documented in the swagger spec, then this should be the result
@@ -98,7 +98,7 @@ def make_http_exception(
     Return an HTTP exception class  based on the response. If a specific
     class doesn't exist for a particular HTTP status code, a more
     general :class:`HTTPError` class will be returned.
-    :type response: :class:`bravado_core.response.IncomingResponse`
+    :type response: :class:`easy_esi_core.response.IncomingResponse`
     :param message: Optional string message
     :param swagger_result: If the response for this HTTPError is
         documented in the swagger spec, then this should be the result
@@ -377,11 +377,11 @@ class HTTPNetworkAuthenticationRequired(HTTPServerError):
     status_code = 511
 
 
-class BravadoTimeoutError(base_timeout_error):
+class EasyEsiTimeoutError(base_timeout_error):
     pass
 
 
-class BravadoConnectionError(base_connection_error):
+class EasyEsiConnectionError(base_connection_error):
     pass
 
 

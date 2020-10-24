@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 import pytest
 import typing
-from bravado_core.operation import Operation
-from bravado_core.response import IncomingResponse
+from easy_esi_core.operation import Operation
+from easy_esi_core.response import IncomingResponse
 from mock import Mock
 from mock import patch
 
-from bravado.config import RequestConfig
-from bravado.exception import HTTPError
-from bravado.http_future import HttpFuture
+from easy_esi.config import RequestConfig
+from easy_esi.exception import HTTPError
+from easy_esi.http_future import HttpFuture
 
 
 def test_200_get_swagger_spec(mock_future_adapter):
@@ -34,7 +34,7 @@ def test_500_get_swagger_spec(mock_future_adapter):
     assert excinfo.value.response.status_code == 500
 
 
-@patch('bravado.http_future.unmarshal_response', autospec=True)
+@patch('easy_esi.http_future.unmarshal_response', autospec=True)
 def test_200_service_call(_, mock_future_adapter):
     response_adapter_instance = Mock(
         spec=IncomingResponse,
@@ -52,7 +52,7 @@ def test_200_service_call(_, mock_future_adapter):
     assert 'hello world' == http_future.result()
 
 
-@patch('bravado.http_future.unmarshal_response', autospec=True)
+@patch('easy_esi.http_future.unmarshal_response', autospec=True)
 def test_400_service_call(mock_unmarshal_response, mock_future_adapter):
     response_adapter_instance = Mock(
         spec=IncomingResponse,
@@ -72,7 +72,7 @@ def test_400_service_call(mock_unmarshal_response, mock_future_adapter):
     assert excinfo.value.response.status_code == 400
 
 
-@patch('bravado.http_future.unmarshal_response', autospec=True)
+@patch('easy_esi.http_future.unmarshal_response', autospec=True)
 def test_also_return_response_true(_, mock_future_adapter):
     # Verify HTTPFuture(..., also_return_response=True).result()
     # returns the (swagger_result, http_response) and not just swagger_result

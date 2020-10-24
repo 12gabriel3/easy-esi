@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import pytest
-from bravado_core.response import IncomingResponse
+from easy_esi_core.response import IncomingResponse
 from mock import Mock
 
-from bravado.exception import HTTPError
-from bravado.http_future import raise_on_unexpected
+from easy_esi.exception import HTTPError
+from easy_esi.http_future import raise_on_unexpected
 
 
 def test_5XX():

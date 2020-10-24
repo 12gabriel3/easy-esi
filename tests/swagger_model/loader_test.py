@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado.swagger_model import Loader
+from easy_esi.swagger_model import Loader
 
 
 @pytest.fixture

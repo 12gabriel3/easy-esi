@@ -4,7 +4,7 @@ import sys
 
 import pytest
 
-from bravado.swagger_model import load_file
+from easy_esi.swagger_model import load_file
 
 
 def test_success():

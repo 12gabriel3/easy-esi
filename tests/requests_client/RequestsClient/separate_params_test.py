@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from bravado.requests_client import RequestsClient
+from easy_esi.requests_client import RequestsClient
 
 
 def test_separate_params():

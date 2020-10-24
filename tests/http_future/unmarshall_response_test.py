@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 import pytest
-from bravado_core.exception import MatchingResponseNotFound
-from bravado_core.operation import Operation
-from bravado_core.response import IncomingResponse
+from easy_esi_core.exception import MatchingResponseNotFound
+from easy_esi_core.operation import Operation
+from easy_esi_core.response import IncomingResponse
 from mock import Mock
 from mock import patch
 
-from bravado.exception import HTTPError
-from bravado.http_future import unmarshal_response
+from easy_esi.exception import HTTPError
+from easy_esi.http_future import unmarshal_response
 
 
 @pytest.fixture
 def mock_unmarshal_response_inner():
-    with patch('bravado.http_future.unmarshal_response_inner') as m:
+    with patch('easy_esi.http_future.unmarshal_response_inner') as m:
         yield m
 
 

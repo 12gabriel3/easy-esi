@@ -2,7 +2,7 @@
 import mock
 import pytest
 
-from bravado.http_future import FutureAdapter
+from easy_esi.http_future import FutureAdapter
 
 
 @pytest.fixture

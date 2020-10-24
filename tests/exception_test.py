@@ -2,16 +2,16 @@
 import pytest
 from requests.models import Response
 
-from bravado.exception import HTTPClientError
-from bravado.exception import HTTPError
-from bravado.exception import HTTPForbidden
-from bravado.exception import HTTPInternalServerError
-from bravado.exception import HTTPMovedPermanently
-from bravado.exception import HTTPRedirection
-from bravado.exception import HTTPServerError
-from bravado.exception import HTTPServiceUnavailable
-from bravado.exception import make_http_exception
-from bravado.requests_client import RequestsResponseAdapter
+from easy_esi.exception import HTTPClientError
+from easy_esi.exception import HTTPError
+from easy_esi.exception import HTTPForbidden
+from easy_esi.exception import HTTPInternalServerError
+from easy_esi.exception import HTTPMovedPermanently
+from easy_esi.exception import HTTPRedirection
+from easy_esi.exception import HTTPServerError
+from easy_esi.exception import HTTPServiceUnavailable
+from easy_esi.exception import make_http_exception
+from easy_esi.requests_client import RequestsResponseAdapter
 
 
 @pytest.fixture

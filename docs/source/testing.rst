@@ -13,7 +13,7 @@ First of all, let's define the code we'd like to test:
 
     from itertools import chain
 
-    from bravado.client import SwaggerClient
+    from easy_esi.client import SwaggerClient
 
     def get_available_pet_photos():
         petstore = SwaggerClient.from_url(
@@ -33,7 +33,7 @@ First of all, in order to make sure your code doesn't do any network requests, y
     import mock
     import pytest
 
-    from bravado.client import SwaggerClient
+    from easy_esi.client import SwaggerClient
 
     @pytest.fixture
     def mock_client():
@@ -42,13 +42,13 @@ First of all, in order to make sure your code doesn't do any network requests, y
             yield mock_client
 
 Now we can mock out that call to ``findPetsByStatus`` by using the
-:class:`bravado.testing.response_mocks.BravadoResponseMock` class:
+:class:`bravado.testing.response_mocks.EasyEsiResponseMock` class:
 
 .. code-block:: python
 
     import mock
 
-    from bravado.testing.response_mocks import BravadoResponseMock
+    from easy_esi.testing.response_mocks import EasyEsiResponseMock
 
     from mypackage import get_available_pet_photos
 
@@ -65,7 +65,7 @@ Now we can mock out that call to ``findPetsByStatus`` by using the
             ),
         ]
 
-        mock_client.pet.findPetsByStatus.return_value.response = BravadoResponseMock(
+        mock_client.pet.findPetsByStatus.return_value.response = EasyEsiResponseMock(
             result=mock_pets,
         )
 
@@ -77,7 +77,7 @@ Now we can mock out that call to ``findPetsByStatus`` by using the
             'https://example.com/image3.png',
         ]
 
-Note that it's your responsibility to ensure that what you set as result for :class:`BravadoResponseMock` is
+Note that it's your responsibility to ensure that what you set as result for :class:`EasyEsiResponseMock` is
 sufficiently similar to what bravado would return in production. We've used a ``Mock`` class here; another option
 is to define namedtuples that correspond to your Swagger spec objects. This gives you even greater confidence
 in the correctness of your code since access to undefined fields will result in an error.
@@ -85,30 +85,30 @@ in the correctness of your code since access to undefined fields will result in 
 Testing degraded responses
 --------------------------
 
-Use :class:`FallbackResultBravadoResponseMock` to test :ref:`fallback results <fallback_results>`. It works similarly,
+Use :class:`FallbackResultEasyEsiResponseMock` to test :ref:`fallback results <fallback_results>`. It works similarly,
 but you don't have to pass the result to the constructor, since your fallback result callback will determine the result.
 Let's add another test to verify our fallback result code path works properly:
 
 .. code-block:: python
 
-    from bravado.testing.response_mocks import FallbackResultBravadoResponseMock
+    from easy_esi.testing.response_mocks import FallbackResultEasyEsiResponseMock
 
     from example import get_available_pet_photos
 
     def test_get_available_pet_photos_fallback_result(mock_client):
         mock_client.pet.findPetsByStatus.return_value\
-            .response = FallbackResultBravadoResponseMock()
+            .response = FallbackResultEasyEsiResponseMock()
 
         pet_photos = get_available_pet_photos()
 
         assert list(pet_photos) == []
 
-Note that you can pass in a custom exception instance to :class:`.FallbackResultBravadoResponseMock` if you need
+Note that you can pass in a custom exception instance to :class:`.FallbackResultEasyEsiResponseMock` if you need
 to trigger specific exception handling in your fallback result callback.
 
 Setting custom response metadata
 --------------------------------
 
-Both :class:`.BravadoResponseMock` as well as :class:`.FallbackResultBravadoResponseMock` accept an optional
-``metadata`` argument. Just pass in an instance of :class:`.BravadoResponseMetadata` that you'd like to be used.
+Both :class:`.EasyEsiResponseMock` as well as :class:`.FallbackResultEasyEsiResponseMock` accept an optional
+``metadata`` argument. Just pass in an instance of :class:`.EasyEsiResponseMetadata` that you'd like to be used.
 A default one will be provided otherwise.

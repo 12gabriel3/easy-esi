@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from bravado.requests_client import RequestsFutureAdapter
+from easy_esi.requests_client import RequestsFutureAdapter
 
 
 def test_result_header_values_are_bytes(session_mock, request_mock):

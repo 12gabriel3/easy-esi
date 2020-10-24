@@ -1,26 +1,26 @@
 # -*- coding: utf-8 -*-
 import monotonic
 import typing
-from bravado_core.response import IncomingResponse
+from easy_esi_core.response import IncomingResponse
 
 if getattr(typing, 'TYPE_CHECKING', False):  # Needed to avoid cyclic import.
-    from bravado.config import RequestConfig
+    from easy_esi.config import RequestConfig
 
 
 T = typing.TypeVar('T')
 
 
-class BravadoResponse(typing.Generic[T]):
-    """Bravado response object containing the swagger result as well as response metadata.
+class EasyEsiResponse(typing.Generic[T]):
+    """Easy ESIresponse object containing the swagger result as well as response metadata.
 
     :ivar result: Swagger result from the server
-    :ivar BravadoResponseMetadata metadata: metadata for this response including HTTP response
+    :ivar EasyEsiResponseMetadata metadata: metadata for this response including HTTP response
     """
 
     def __init__(
         self,
         result,  # type: typing.Optional[T]
-        metadata,  # type: 'BravadoResponseMetadata[T]'
+        metadata,  # type: 'EasyEsiResponseMetadata[T]'
     ):
         # type: (...) -> None
         self.result = result
@@ -32,7 +32,7 @@ class BravadoResponse(typing.Generic[T]):
         return self.metadata.incoming_response
 
 
-class BravadoResponseMetadata(typing.Generic[T]):
+class EasyEsiResponseMetadata(typing.Generic[T]):
     """HTTP response metadata.
 
     NOTE: The `elapsed_time` attribute might be slightly lower than the actual time spent since calling
@@ -58,11 +58,11 @@ class BravadoResponseMetadata(typing.Generic[T]):
     ):
         # type: (...) -> None
         """
-        :param incoming_response: a subclass of bravado_core.response.IncomingResponse.
+        :param incoming_response: a subclass of easy_esi_core.response.IncomingResponse.
         :param swagger_result: the unmarshalled result that is being returned to the user.
         :param start_time: monotonic timestamp indicating when the HTTP future was created. Depending on the
             internal operation of the HTTP client used, this is either before the HTTP request was initiated
-            (default client) or right after the HTTP request was sent (e.g. bravado-asyncio / fido).
+            (default client) or right after the HTTP request was sent (e.g. easy_esi-asyncio / fido).
         :param request_end_time: monotonic timestamp indicating when we received the incoming response,
             excluding unmarshalling, validation or potential fallback result processing.
         :param handled_exception_info: sys.exc_info() data if an exception was caught and handled as
@@ -78,7 +78,7 @@ class BravadoResponseMetadata(typing.Generic[T]):
         self.handled_exception_info = handled_exception_info
         self.request_config = request_config
 
-        # we expose the result to the user through the BravadoResponse object;
+        # we expose the result to the user through the EasyEsiResponse object;
         # we're passing it in to this object in case custom implementations need it
         self._swagger_result = swagger_result
 

@@ -7,10 +7,10 @@ import mock
 import pytest
 import requests
 import typing
-from bravado_core.response import IncomingResponse
+from easy_esi_core.response import IncomingResponse
 
-from bravado.requests_client import Authenticator
-from bravado.requests_client import RequestsClient
+from easy_esi.requests_client import Authenticator
+from easy_esi.requests_client import RequestsClient
 
 
 class RequestsClientTestCase(unittest.TestCase):

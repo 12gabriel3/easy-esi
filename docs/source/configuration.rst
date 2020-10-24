@@ -5,13 +5,13 @@ Client Configuration
 --------------------
 You can configure certain behaviours when creating a ``SwaggerClient``.
 
-bravado and bravado-core use the same config dict. The full documentation for
-`bravado-core config keys <http://bravado-core.readthedocs.org/en/latest/config.html>`_
+bravado and easy-esi-core use the same config dict. The full documentation for
+`easy-esi-core config keys <http://easy-esi-core.readthedocs.org/en/latest/config.html>`_
 is available too.
 
 .. code-block:: python
 
-    from bravado.client import SwaggerClient, SwaggerFormat
+    from easy_esi.client import SwaggerClient, SwaggerFormat
 
     my_super_duper_format = SwaggerFormat(...)
 
@@ -19,7 +19,7 @@ is available too.
         # === bravado config ===
 
         # What class to use for response metadata
-        'response_metadata_class': 'bravado.response.BravadoResponseMetadata',
+        'response_metadata_class': 'bravado.response.EasyEsiResponseMetadata',
 
         # Do not use fallback results even if they're provided
         'disable_fallback_results': False,
@@ -28,7 +28,7 @@ is available too.
         # Please use HttpFuture.response() for accessing the http response.
         'also_return_response': False,
 
-        # === bravado-core config ====
+        # === easy-esi-core config ====
 
         # Validate incoming responses
         'validate_responses': True,
@@ -56,7 +56,7 @@ Config key                 Type            Description
 *response_metadata_class*  string          | The Metadata class to use; see
                                            | :ref:`custom_response_metadata` for details.
 
-                                           Default: :class:`bravado.response.BravadoResponseMetadata`
+                                           Default: :class:`bravado.response.EasyEsiResponseMetadata`
 *disable_fallback_results* boolean         | Whether to disable returning fallback results, even if
                                            | they're provided as an argument to
                                            | to :meth:`.HttpFuture.response`.
@@ -131,9 +131,9 @@ Config key                Type      Default  Description
                                              | they appear in the list.
                                              | Two parameters are passed to each callable:
                                              | - ``incoming_response`` of type
-                                             |   ``bravado_core.response.IncomingResponse``
+                                             |   ``easy_esi_core.response.IncomingResponse``
                                              | - ``operation`` of type
-                                             |   ``bravado_core.operation.Operation``
+                                             |   ``easy_esi_core.operation.Operation``
 *timeout*                 float     N/A      | TCP idle timeout in seconds. This is passed
                                              | along to the http_client when making a
                                              | service call.

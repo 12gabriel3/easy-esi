@@ -6,16 +6,16 @@ import requests.auth
 import requests.exceptions
 import six
 import typing
-from bravado_core.operation import Operation
-from bravado_core.response import IncomingResponse
+from easy_esi_core.operation import Operation
+from easy_esi_core.response import IncomingResponse
 from six import iteritems
 from six.moves.urllib import parse as urlparse
 
-from bravado._equality_util import are_objects_equal as _are_objects_equal
-from bravado.config import RequestConfig
-from bravado.http_client import HttpClient
-from bravado.http_future import FutureAdapter
-from bravado.http_future import HttpFuture
+from easy_esi._equality_util import are_objects_equal as _are_objects_equal
+from easy_esi.config import RequestConfig
+from easy_esi.http_client import HttpClient
+from easy_esi.http_future import FutureAdapter
+from easy_esi.http_future import HttpFuture
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
@@ -386,11 +386,11 @@ class RequestsClient(HttpClient):
         :param operation: operation that this http request is for. Defaults
             to None - in which case, we're obviously just retrieving a Swagger
             Spec.
-        :type operation: :class:`bravado_core.operation.Operation`
+        :type operation: :class:`easy_esi_core.operation.Operation`
         :param RequestConfig request_config: per-request configuration
 
         :returns: HTTP Future object
-        :rtype: :class: `bravado_core.http_future.HttpFuture`
+        :rtype: :class: `easy_esi_core.http_future.HttpFuture`
         """
         sanitized_params, misc_options = self.separate_params(request_params)
 

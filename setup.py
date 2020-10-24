@@ -7,19 +7,19 @@ import os
 from setuptools import find_packages
 from setuptools import setup
 
-import bravado
+import easy_esi
 
 setup(
-    name='bravado',
-    version=bravado.version,
+    name='easy_esi',
+    version=easy_esi.version,
     license='BSD 3-Clause License',
-    description='Library for accessing Swagger-enabled API\'s',
+    description='Library for accessing EVE Online Swagger API\'s',
     long_description=open(os.path.join(os.path.dirname(__file__),
                                        'README.rst')).read(),
-    author='Digium, Inc. and Yelp, Inc.',
-    author_email='opensource+bravado@yelp.com',
+    author='Digium, Inc. , Yelp, Inc. and Gabriel Aguiar',
+    author_email='opensource+aguiargab@gmail.com',
     url='https://github.com/Yelp/bravado',
-    packages=find_packages(include=['bravado*']),
+    packages=find_packages(include=['easy_esi*']),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
@@ -31,10 +31,10 @@ setup(
         'Programming Language :: Python :: 3.7',
     ],
     package_data={
-        'bravado': ['py.typed'],
+        'easy_esi': ['py.typed'],
     },
     install_requires=[
-        'bravado-core >= 5.16.1',
+        'easy-esi-core >= 0.0.1',
         'msgpack',
         'python-dateutil',
         'pyyaml',

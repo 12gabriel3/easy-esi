@@ -3,10 +3,10 @@ import logging
 from importlib import import_module
 
 import typing
-from bravado_core.operation import Operation
-from bravado_core.response import IncomingResponse
+from easy_esi_core.operation import Operation
+from easy_esi_core.response import IncomingResponse
 
-from bravado.response import BravadoResponseMetadata
+from easy_esi.response import EasyEsiResponseMetadata
 
 try:
     from typing import Type
@@ -19,35 +19,35 @@ log = logging.getLogger(__name__)
 
 
 CONFIG_DEFAULTS = {
-    # See the constructor of :class:`bravado.http_future.HttpFuture` for an
+    # See the constructor of :class:`easy_esi.http_future.HttpFuture` for an
     # in depth explanation of what this means.
     'also_return_response': False,
     # Kill switch to disable returning fallback results even if provided.
     'disable_fallback_results': False,
-    'response_metadata_class': 'bravado.response.BravadoResponseMetadata',
+    'response_metadata_class': 'easy_esi.response.EasyEsiResponseMetadata',
 }
 
 
-BravadoConfig = typing.NamedTuple(
-    'BravadoConfig',
+EasyEsiConfig = typing.NamedTuple(
+    'EasyEsiConfig',
     (
         ('also_return_response', bool),
         ('disable_fallback_results', bool),
-        ('response_metadata_class', Type[BravadoResponseMetadata]),
+        ('response_metadata_class', Type[EasyEsiResponseMetadata]),
     ),
 )
 
 
 def bravado_config_from_config_dict(config_dict):
-    # type: (typing.Mapping[str, typing.Any]) -> 'BravadoConfig'
+    # type: (typing.Mapping[str, typing.Any]) -> 'EasyEsiConfig'
     if config_dict is None:
         config_dict = {}
-    bravado_config = {key: value for key, value in config_dict.items() if key in BravadoConfig._fields}
+    bravado_config = {key: value for key, value in config_dict.items() if key in EasyEsiConfig._fields}
     bravado_config = dict(CONFIG_DEFAULTS, **bravado_config)
     bravado_config['response_metadata_class'] = _get_response_metadata_class(
         bravado_config['response_metadata_class'],
     )
-    return BravadoConfig(
+    return EasyEsiConfig(
         **bravado_config
     )
 
@@ -62,9 +62,9 @@ class RequestConfig(object):
     #
     # The callback should expect two arguments:
     #   param : incoming_response
-    #   type  : subclass of class:`bravado_core.response.IncomingResponse`
+    #   type  : subclass of class:`easy_esi_core.response.IncomingResponse`
     #   param : operation
-    #   type  : class:`bravado_core.operation.Operation`
+    #   type  : class:`easy_esi_core.operation.Operation`
     response_callbacks = []  # type: typing.List[typing.Callable[[IncomingResponse, Operation], None]]
 
     # options used to construct the request params
@@ -89,21 +89,21 @@ class RequestConfig(object):
 
 
 def _get_response_metadata_class(fully_qualified_class_str):
-    # type: (str) -> typing.Type[BravadoResponseMetadata]
+    # type: (str) -> typing.Type[EasyEsiResponseMetadata]
 
     class_to_import = _import_class(fully_qualified_class_str)
     if not class_to_import:
-        return BravadoResponseMetadata
+        return EasyEsiResponseMetadata
 
-    if issubclass(class_to_import, BravadoResponseMetadata):
+    if issubclass(class_to_import, EasyEsiResponseMetadata):
         return class_to_import
 
     log.warning(
-        'bravado configuration error: the metadata class \'%s\' does not extend '
-        'BravadoResponseMetadata. Using default class instead.',
+        'easy_esi configuration error: the metadata class \'%s\' does not extend '
+        'EasyEsiResponseMetadata. Using default class instead.',
         fully_qualified_class_str,
     )
-    return BravadoResponseMetadata
+    return EasyEsiResponseMetadata
 
 
 def _import_class(fully_qualified_class_str):

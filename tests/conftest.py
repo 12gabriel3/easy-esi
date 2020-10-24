@@ -4,8 +4,8 @@ import os
 
 import pytest
 
-from bravado.config import BravadoConfig
-from bravado.response import BravadoResponseMetadata
+from easy_esi.config import EasyEsiConfig
+from easy_esi.response import EasyEsiResponseMetadata
 
 
 @pytest.fixture
@@ -20,10 +20,10 @@ def processed_default_config(**kwargs):
     config = {
         'also_return_response': False,
         'disable_fallback_results': False,
-        'response_metadata_class': BravadoResponseMetadata,
+        'response_metadata_class': EasyEsiResponseMetadata,
     }
     config.update(**kwargs)
-    return BravadoConfig(**config)  # type: ignore
+    return EasyEsiConfig(**config)  # type: ignore
 
 
 @pytest.fixture

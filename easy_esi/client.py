@@ -41,26 +41,26 @@ To get a client
 
 .. code-block:: python
 
-    client = bravado.client.SwaggerClient.from_url(swagger_spec_url)
+    client = easy_esi.client.SwaggerClient.from_url(swagger_spec_url)
 """
 import logging
 from copy import deepcopy
 
 import typing
-from bravado_core.docstring import create_operation_docstring
-from bravado_core.exception import SwaggerMappingError
-from bravado_core.formatter import SwaggerFormat  # noqa
-from bravado_core.param import marshal_param
-from bravado_core.spec import Spec
+from easy_esi_core.docstring import create_operation_docstring
+from easy_esi_core.exception import SwaggerMappingError
+from easy_esi_core.formatter import SwaggerFormat  # noqa
+from easy_esi_core.param import marshal_param
+from easy_esi_core.spec import Spec
 from six import iteritems
 from six import itervalues
 
-from bravado.config import bravado_config_from_config_dict
-from bravado.config import RequestConfig
-from bravado.docstring_property import docstring_property
-from bravado.requests_client import RequestsClient
-from bravado.swagger_model import Loader
-from bravado.warning import warn_for_deprecated_op
+from easy_esi.config import bravado_config_from_config_dict
+from easy_esi.config import RequestConfig
+from easy_esi.docstring_property import docstring_property
+from easy_esi.requests_client import RequestsClient
+from easy_esi.swagger_model import Loader
+from easy_esi.warning import warn_for_deprecated_op
 
 log = logging.getLogger(__name__)
 
@@ -68,7 +68,7 @@ log = logging.getLogger(__name__)
 class SwaggerClient(object):
     """A client for accessing a Swagger-documented RESTful service.
 
-    :type swagger_spec: :class:`bravado_core.spec.Spec`
+    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
     """
 
     def __init__(self, swagger_spec, also_return_response=False):
@@ -86,9 +86,9 @@ class SwaggerClient(object):
         :type  http_client: :class:`bravado.http_client.HttpClient`
         :param request_headers: Headers to pass with http requests
         :type  request_headers: dict
-        :param config: Config dict for bravado and bravado_core.
-            See CONFIG_DEFAULTS in :module:`bravado_core.spec`.
-            See CONFIG_DEFAULTS in :module:`bravado.client`.
+        :param config: Config dict for easy_esi and easy_esi_core.
+            See CONFIG_DEFAULTS in :module:`easy_esi_core.spec`.
+            See CONFIG_DEFAULTS in :module:`easy_esi.client`.
 
         :rtype: :class:`SwaggerClient`
         """
@@ -124,13 +124,13 @@ class SwaggerClient(object):
         http_client = http_client or RequestsClient()
         config = config or {}
 
-        # Apply bravado config defaults
+        # Apply easy_esi config defaults
         bravado_config = bravado_config_from_config_dict(config)
-        # remove bravado configs from config dict
+        # remove easy_esi configs from config dict
         for key in set(bravado_config._fields).intersection(set(config)):
             del config[key]
-        # set bravado config object
-        config['bravado'] = bravado_config
+        # set easy_esi config object
+        config['easy_esi'] = bravado_config
 
         swagger_spec = Spec.from_dict(
             spec_dict, origin_url, http_client, config,
@@ -151,7 +151,7 @@ class SwaggerClient(object):
                 'Resource {0} not found. Available resources: {1}'
                 .format(item, ', '.join(dir(self))))
 
-        # Wrap bravado-core's Resource and Operation objects in order to
+        # Wrap easy-esi-core's Resource and Operation objects in order to
         # execute a service call via the http_client.
         return ResourceDecorator(resource, self.__also_return_response)
 
@@ -211,13 +211,13 @@ def inject_headers_for_remote_refs(request_callable, request_headers):
 
 class ResourceDecorator(object):
     """
-    Wraps :class:`bravado_core.resource.Resource` so that accesses to contained
+    Wraps :class:`easy_esi_core.resource.Resource` so that accesses to contained
     operations can be instrumented.
     """
 
     def __init__(self, resource, also_return_response=False):
         """
-        :type resource: :class:`bravado_core.resource.Resource`
+        :type resource: :class:`easy_esi_core.resource.Resource`
         """
         self.also_return_response = also_return_response
         self.resource = resource
@@ -239,7 +239,7 @@ class CallableOperation(object):
     """Wraps an operation to make it callable and provides a docstring. Calling
     the operation uses the configured http_client.
 
-    :type operation: :class:`bravado_core.operation.Operation`
+    :type operation: :class:`easy_esi_core.operation.Operation`
     """
 
     def __init__(self, operation, also_return_response=False):
@@ -259,7 +259,7 @@ class CallableOperation(object):
     def __call__(self, **op_kwargs):
         """Invoke the actual HTTP request and return a future.
 
-        :rtype: :class:`bravado.http_future.HTTPFuture`
+        :rtype: :class:`easy_esi.http_future.HTTPFuture`
         """
         log.debug(u'%s(%s)', self.operation.operation_id, op_kwargs)
         warn_for_deprecated_op(self.operation)
@@ -283,7 +283,7 @@ class CallableOperation(object):
 def construct_request(operation, request_options, **op_kwargs):
     """Construct the outgoing request dict.
 
-    :type operation: :class:`bravado_core.operation.Operation`
+    :type operation: :class:`easy_esi_core.operation.Operation`
     :param request_options: _request_options passed into the operation
         invocation.
     :param op_kwargs: parameter name/value pairs to passed to the
@@ -318,7 +318,7 @@ def construct_params(operation, request, op_kwargs):
     """Given the parameters passed to the operation invocation, validates and
     marshals the parameters into the provided request dict.
 
-    :type operation: :class:`bravado_core.operation.Operation`
+    :type operation: :class:`easy_esi_core.operation.Operation`
     :type request: dict
     :param op_kwargs: the kwargs passed to the operation invocation
 

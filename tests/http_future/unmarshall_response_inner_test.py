@@ -2,12 +2,12 @@
 import mock
 import msgpack
 import pytest
-from bravado_core.content_type import APP_JSON
-from bravado_core.content_type import APP_MSGPACK
-from bravado_core.response import IncomingResponse
-from bravado_core.spec import Spec
+from easy_esi_core.content_type import APP_JSON
+from easy_esi_core.content_type import APP_MSGPACK
+from easy_esi_core.response import IncomingResponse
+from easy_esi_core.spec import Spec
 
-from bravado.http_future import unmarshal_response_inner
+from easy_esi.http_future import unmarshal_response_inner
 
 
 @pytest.fixture
@@ -27,13 +27,13 @@ def response_spec():
 
 @pytest.fixture
 def mock_get_response_spec():
-    with mock.patch('bravado.http_future.get_response_spec') as m:
+    with mock.patch('easy_esi.http_future.get_response_spec') as m:
         yield m
 
 
 @pytest.fixture
 def mock_validate_schema_object():
-    with mock.patch('bravado.http_future.validate_schema_object') as m:
+    with mock.patch('easy_esi.http_future.validate_schema_object') as m:
         yield m
 
 

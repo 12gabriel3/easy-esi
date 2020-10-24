@@ -8,26 +8,26 @@ from itertools import chain
 import monotonic
 import six
 import typing
-from bravado_core.content_type import APP_JSON
-from bravado_core.content_type import APP_MSGPACK
-from bravado_core.exception import MatchingResponseNotFound
-from bravado_core.operation import Operation
-from bravado_core.response import get_response_spec
-from bravado_core.response import IncomingResponse
-from bravado_core.unmarshal import unmarshal_schema_object
-from bravado_core.validate import validate_schema_object
+from easy_esi_core.content_type import APP_JSON
+from easy_esi_core.content_type import APP_MSGPACK
+from easy_esi_core.exception import MatchingResponseNotFound
+from easy_esi_core.operation import Operation
+from easy_esi_core.response import get_response_spec
+from easy_esi_core.response import IncomingResponse
+from easy_esi_core.unmarshal import unmarshal_schema_object
+from easy_esi_core.validate import validate_schema_object
 from msgpack import unpackb
 
-from bravado.config import bravado_config_from_config_dict
-from bravado.config import BravadoConfig
-from bravado.config import CONFIG_DEFAULTS
-from bravado.config import RequestConfig
-from bravado.exception import BravadoConnectionError
-from bravado.exception import BravadoTimeoutError
-from bravado.exception import ForcedFallbackResultError
-from bravado.exception import HTTPServerError
-from bravado.exception import make_http_exception
-from bravado.response import BravadoResponse
+from easy_esi.config import bravado_config_from_config_dict
+from easy_esi.config import EasyEsiConfig
+from easy_esi.config import CONFIG_DEFAULTS
+from easy_esi.config import RequestConfig
+from easy_esi.exception import EasyEsiConnectionError
+from easy_esi.exception import EasyEsiTimeoutError
+from easy_esi.exception import ForcedFallbackResultError
+from easy_esi.exception import HTTPServerError
+from easy_esi.exception import make_http_exception
+from easy_esi.response import EasyEsiResponse
 
 
 FuncType = typing.Callable[..., typing.Any]
@@ -37,8 +37,8 @@ log = logging.getLogger(__name__)
 
 
 FALLBACK_EXCEPTIONS = (
-    BravadoTimeoutError,
-    BravadoConnectionError,
+    EasyEsiTimeoutError,
+    EasyEsiConnectionError,
     HTTPServerError,
 )
 
@@ -55,7 +55,7 @@ class FutureAdapter(typing.Generic[T]):
     Mimics a :class:`concurrent.futures.Future` regardless of which client is
     performing the request, whether it is synchronous or actually asynchronous.
 
-    This adapter must be implemented by all bravado clients such as FidoClient
+    This adapter must be implemented by all easy_esi clients such as FidoClient
     or RequestsClient to wrap the object returned by their 'request' method.
 
     """
@@ -84,11 +84,11 @@ class FutureAdapter(typing.Generic[T]):
 
     def _raise_timeout_error(self, exception):
         # type: (BaseException) -> typing.NoReturn
-        self._raise_error(BravadoTimeoutError, 'Timeout', exception)
+        self._raise_error(EasyEsiTimeoutError, 'Timeout', exception)
 
     def _raise_connection_error(self, exception):
         # type: (BaseException) -> typing.NoReturn
-        self._raise_error(BravadoConnectionError, 'ConnectionError', exception)
+        self._raise_error(EasyEsiConnectionError, 'ConnectionError', exception)
 
     def result(self, timeout=None):
         # type: (typing.Optional[float]) -> T
@@ -138,9 +138,9 @@ class HttpFuture(typing.Generic[T]):
     :param response_adapter: Adapter type which exposes the innards of the HTTP
         response in a non-http client specific way.
     :type response_adapter: type that is a subclass of
-        :class:`bravado_core.response.IncomingResponse`.
-    :param RequestConfig request_config: See :class:`bravado.config.RequestConfig` and
-        :data:`bravado.client.REQUEST_OPTIONS_DEFAULTS`
+        :class:`easy_esi_core.response.IncomingResponse`.
+    :param RequestConfig request_config: See :class:`easy_esi.config.RequestConfig` and
+        :data:`easy_esi.client.REQUEST_OPTIONS_DEFAULTS`
     """
 
     def __init__(
@@ -162,9 +162,9 @@ class HttpFuture(typing.Generic[T]):
 
     @property
     def _bravado_config(self):
-        # type: () -> BravadoConfig
+        # type: () -> EasyEsiConfig
         if self.operation:
-            return self.operation.swagger_spec.config['bravado']
+            return self.operation.swagger_spec.config['easy_esi']
         else:
             return bravado_config_from_config_dict(CONFIG_DEFAULTS)
 
@@ -174,7 +174,7 @@ class HttpFuture(typing.Generic[T]):
         fallback_result=SENTINEL,  # type: typing.Union[_SENTINEL, T, typing.Callable[[BaseException], T]]  # noqa
         exceptions_to_catch=FALLBACK_EXCEPTIONS,  # type: typing.Tuple[typing.Type[BaseException], ...]
     ):
-        # type: (...) -> BravadoResponse[T]
+        # type: (...) -> EasyEsiResponse[T]
         """Blocking call to wait for the HTTP response.
 
         :param timeout: Number of seconds to wait for a response. Defaults to
@@ -185,7 +185,7 @@ class HttpFuture(typing.Generic[T]):
         :param exceptions_to_catch: Exception classes to catch and call `fallback_result`
             with. Has no effect if `fallback_result` is not provided. By default, `fallback_result`
             will be called for read timeout and server errors (HTTP 5XX).
-        :return: A BravadoResponse instance containing the swagger result and response metadata.
+        :return: A EasyEsiResponse instance containing the swagger result and response metadata.
         """
         incoming_response = None
         exc_info = None  # type: typing.Optional[typing.List[typing.Union[typing.Type[BaseException], BaseException, typing.Text]]]  # noqa: E501
@@ -229,7 +229,7 @@ class HttpFuture(typing.Generic[T]):
             if (
                 fallback_result is not SENTINEL and
                 self.operation and
-                not self.operation.swagger_spec.config['bravado'].disable_fallback_results
+                not self.operation.swagger_spec.config['easy_esi'].disable_fallback_results
             ):
                 if callable(fallback_result):
                     swagger_result = fallback_result(e)
@@ -247,7 +247,7 @@ class HttpFuture(typing.Generic[T]):
             handled_exception_info=exc_info,
             request_config=self.request_config,
         )
-        return BravadoResponse(
+        return EasyEsiResponse(
             result=swagger_result,
             metadata=response_metadata,
         )
@@ -314,13 +314,13 @@ def unmarshal_response(
 ):
     # type: (...) -> None
     """So the http_client is finished with its part of processing the response.
-    This hands the response over to bravado_core for validation and
+    This hands the response over to easy_esi_core for validation and
     unmarshalling and then runs any response callbacks. On success, the
     swagger_result is available as ``incoming_response.swagger_result``.
-    :type incoming_response: :class:`bravado_core.response.IncomingResponse`
-    :type operation: :class:`bravado_core.operation.Operation`
+    :type incoming_response: :class:`easy_esi_core.response.IncomingResponse`
+    :type operation: :class:`easy_esi_core.operation.Operation`
     :type response_callbacks: list of callable. See
-        bravado_core.client.REQUEST_OPTIONS_DEFAULTS.
+        easy_esi_core.client.REQUEST_OPTIONS_DEFAULTS.
     :raises: HTTPError
         - On 5XX status code, the HTTPError has minimal information.
         - On non-2XX status code with no matching response, the HTTPError
@@ -361,8 +361,8 @@ def unmarshal_response_inner(
     """
     Unmarshal incoming http response into a value based on the
     response specification.
-    :type response: :class:`bravado_core.response.IncomingResponse`
-    :type op: :class:`bravado_core.operation.Operation`
+    :type response: :class:`easy_esi_core.response.IncomingResponse`
+    :type op: :class:`easy_esi_core.operation.Operation`
     :returns: value where type(value) matches response_spec['schema']['type']
         if it exists, None otherwise.
     """
@@ -401,7 +401,7 @@ def raise_on_unexpected(http_response):
     # type: (IncomingResponse) -> None
     """Raise an HTTPError if the response is 5XX.
 
-    :param http_response: :class:`bravado_core.response.IncomingResponse`
+    :param http_response: :class:`easy_esi_core.response.IncomingResponse`
     :raises: HTTPError
     """
     if 500 <= http_response.status_code <= 599:
@@ -413,7 +413,7 @@ def raise_on_expected(http_response):
     """Raise an HTTPError if the response is non-2XX and matches a response
     in the swagger spec.
 
-    :param http_response: :class:`bravado_core.response.IncomingResponse`
+    :param http_response: :class:`easy_esi_core.response.IncomingResponse`
     :raises: HTTPError
     """
     if not 200 <= http_response.status_code < 300:

@@ -12,13 +12,13 @@
     :target: https://pypi.python.org/pypi/bravado/
     :alt: Supported Python versions
 
-Bravado
+EasyEsi
 ==========
 
 About
 -----
 
-Bravado is a Yelp maintained fork of `digium/swagger-py <https://github.com/digium/swagger-py/>`__
+Easy ESIis a Yelp maintained fork of `digium/swagger-py <https://github.com/digium/swagger-py/>`__
 for use with `OpenAPI Specification version 2.0 <https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md>`__ (previously
 known as Swagger).
 
@@ -31,7 +31,7 @@ From the OpenAPI Specification project:
     inspection.
 
 Client libraries can automatically be generated from the OpenAPI specification,
-however Bravado aims to be a complete replacement for code generation
+however Easy ESIaims to be a complete replacement for code generation
 (`swagger-codegen <https://github.com/wordnik/swagger-codegen>`__).
 
 Example Usage
@@ -39,7 +39,7 @@ Example Usage
 
 .. code-block:: Python
 
-    from bravado.client import SwaggerClient
+    from easy_esi.client import SwaggerClient
     client = SwaggerClient.from_url('http://petstore.swagger.io/v2/swagger.json')
     pet = client.pet.getPetById(petId=1).response().result
 
@@ -48,8 +48,8 @@ Example with Basic Authentication
 
 .. code-block:: python
 
-    from bravado.requests_client import RequestsClient
-    from bravado.client import SwaggerClient
+    from easy_esi.requests_client import RequestsClient
+    from easy_esi.client import SwaggerClient
 
     http_client = RequestsClient()
     http_client.set_basic_auth(
@@ -67,8 +67,8 @@ Example with Header Authentication
 
 .. code-block:: python
 
-    from bravado.requests_client import RequestsClient
-    from bravado.client import SwaggerClient
+    from easy_esi.requests_client import RequestsClient
+    from easy_esi.client import SwaggerClient
 
     http_client = RequestsClient()
     http_client.set_api_key(
@@ -87,8 +87,8 @@ Example with Fido Client (Async Http Client)
 .. code-block:: python
 
     # Install bravado with fido extra (``pip install bravado[fido]``)
-    from bravado.fido_client import FidoClient
-    from bravado.client import SwaggerClient
+    from easy_esi.fido_client import FidoClient
+    from easy_esi.client import SwaggerClient
 
     http_client = FidoClient()
     client = SwaggerClient.from_url(
@@ -148,5 +148,5 @@ License
 Copyright (c) 2013, Digium, Inc. All rights reserved.
 Copyright (c) 2014-2015, Yelp, Inc. All rights reserved.
 
-Bravado is licensed with a `BSD 3-Clause
+Easy ESIis licensed with a `BSD 3-Clause
 License <http://opensource.org/licenses/BSD-3-Clause>`__.

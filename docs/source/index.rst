@@ -1,7 +1,7 @@
 bravado documentation
 ========================
 
-Bravado is a python client library for Swagger 2.0 services.
+Easy ESIis a python client library for Swagger 2.0 services.
 
 More information on Swagger can be found `on the Swagger website
 <http://swagger.io/>`_

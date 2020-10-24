@@ -59,15 +59,15 @@ Changelog
 
 10.3.1 (2019-02-27)
 -------------------
-- Fix :attr:`.bravado.response.BravadoResponseMetadata.is_fallback_result`, it was always ``True`` in 10.3.0 - Issue #409, PR #410
-- :attr:`.bravado.response.BravadoResponseMetadata.handled_exception_info` is ``None`` again if no exception was handled - PR #410
+- Fix :attr:`.bravado.response.EasyEsiResponseMetadata.is_fallback_result`, it was always ``True`` in 10.3.0 - Issue #409, PR #410
+- :attr:`.bravado.response.EasyEsiResponseMetadata.handled_exception_info` is ``None`` again if no exception was handled - PR #410
 - :mod:`bravado.testing.response_mocks` is now type-annotated - PR #410
 
 10.3.0 (2019-02-20)
 -------------------
 - bravado is now fully type-annotated - PR #403
 - Add ability to cancel a HttpFuture. Third-party HTTP clients will need to implement ``cancel`` on their :class:`.bravado.http_future.FutureAdapter` class to support this - PR #406
-- The static method ``from_config_dict`` of :class:`.bravado.config.BravadoConfig` was removed due to compatibility issues with Python 3.5.0. This method was meant for internal use only; if you do happen to call it please switch to :func:`.bravado.config.bravado_config_from_config_dict` instead. - PR #407
+- The static method ``from_config_dict`` of :class:`.bravado.config.EasyEsiConfig` was removed due to compatibility issues with Python 3.5.0. This method was meant for internal use only; if you do happen to call it please switch to :func:`.bravado.config.bravado_config_from_config_dict` instead. - PR #407
 
 10.2.2 (2019-01-03)
 -------------------
@@ -85,7 +85,7 @@ Changelog
 10.1.0 (2018-06-26)
 -------------------
 - Add support for non-callable fallback results, stabilize the response API - PR #376
-- Add unified connection error handling support, introduce :class:`.bravado.exception.BravadoConnectionError` - PR #377
+- Add unified connection error handling support, introduce :class:`.bravado.exception.EasyEsiConnectionError` - PR #377
 - Support per-request API key header overwriting - PR #374. Thanks Yuliya Bagriy for your contribution!
 - Extract integration testing tools to :mod:`bravado.testing.integration_test` module - PR #378
 
@@ -128,7 +128,7 @@ Changelog
 - Support msgpack as wire format for response data - PR #323, 328, 330, 331
 - Allow client to access resources for tags which are not valid Python identifier names, by adding the ``SwaggerClient.get_resource`` method.
   For example, ``client.get_resource('My Pets').list_pets()`` - PR #320. Thanks Craig Blaszczyk for your contribution!
-- Unify timeout exception classes. You can now simply catch ``bravado.exception.BravadoTimeoutError`` (or ``builtins.TimeoutError`` if you're using Python 3.3+) - PR #321
+- Unify timeout exception classes. You can now simply catch ``bravado.exception.EasyEsiTimeoutError`` (or ``builtins.TimeoutError`` if you're using Python 3.3+) - PR #321
 
 9.1.1 (2017-10-10)
 ------------------
@@ -138,7 +138,7 @@ Changelog
 ------------------
 - Make sure HTTP header names and values are unicode strings when using the fido HTTP client.
   NOTE: this is a potentially backwards incompatible change if you're using the fido HTTP client and
-  are working with response headers. It's also highly advised to not upgrade to bravado-core 4.8.0+
+  are working with response headers. It's also highly advised to not upgrade to easy-esi-core 4.8.0+
   if you're using fido unless you're also upgrading to a bravado version that contains this change.
 
 9.0.7 (2017-07-05)
@@ -181,11 +181,11 @@ Changelog
 
 8.3.0 (2016-06-03)
 ------------------
-- Bravado using Fido 3.2.0 python 3 ready
+- Easy ESIusing Fido 3.2.0 python 3 ready
 
 8.2.0 (2016-04-29)
 ------------------
-- Bravado compliant to Fido 3.0.0
+- Easy ESIcompliant to Fido 3.0.0
 - Dropped use of concurrent futures in favor of crochet EventualResult
 - Workaround for bypassing a unicode bug in python `requests` < 2.8.1
 
@@ -201,7 +201,7 @@ Changelog
 ------------------
 - Support for YAML Swagger specs - PR #198
 - Remove pytest-mock dependency from requirements-dev.txt. No longer used and it was breaking the build.
-- Requires bravado-core >= 4.2.2
+- Requires easy-esi-core >= 4.2.2
 - Fix unit test for default values getting sent in the request
 
 8.0.1 (2015-12-02)
@@ -212,7 +212,7 @@ Changelog
 ------------------
 - Support for recursive $refs
 - Support for remote $refs e.g. Swagger 2.0 specs that span multiple json files
-- Requires bravado-core 4.0.0 which is not backwards compatible (See its `CHANGELOG <http://bravado-core.readthedocs.org/en/latest/changelog.html>`_)
+- Requires easy-esi-core 4.0.0 which is not backwards compatible (See its `CHANGELOG <http://easy-esi-core.readthedocs.org/en/latest/changelog.html>`_)
 - Transitively requires swagger-spec-validator 2.0.2 which is not backwards compatible (See its `CHANGELOG <http://swagger-spec-validator.readthedocs.org/en/latest/changelog.html>`_)
 
 7.0.0 (2015-10-23)
@@ -229,7 +229,7 @@ Changelog
 6.1.1 (2015-10-19)
 ------------------
 - Fix ``IncomingResponse`` subclasses to provide access to the http headers.
-- Requires bravado-core >= 3.1.0
+- Requires easy-esi-core >= 3.1.0
 
 6.1.0 (2015-10-19)
 ------------------
@@ -268,7 +268,7 @@ Changelog
 
 2.0.0 (2015-07-13)
 ------------------
-- Assume responsibility for http invocation (used to be in bravado-core)
+- Assume responsibility for http invocation (used to be in easy-esi-core)
 
 1.1.0 (2015-07-06)
 ------------------
@@ -277,11 +277,11 @@ Changelog
 1.0.0 (2015-06-26)
 ------------------
 - Fixed petstore demo link
-- Pick up bug fixes from bravado-core 1.1.0
+- Pick up bug fixes from easy-esi-core 1.1.0
 
 1.0.0-rc2 (2015-06-01)
 ----------------------
-- Renamed ResponseLike to IncomingResponse to match bravado-core
+- Renamed ResponseLike to IncomingResponse to match easy-esi-core
 
 1.0.0-rc1 (2015-05-13)
 ----------------------

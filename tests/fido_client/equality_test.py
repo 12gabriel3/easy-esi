@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado.fido_client import FidoClient
-from bravado.fido_client import FidoFutureAdapter
+from easy_esi.fido_client import FidoClient
+from easy_esi.fido_client import FidoFutureAdapter
 
 
 @pytest.fixture

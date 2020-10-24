@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import typing
-from bravado_core.operation import Operation
+from easy_esi_core.operation import Operation
 
-from bravado.config import RequestConfig
-from bravado.http_future import HttpFuture
+from easy_esi.config import RequestConfig
+from easy_esi.http_future import HttpFuture
 
 APP_FORM = 'application/x-www-form-urlencoded'
 MULT_FORM = 'multipart/form-data'
@@ -28,12 +28,12 @@ class HttpClient(object):
         :param operation: operation that this http request is for. Defaults
             to None - in which case, we're obviously just retrieving a Swagger
             Spec.
-        :type operation: :class:`bravado_core.operation.Operation`
+        :type operation: :class:`easy_esi_core.operation.Operation`
         :param RequestConfig request_config: Per-request config that is passed to
-            :class:`bravado.http_future.HttpFuture`.
+            :class:`easy_esi.http_future.HttpFuture`.
 
         :returns: HTTP Future object
-        :rtype: :class: `bravado_core.http_future.HttpFuture`
+        :rtype: :class: `easy_esi_core.http_future.HttpFuture`
         """
         raise NotImplementedError(
             u"%s: Method not implemented", self.__class__.__name__)

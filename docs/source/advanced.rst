@@ -72,7 +72,7 @@ in the ``Docstring`` section.
     :rtype: object
     :returns: 400: Invalid ID supplied
     :returns: 404: Pet not found
-    Constructor Docstring::type operation: :class:`bravado_core.operation.Operation`
+    Constructor Docstring::type operation: :class:`easy_esi_core.operation.Operation`
     Call def:   c.pet.getPetById(self, **op_kwargs)
     Call docstring:
     Invoke the actual HTTP request and return a future that encapsulates
@@ -88,8 +88,8 @@ Docstrings for models can be retrieved as expected:
     >> pet_model?
 
     Type:       type
-    String Form:<class 'bravado_core.model.Pet'>
-    File:       /some/dir/bravado_core/model.py
+    String Form:<class 'easy_esi_core.model.Pet'>
+    File:       /some/dir/easy_esi_core/model.py
     Docstring:
     Attributes:
 
@@ -126,7 +126,7 @@ Alternatively, you can also use the ``load_file`` helper method.
 
 .. code-block:: python
 
-    from bravado.swagger_model import load_file
+    from easy_esi.swagger_model import load_file
 
     client = SwaggerClient.from_spec(load_file('/path/to/swagger.json'))
 
@@ -144,7 +144,7 @@ The default behavior for a service call is to return the swagger result like so:
 
 However, there are times when it is necessary to have access to the actual
 HTTP response so that the HTTP headers or HTTP status code can be used. Simply save
-the response object (which is a :class:`.BravadoResponse`) and use its ``incoming_response``
+the response object (which is a :class:`.EasyEsiResponse`) and use its ``incoming_response``
 attribute to access the incoming response:
 
 .. code-block:: python
@@ -155,7 +155,7 @@ attribute to access the incoming response:
     )
     pet_response = petstore.pet.getPetById(petId=42).response()
     http_response = pet_response.incoming_response
-    assert isinstance(http_response, bravado_core.response.IncomingResponse)
+    assert isinstance(http_response, easy_esi_core.response.IncomingResponse)
     print http_response.headers
     print http_response.status_code
     print pet.name
@@ -189,14 +189,14 @@ Handling error types differently
 Sometimes, you might want to treat timeout errors differently from server errors. To do this you may
 pass in a callable as ``fallback_result`` argument. The callable takes one mandatory argument: the exception
 that would have been raised normally. This allows you to return different results based on the type of error
-(e.g. a :class:`.BravadoTimeoutError`) or, if a server response was received, on any data pertaining
+(e.g. a :class:`.EasyEsiTimeoutError`) or, if a server response was received, on any data pertaining
 to that response, like the HTTP status code. Subclasses of :class:`.HTTPError` have a ``response`` attribute
 that provides access to that data.
 
 .. code-block:: python
 
     def pet_status_fallback(exc):
-        if isinstance(exc, BravadoTimeoutError):
+        if isinstance(exc, EasyEsiTimeoutError):
             # Backend is slow, return last cached response
             return pet_status_cache
 
@@ -245,7 +245,7 @@ model name. Second, since ``name`` and ``photoUrls`` are required fields for thi
 empty (if we do they'd still be accessible, but the value would be ``None``). It's up to you how you decide to deal
 with this case.
 
-:attr:`.BravadoResponseMetadata.is_fallback_result` will be True if a fallback result has been returned
+:attr:`.EasyEsiResponseMetadata.is_fallback_result` will be True if a fallback result has been returned
 by the call to :meth:`.HttpFuture.response`.
 
 Testing fallback results
@@ -265,9 +265,9 @@ This case arises most often if you're using bravado to talk to internal services
 special HTTP headers that indicate whether a circuit breaker was triggered? bravado allows you to
 customize the metadata and provide custom attributes and methods.
 
-In your code, create a class that subclasses :class:`bravado.response.BravadoResponseMetadata`. In the implementation
-of your properties, use :attr:`.BravadoResponseMetadata.headers` to access response headers, or
-:attr:`.BravadoResponseMetadata.incoming_response` to access any other part of the HTTP response.
+In your code, create a class that subclasses :class:`bravado.response.EasyEsiResponseMetadata`. In the implementation
+of your properties, use :attr:`.EasyEsiResponseMetadata.headers` to access response headers, or
+:attr:`.EasyEsiResponseMetadata.incoming_response` to access any other part of the HTTP response.
 
 If, for some reason, you need your own ``__init__`` method, make sure that your signature accepts
 any positional and keyword argument, and that you call the base method with these arguments from
@@ -280,7 +280,7 @@ if new arguments get added to the __init__ method. Example minimal implementatio
         def __init__(self, *args, **kwargs):
             super(MyResponseMetadata, self).__init__(*args, **kwargs)
 
-While developing custom :class:`.BravadoResponseMetadata` classes we recommend to avoid,
+While developing custom :class:`.EasyEsiResponseMetadata` classes we recommend to avoid,
 if possible, the usage of attributes for data that's expensive to compute. Since the object
 will be created for every response, implementing these fields as properties makes sure
 the evaluation is only done if the field is accessed.

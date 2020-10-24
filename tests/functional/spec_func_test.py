@@ -6,8 +6,8 @@ import httpretty
 import pytest
 from swagger_spec_validator.common import SwaggerValidationError
 
-from bravado.client import ResourceDecorator
-from bravado.client import SwaggerClient
+from easy_esi.client import ResourceDecorator
+from easy_esi.client import SwaggerClient
 from tests.functional.conftest import API_DOCS_URL
 from tests.functional.conftest import register_get
 from tests.functional.conftest import register_spec

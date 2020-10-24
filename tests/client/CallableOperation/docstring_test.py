@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from bravado_core.operation import Operation
+from easy_esi_core.operation import Operation
 
-from bravado.client import CallableOperation
+from easy_esi.client import CallableOperation
 
 
 def test_success(minimal_swagger_spec, getPetById_spec, request_dict):

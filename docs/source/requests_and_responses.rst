@@ -1,7 +1,7 @@
 Making requests with bravado
 ============================
 
-When you call :meth:`.SwaggerClient.from_url` or :meth:`.SwaggerClient.from_spec`, Bravado takes a
+When you call :meth:`.SwaggerClient.from_url` or :meth:`.SwaggerClient.from_spec`, Easy ESItakes a
 Swagger (OpenAPI) 2.0 spec and returns a :class:`.SwaggerClient` instance that you can use to make
 calls to the service described in the spec. You make calls by doing Python method calls in the form
 of ``client.resource.operation(operation_params)``. Use ``dir(client)`` to see all available resources.
@@ -28,8 +28,8 @@ The return value of the operation method is a :class:`.HttpFuture`. To access th
 This call will block, i.e. it will wait until the response is received or the timeout you specified is reached.
 
 If the request succeeded and the server returned a HTTP status code between 100 and 299, the return value of
-:meth:`.HttpFuture.response()` will be a :class:`~bravado.response.BravadoResponse` instance. You may access the Swagger
-result of your call through :attr:`.BravadoResponse.result`.
+:meth:`.HttpFuture.response()` will be a :class:`~bravado.response.EasyEsiResponse` instance. You may access the Swagger
+result of your call through :attr:`.EasyEsiResponse.result`.
 
 If the server sent a response with a HTTP code of 300 or higher, by default a subclass of :class:`.HTTPError` will be raised
 when you call :meth:`.HttpFuture.response`. The exception gives you access to the Swagger result (:attr:`.HTTPError.swagger_result`)
@@ -38,11 +38,11 @@ as well as the HTTP response object (:attr:`.HTTPError.response`).
 Response metadata
 -----------------
 
-:attr:`.BravadoResponse.metadata` is an instance of :class:`.BravadoResponseMetadata` that provides you with access
+:attr:`.EasyEsiResponse.metadata` is an instance of :class:`.EasyEsiResponseMetadata` that provides you with access
 to the HTTP response including headers and HTTP status code, request timings and whether a fallback result
 was used (see :ref:`fallback_results`).
 
-You're able to provide your own implementation of :class:`.BravadoResponseMetadata`; see :ref:`custom_response_metadata` for details.
+You're able to provide your own implementation of :class:`.EasyEsiResponseMetadata`; see :ref:`custom_response_metadata` for details.
 
 .. _sanitizing_names:
 

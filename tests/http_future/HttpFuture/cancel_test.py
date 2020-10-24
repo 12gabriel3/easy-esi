@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 import mock
 import pytest
-from bravado_core.response import IncomingResponse
+from easy_esi_core.response import IncomingResponse
 
-from bravado.http_future import FutureAdapter
-from bravado.http_future import HttpFuture
+from easy_esi.http_future import FutureAdapter
+from easy_esi.http_future import HttpFuture
 
 
 @pytest.fixture
 def mock_log():
-    with mock.patch('bravado.http_future.log') as mock_log:
+    with mock.patch('easy_esi.http_future.log') as mock_log:
         yield mock_log
 
 

@@ -9,8 +9,8 @@ import pytest
 import simplejson
 from jsonschema.exceptions import ValidationError
 
-from bravado.client import SwaggerClient
-from bravado.exception import HTTPError
+from easy_esi.client import SwaggerClient
+from easy_esi.exception import HTTPError
 from tests.functional.conftest import API_DOCS_URL
 from tests.functional.conftest import register_get
 from tests.functional.conftest import register_spec

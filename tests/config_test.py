@@ -2,30 +2,30 @@
 import mock
 import pytest
 
-from bravado.config import _get_response_metadata_class
-from bravado.config import bravado_config_from_config_dict
-from bravado.config import BravadoConfig
-from bravado.config import CONFIG_DEFAULTS
-from bravado.config import RequestConfig
-from bravado.response import BravadoResponseMetadata
+from easy_esi.config import _get_response_metadata_class
+from easy_esi.config import bravado_config_from_config_dict
+from easy_esi.config import EasyEsiConfig
+from easy_esi.config import CONFIG_DEFAULTS
+from easy_esi.config import RequestConfig
+from easy_esi.response import EasyEsiResponseMetadata
 
 
 class IncorrectResponseMetadata(object):
     pass
 
 
-class ResponseMetadata(BravadoResponseMetadata):
+class ResponseMetadata(EasyEsiResponseMetadata):
     pass
 
 
 @pytest.fixture
 def mock_log():
-    with mock.patch('bravado.config.log') as mock_log:
+    with mock.patch('easy_esi.config.log') as mock_log:
         yield mock_log
 
 
 def test_default_value_for_every_config():
-    assert set(CONFIG_DEFAULTS.keys()) == set(BravadoConfig._fields)
+    assert set(CONFIG_DEFAULTS.keys()) == set(EasyEsiConfig._fields)
 
 
 def test_empty_config_yields_default_config(processed_default_config):
@@ -52,14 +52,14 @@ def test_ignore_unknown_configs(processed_default_config):
 
 def test_get_response_metadata_class_invalid_str(mock_log):
     metadata_class = _get_response_metadata_class('some_invalid_str')
-    assert metadata_class is BravadoResponseMetadata
+    assert metadata_class is EasyEsiResponseMetadata
     assert mock_log.warning.call_count == 1
     assert 'Error while importing' in mock_log.warning.call_args[0][0]
 
 
 def test_get_response_metadata_class_invalid_class(mock_log):
     metadata_class = _get_response_metadata_class('tests.config_test.IncorrectResponseMetadata')
-    assert metadata_class is BravadoResponseMetadata
+    assert metadata_class is EasyEsiResponseMetadata
     assert mock_log.warning.call_count == 1
     assert 'does not extend' in mock_log.warning.call_args[0][0]
 

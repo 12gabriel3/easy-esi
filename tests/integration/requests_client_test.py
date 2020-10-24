@@ -3,10 +3,10 @@ import pytest
 import requests.exceptions
 import typing
 
-from bravado.exception import BravadoTimeoutError
-from bravado.requests_client import RequestsClient
-from bravado.requests_client import RequestsFutureAdapter
-from bravado.testing.integration_test import IntegrationTestsBaseClass
+from easy_esi.exception import EasyEsiTimeoutError
+from easy_esi.requests_client import RequestsClient
+from easy_esi.requests_client import RequestsFutureAdapter
+from easy_esi.testing.integration_test import IntegrationTestsBaseClass
 
 
 class TestServerRequestsClient(IntegrationTestsBaseClass):
@@ -49,7 +49,7 @@ class TestServerRequestsClientFake(IntegrationTestsBaseClass):
     http_future_adapter_type = FakeRequestsFutureAdapter
     connection_errors_exceptions = set()  # type: typing.Set[Exception]
 
-    def test_timeout_error_not_throws_BravadoTimeoutError_if_no_timeout_errors_specified(self, swagger_http_server):
+    def test_timeout_error_not_throws_EasyEsiTimeoutError_if_no_timeout_errors_specified(self, swagger_http_server):
         try:
             self.http_client.request({
                 'method': 'GET',
@@ -57,4 +57,4 @@ class TestServerRequestsClientFake(IntegrationTestsBaseClass):
                 'params': {},
             }).result(timeout=0.01)
         except Exception as e:
-            assert not isinstance(e, BravadoTimeoutError)
+            assert not isinstance(e, EasyEsiTimeoutError)

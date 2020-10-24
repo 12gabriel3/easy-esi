@@ -8,18 +8,18 @@ import ephemeral_port_reserve
 import pytest
 import requests.exceptions
 import typing
-from bravado_core.content_type import APP_MSGPACK
-from bravado_core.response import IncomingResponse
+from easy_esi_core.content_type import APP_MSGPACK
+from easy_esi_core.response import IncomingResponse
 from msgpack import packb
 from msgpack import unpackb
 
-from bravado.client import SwaggerClient
-from bravado.exception import BravadoConnectionError
-from bravado.exception import BravadoTimeoutError
-from bravado.exception import HTTPMovedPermanently
-from bravado.http_client import HttpClient
-from bravado.http_future import FutureAdapter
-from bravado.swagger_model import Loader
+from easy_esi.client import SwaggerClient
+from easy_esi.exception import EasyEsiConnectionError
+from easy_esi.exception import EasyEsiTimeoutError
+from easy_esi.exception import HTTPMovedPermanently
+from easy_esi.http_client import HttpClient
+from easy_esi.http_future import FutureAdapter
+from easy_esi.swagger_model import Loader
 
 
 def _class_fqn(clz):
@@ -499,7 +499,7 @@ class IntegrationTestsBaseClass(IntegrationTestingFixturesMixin):
             # so rather than load dependencies unnecessarily, skip the test if that's not the case
             # the coverage test incorrectly marks the exception handling as uncovered
             # hence the pragma usage
-            from bravado.fido_client import FidoClient
+            from easy_esi.fido_client import FidoClient
         except ImportError:  # pragma: no cover
             pytest.skip('Fido dependencies have not been loaded, skipping test')  # pragma: no cover
         else:
@@ -530,22 +530,22 @@ class IntegrationTestsBaseClass(IntegrationTestingFixturesMixin):
         assert isinstance(exc.response, IncomingResponse) and exc.response.status_code == 301
         assert isinstance(exc.response, IncomingResponse) and exc.response.headers['Location'] == '/json'
 
-    def test_timeout_errors_are_thrown_as_BravadoTimeoutError(self, swagger_http_server):
+    def test_timeout_errors_are_thrown_as_EasyEsiTimeoutError(self, swagger_http_server):
         if not self.http_future_adapter_type.timeout_errors:
             pytest.skip('{} does NOT defines timeout_errors'.format(self.http_future_adapter_type))
 
-        with pytest.raises(BravadoTimeoutError):
+        with pytest.raises(EasyEsiTimeoutError):
             self.http_client.request({
                 'method': 'GET',
                 'url': '{server_address}/sleep?sec=0.1'.format(server_address=swagger_http_server),
                 'params': {},
             }).result(timeout=0.01)
 
-    def test_request_timeout_errors_are_thrown_as_BravadoTimeoutError(self, swagger_http_server):
+    def test_request_timeout_errors_are_thrown_as_EasyEsiTimeoutError(self, swagger_http_server):
         if not self.http_future_adapter_type.timeout_errors:
             pytest.skip('{} does NOT defines timeout_errors'.format(self.http_future_adapter_type))
 
-        with pytest.raises(BravadoTimeoutError):
+        with pytest.raises(EasyEsiTimeoutError):
             self.http_client.request({
                 'method': 'GET',
                 'url': '{server_address}/sleep?sec=0.1'.format(server_address=swagger_http_server),
@@ -553,13 +553,13 @@ class IntegrationTestsBaseClass(IntegrationTestingFixturesMixin):
                 'timeout': 0.01,
             }).result()
 
-    def test_swagger_client_timeout_errors_are_thrown_as_BravadoTimeoutError(
+    def test_swagger_client_timeout_errors_are_thrown_as_EasyEsiTimeoutError(
         self, swagger_client, result_getter,
     ):
         if not self.http_future_adapter_type.timeout_errors:
             pytest.skip('{} does NOT defines timeout_errors'.format(self.http_future_adapter_type))
 
-        with pytest.raises(BravadoTimeoutError):
+        with pytest.raises(EasyEsiTimeoutError):
             result_getter(
                 swagger_client.sleep.sleep(sec=0.5),
                 timeout=0.1,
@@ -576,13 +576,13 @@ class IntegrationTestsBaseClass(IntegrationTestingFixturesMixin):
                     'url': '{server_address}/sleep?sec=0.1'.format(server_address=swagger_http_server),
                     'params': {},
                 }).result(timeout=0.01)
-            assert isinstance(excinfo.value, BravadoTimeoutError)
+            assert isinstance(excinfo.value, EasyEsiTimeoutError)
 
-    def test_connection_errors_are_thrown_as_BravadoConnectionError(self, not_answering_http_server):
+    def test_connection_errors_are_thrown_as_EasyEsiConnectionError(self, not_answering_http_server):
         if not self.http_future_adapter_type.connection_errors:
             pytest.skip('{} does NOT defines connection_errors'.format(self.http_future_adapter_type))
 
-        with pytest.raises(BravadoConnectionError):
+        with pytest.raises(EasyEsiConnectionError):
             self.http_client.request({
                 'method': 'GET',
                 'url': '{server_address}/sleep?sec=0.1'.format(server_address=not_answering_http_server),
@@ -619,10 +619,10 @@ class IntegrationTestsBaseClass(IntegrationTestingFixturesMixin):
 
                 http_future.result(timeout=0.1)
 
-            # check that the raised exception is catchable as BravadoConnectionError too
-            assert isinstance(excinfo.value, BravadoConnectionError)
+            # check that the raised exception is catchable as EasyEsiConnectionError too
+            assert isinstance(excinfo.value, EasyEsiConnectionError)
 
-    def test_swagger_client_connection_errors_are_thrown_as_BravadoConnectionError(
+    def test_swagger_client_connection_errors_are_thrown_as_EasyEsiConnectionError(
         self, not_answering_http_server, swagger_client, result_getter,
     ):
         if not self.http_future_adapter_type.connection_errors:
@@ -630,7 +630,7 @@ class IntegrationTestsBaseClass(IntegrationTestingFixturesMixin):
 
         # override api url to communicate with a non responding http server
         swagger_client.swagger_spec.api_url = not_answering_http_server
-        with pytest.raises(BravadoConnectionError):
+        with pytest.raises(EasyEsiConnectionError):
             result_getter(
                 swagger_client.json.get_json(_request_options={
                     'connect_timeout': 0.001,

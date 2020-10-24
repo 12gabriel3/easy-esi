@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from bravado.requests_client import RequestsClient
-from bravado.requests_client import RequestsFutureAdapter
+from easy_esi.requests_client import RequestsClient
+from easy_esi.requests_client import RequestsFutureAdapter
 
 
 @pytest.fixture

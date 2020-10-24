@@ -5,16 +5,16 @@ import mock
 import pytest
 import typing
 
-from bravado.client import SwaggerClient
-from bravado.config import CONFIG_DEFAULTS
-from bravado.http_client import HttpClient
-from bravado.requests_client import RequestsClient
-from bravado.swagger_model import load_file
+from easy_esi.client import SwaggerClient
+from easy_esi.config import CONFIG_DEFAULTS
+from easy_esi.http_client import HttpClient
+from easy_esi.requests_client import RequestsClient
+from easy_esi.swagger_model import load_file
 
 
 _HTTP_CLIENTS = [None, RequestsClient()]  # type: typing.List[typing.Optional[HttpClient]]
 try:
-    from bravado.fido_client import FidoClient
+    from easy_esi.fido_client import FidoClient
     _HTTP_CLIENTS.append(FidoClient())
 except ImportError:
     pass
@@ -22,13 +22,13 @@ except ImportError:
 
 @pytest.fixture
 def mock_spec():
-    with mock.patch('bravado.client.Spec') as _mock:
+    with mock.patch('easy_esi.client.Spec') as _mock:
         yield _mock
 
 
 def test_remove_bravado_configs(mock_spec, processed_default_config):
     config = CONFIG_DEFAULTS.copy()
-    config['validate_swagger_spec'] = False  # bravado_core config
+    config['validate_swagger_spec'] = False  # easy_esi_core config
 
     SwaggerClient.from_spec({}, config=config)
 
@@ -37,14 +37,14 @@ def test_remove_bravado_configs(mock_spec, processed_default_config):
         None,  # spec_url
         mock.ANY,  # http_client
         {
-            'bravado': processed_default_config,
+            'easy_esi': processed_default_config,
             'validate_swagger_spec': False,
         },  # config
     )
 
 
 def test_also_return_response(mock_spec):
-    with mock.patch('bravado.client.SwaggerClient.__init__') as mock_init:
+    with mock.patch('easy_esi.client.SwaggerClient.__init__') as mock_init:
         mock_init.return_value = None
         SwaggerClient.from_spec({}, config={'also_return_response': True})
 
