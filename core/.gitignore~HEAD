@@ -1,0 +1,28 @@
+*.egg
+*.egg-info/
+<<<<<<< HEAD:core/.gitignore
+*.iml
+*.pyc
+*.swp
+*.tox
+.benchmarks/
+.cache/*
+.coverage
+.idea/
+.mypy_cache/
+.pytest_cache/
+=======
+*.pyc
+*.swp
+*.tox
+.cache/
+.coverage
+.idea/
+.mypy_cache/
+.pytest_cache
+>>>>>>> client/master:.gitignore
+build
+cover/
+dist/
+venv/
+nosetests.xml
