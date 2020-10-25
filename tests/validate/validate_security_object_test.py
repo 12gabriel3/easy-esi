@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+import pytest
+
+from easy_esi_core.exception import SwaggerValidationError
+from easy_esi_core.validate import validate_security_object
+
+
+@pytest.mark.parametrize(
+    'resource, operation, request_data',
+    [
+        ('example1', 'get_example1', {'apiKey1': 'key'}),
+        ('example1', 'get_example1', {'apiKey2': 'key'}),
+        ('example2', 'get_example2', {'apiKey3': 'key'}),
+        ('example3', 'get_example3', {'apiKey1': 'key', 'apiKey2': 'key'}),
+        ('example3', 'get_example3', {'apiKey3': 'key'}),
+        ('example4', 'get_example4', {}),
+        ('example5', 'get_example5', {}),
+        ('example6', 'get_example6', {'apiKey1': 'key'}),
+        ('example6', 'get_example6', {'apiKey2': 'key'}),
+        ('example6', 'get_example6', {'apiKey3': 'key'}),
+        ('example6', 'get_example6', {'apiKey1': 'key', 'apiKey2': 'key'}),
+    ],
+)
+def test_validate_correct_security_objects(security_spec, resource, operation, request_data):
+    op = security_spec.resources[resource].operations[operation]
+    validate_security_object(op, request_data)
+
+
+@pytest.mark.parametrize(
+    'resource, operation, request_data',
+    [
+        ('example1', 'get_example1', {}),
+        ('example1', 'get_example1', {'apiKey1': 'key', 'apiKey2': 'key'}),
+        ('example3', 'get_example3', {'apiKey1': 'key', 'apiKey4': 'key'}),
+    ],
+)
+def test_validate_incorrect_security_objects(security_spec, resource, operation, request_data):
+    op = security_spec.resources[resource].operations[operation]
+    with pytest.raises(SwaggerValidationError):
+        validate_security_object(op, request_data)

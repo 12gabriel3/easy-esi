@@ -1,0 +1,39 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.3.0
+    hooks:
+    -   id: check-json
+    -   id: check-yaml
+    -   id: debug-statements
+    -   id: end-of-file-fixer
+    -   id: fix-encoding-pragma
+    -   id: name-tests-test
+    -   id: trailing-whitespace
+    -   id: requirements-txt-fixer
+        files: requirements-dev.txt
+-   repo: https://github.com/pre-commit/mirrors-autopep8
+    rev: v1.5.4
+    hooks:
+    -   id: autopep8
+        args:
+        - -i
+        - --ignore=E309,E501
+-   repo: https://gitlab.com/pycqa/flake8.git
+    rev: 3.8.4
+    hooks:
+    -   id: flake8
+        exclude: ^docs
+-   repo: https://github.com/asottile/reorder_python_imports
+    rev: v2.3.5
+    hooks:
+    -   id: reorder-python-imports
+-   repo: https://github.com/Yelp/detect-secrets
+    rev: v0.14.3
+    hooks:
+    -   id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+        exclude: tests/.*
+-   repo: https://github.com/asottile/add-trailing-comma
+    rev: v2.0.1
+    hooks:
+    -   id: add-trailing-comma
