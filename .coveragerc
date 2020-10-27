@@ -2,14 +2,13 @@
 branch = True
 source =
     easyesi/
-    core/
 
 [report]
 show_missing = True
 skip_covered = True
 omit =
     # Omit _compat_typing as it is only used during type checking
-    core/_compat_typing.py
+    easyesi/core/_compat_typing.py
     easyesi/testing/*
     easyesi/fido_client.py
     .tox/*

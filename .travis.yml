@@ -16,6 +16,9 @@ jobs:
   - env: TOXENV=benchmark
   fast_finish: true
 
+before_install:
+  - "pip install -U pip"
+  - "python setup.py install"
 install: pip install tox tox-travis coveralls
 script: tox
 after_success: |
