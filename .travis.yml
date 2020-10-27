@@ -8,7 +8,7 @@ jobs:
   - python: "3.6"
   - python: "3.7"
   - python: "3.8"
-    env: PUBLISH_COVERAGE=y
+  - env: TOXENV=cover
   - env: TOXENV=docs
   - env: TOXENV=pre-commit
   - env: TOXENV=benchmark
@@ -19,10 +19,6 @@ jobs:
 install: pip install tox tox-travis coveralls
 script: tox
 after_success: |
-  if [ "${PUBLISH_COVERAGE:-n}" == "y" ]; then
-    coverage run;
-    coveralls;
-  fi
   if [ "${TOXENV}" == "benchmark" ]; then
     echo $(ls .benchmarks/*/0001_benchmark.json) $(cat .benchmarks/*/0001_benchmark.json | nc termbin.com 9999)
   fi
