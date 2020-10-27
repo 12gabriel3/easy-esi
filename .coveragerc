@@ -10,6 +10,8 @@ skip_covered = True
 omit =
     # Omit _compat_typing as it is only used during type checking
     core/_compat_typing.py
+    easyESI/testing/
+    easyESI/fido_client.py
     .tox/*
     venv/*
     /usr/*
