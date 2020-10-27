@@ -12,7 +12,6 @@ jobs:
   - env: TOXENV=docs
   - env: TOXENV=pre-commit
   - env: TOXENV=benchmark
-  - env: TOXENV=mypy
   allow_failures:
   - env: TOXENV=benchmark
   fast_finish: true
