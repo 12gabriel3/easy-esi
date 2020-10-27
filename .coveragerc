@@ -1,8 +1,8 @@
 [run]
 # branch = True # TODO: Enable branch coverage
 source =
-    easyESI/*
-    core/*
+    easyESI/
+    core/
 
 [report]
 show_missing = True
