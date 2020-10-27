@@ -3,8 +3,8 @@ import logging
 import typing
 from importlib import import_module
 
-from easyesi.core import IncomingResponse
-from easyesi.core import Operation
+from easyesi.core.operation import Operation
+from easyesi.core.response import IncomingResponse
 from easyesi.response import EasyEsiResponseMetadata
 
 try:

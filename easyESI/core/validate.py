@@ -11,19 +11,19 @@ import jsonschema
 from six import itervalues
 from six import reraise
 
-from easyesi.core import get_validator_type
-from easyesi.core import is_object
-from easyesi.core import SWAGGER_PRIMITIVES
-from easyesi.core import SwaggerMappingError
-from easyesi.core import SwaggerSecurityValidationError
-from easyesi.core import wraps
+from easyesi.core._compat import wraps
+from easyesi.core.exception import SwaggerMappingError
+from easyesi.core.exception import SwaggerSecurityValidationError
+from easyesi.core.model import is_object
+from easyesi.core.schema import SWAGGER_PRIMITIVES
+from easyesi.core.swagger20_validator import get_validator_type
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from easyesi.core import JSONDict
-    from easyesi.core import FuncType
-    from easyesi.core import Operation  # pragma: no cover
-    from easyesi.core import Spec  # pragma: no cover
+    from easyesi.core._compat_typing import JSONDict
+    from easyesi.core._compat_typing import FuncType
+    from easyesi.core.operation import Operation  # pragma: no cover
+    from easyesi.core.spec import Spec  # pragma: no cover
 
 
 def scrub_sensitive_value(func):

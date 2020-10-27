@@ -9,7 +9,7 @@ from easyesi.core.swagger20_validator import format_validator
 from easyesi.core.validate import validate_object
 
 
-@patch('core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
+@patch('easyesi.core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
 def test_skip_when_validating_a_parameter_schema_and_parameter_value_is_None(
     m_format_validator, minimal_swagger_spec,
 ):
@@ -31,7 +31,7 @@ def test_skip_when_validating_a_parameter_schema_and_parameter_value_is_None(
     assert m_format_validator.call_count == 0
 
 
-@patch('core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
+@patch('easyesi.core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
 def test_validate_when_parameter_schema_and_parameter_value_is_not_None(
     m_format_validator, minimal_swagger_spec,
 ):
@@ -49,7 +49,7 @@ def test_validate_when_parameter_schema_and_parameter_value_is_not_None(
     m_format_validator.assert_called_once_with(*args)
 
 
-@patch('core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
+@patch('easyesi.core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
 def test_validate_when_not_a_parameter_schema(
     m_format_validator, minimal_swagger_spec,
 ):
@@ -66,7 +66,7 @@ def test_validate_when_not_a_parameter_schema(
     m_format_validator.assert_called_once_with(*args)
 
 
-@patch('core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
+@patch('easyesi.core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
 def test_skip_when_nullable_property_schema_and_value_is_None(
     m_format_validator, minimal_swagger_spec,
 ):
@@ -87,7 +87,7 @@ def test_skip_when_nullable_property_schema_and_value_is_None(
     assert m_format_validator.call_count == 0
 
 
-@patch('core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
+@patch('easyesi.core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')
 def test_validate_when_not_nullable_property_schema_and_value_is_None(
     m_format_validator, minimal_swagger_spec,
 ):

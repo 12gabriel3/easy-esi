@@ -3,11 +3,11 @@ import msgpack
 from jsonschema import ValidationError
 from six import iteritems
 
-from easyesi.core import APP_JSON
-from easyesi.core import APP_MSGPACK
-from easyesi.core import MatchingResponseNotFound
-from easyesi.core import SwaggerMappingError
-from easyesi.core import unmarshal_schema_object
+from easyesi.core.content_type import APP_JSON
+from easyesi.core.content_type import APP_MSGPACK
+from easyesi.core.exception import MatchingResponseNotFound
+from easyesi.core.exception import SwaggerMappingError
+from easyesi.core.unmarshal import unmarshal_schema_object
 from easyesi.core.validate import validate_schema_object
 
 # Response bodies considered to be empty

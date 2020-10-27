@@ -11,8 +11,8 @@ from six.moves.urllib import parse as urlparse
 
 from easyesi._equality_util import are_objects_equal as _are_objects_equal
 from easyesi.config import RequestConfig
-from easyesi.core import IncomingResponse
-from easyesi.core import Operation
+from easyesi.core.operation import Operation
+from easyesi.core.response import IncomingResponse
 from easyesi.http_client import HttpClient
 from easyesi.http_future import FutureAdapter
 from easyesi.http_future import HttpFuture

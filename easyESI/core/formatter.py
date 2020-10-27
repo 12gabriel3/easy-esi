@@ -14,14 +14,14 @@ import pytz
 import six
 
 from easyesi.core import schema
-from easyesi.core import SwaggerMappingError
+from easyesi.core.exception import SwaggerMappingError
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from easyesi.core import JSONDict
-    from easyesi.core import MarshalingMethod  # noqa: F401
-    from easyesi.core import UnmarshalingMethod  # noqa: F401
-    from easyesi.core import Spec  # pragma: no cover
+    from easyesi.core._compat_typing import JSONDict
+    from easyesi.core._compat_typing import MarshalingMethod  # noqa: F401
+    from easyesi.core._compat_typing import UnmarshalingMethod  # noqa: F401
+    from easyesi.core.spec import Spec  # pragma: no cover
 
     T = typing.TypeVar('T')
 

@@ -3,7 +3,7 @@ import typing
 
 from six import with_metaclass
 
-from easyesi.core import IncomingResponse
+from easyesi.core.response import IncomingResponse
 
 try:
     # ignored type ConnectionError is introduced in python3.3+ (mypy runs as 2.7)

@@ -12,19 +12,19 @@ from six import iteritems
 from six import string_types
 from swagger_spec_validator.ref_validators import attach_scope
 
-from easyesi.core import collapsed_properties
-from easyesi.core import determine_object_type
-from easyesi.core import is_dict_like
-from easyesi.core import is_list_like
-from easyesi.core import is_ref
-from easyesi.core import lazy_class_attribute
-from easyesi.core import ObjectType
-from easyesi.core import strip_xscope
-from easyesi.core import SWAGGER_PRIMITIVES
+from easyesi.core.schema import collapsed_properties
+from easyesi.core.schema import is_dict_like
+from easyesi.core.schema import is_list_like
+from easyesi.core.schema import is_ref
+from easyesi.core.schema import SWAGGER_PRIMITIVES
+from easyesi.core.util import determine_object_type
+from easyesi.core.util import lazy_class_attribute
+from easyesi.core.util import ObjectType
+from easyesi.core.util import strip_xscope
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from easyesi.core import JSONDict
-    from easyesi.core import Spec  # pragma: no cover
+    from easyesi.core._compat_typing import JSONDict
+    from easyesi.core.spec import Spec  # pragma: no cover
 
 
 log = logging.getLogger(__name__)
@@ -574,7 +574,7 @@ class Model(object):
 
         :rtype: dict
         """
-        from easyesi.core import marshal_schema_object
+        from easyesi.core.marshal import marshal_schema_object
         return marshal_schema_object(self._swagger_spec, self._model_spec, self)
 
     @classmethod
@@ -592,7 +592,7 @@ class Model(object):
         :type val: dict
         :rtype: .Model
         """
-        from easyesi.core import unmarshal_schema_object
+        from easyesi.core.unmarshal import unmarshal_schema_object
         return unmarshal_schema_object(cls._swagger_spec, cls._model_spec, val)
 
     @classmethod
@@ -916,7 +916,7 @@ def model_discovery(swagger_spec):
     _run_post_processing(swagger_spec)
 
     if swagger_spec.config['internally_dereference_refs']:
-        from easyesi.core import Spec  # Local import to avoid circular import
+        from easyesi.core.spec import Spec  # Local import to avoid circular import
         deref_flattened_spec = swagger_spec.deref_flattened_spec
         tmp_spec = Spec(deref_flattened_spec, swagger_spec.origin_url, swagger_spec.http_client, swagger_spec.config)
 

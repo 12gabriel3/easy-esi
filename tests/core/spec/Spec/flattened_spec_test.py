@@ -32,12 +32,12 @@ def spec_flattener(minimal_swagger_spec):
     return _spec_flattener(minimal_swagger_spec)
 
 
-@mock.patch('core.spec_flattening.warnings')
+@mock.patch('easyesi.core.spec_flattening.warnings')
 def test_no_warning_for_clashed_uris(mock_warnings, spec_flattener):
     spec_flattener.warn_if_uri_clash_on_same_marshaled_representation({})
 
 
-@mock.patch('core.spec_flattening.warnings')
+@mock.patch('easyesi.core.spec_flattening.warnings')
 def test_warning_for_clashed_uris(mock_warnings, spec_flattener):
     clashing_uris = ['path1', 'path2']
     marshaled_uri = 'SameString'
@@ -116,7 +116,7 @@ def test_marshal_url(target, expected_marshaled_uri):
     assert marshaled_uri == expected_marshaled_uri
 
 
-@mock.patch('core.spec.log', autospec=True)
+@mock.patch('easyesi.core.spec.log', autospec=True)
 def test_flattened_spec_warns_if_configured_to_not_validate_swagger_specs(
     mock_log, minimal_swagger_dict,
 ):
@@ -131,9 +131,9 @@ def test_flattened_spec_warns_if_configured_to_not_validate_swagger_specs(
 @pytest.mark.parametrize(
     'has_origin_url', [True, False],
 )
-@mock.patch('core.spec_flattening.warnings')
-@mock.patch('core.spec.build_http_handlers')
-@mock.patch('core.spec.flattened_spec', wraps=spec.flattened_spec)
+@mock.patch('easyesi.core.spec_flattening.warnings')
+@mock.patch('easyesi.core.spec.build_http_handlers')
+@mock.patch('easyesi.core.spec.flattened_spec', wraps=spec.flattened_spec)
 def test_flattened_spec_warning_if_no_origin_url(
     wrap_flattened_spec, mock_build_http_handlers, mock_warnings, petstore_spec, has_origin_url,
 ):
@@ -153,9 +153,9 @@ def test_flattened_spec_warning_if_no_origin_url(
         )
 
 
-@mock.patch('core.spec.warnings')
-@mock.patch('core.spec.build_http_handlers')
-@mock.patch('core.spec.flattened_spec')
+@mock.patch('easyesi.core.spec.warnings')
+@mock.patch('easyesi.core.spec.build_http_handlers')
+@mock.patch('easyesi.core.spec.flattened_spec')
 def test_flattened_spec_cached_result(mock_flattened_spec, mock_build_http_handlers, mock_warnings, petstore_spec):
     petstore_spec.flattened_spec
     petstore_spec.flattened_spec

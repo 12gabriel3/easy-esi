@@ -6,7 +6,7 @@ import six
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from easyesi.core import FuncType
+    from easyesi.core._compat_typing import FuncType
 
 
 class SwaggerError(Exception):

@@ -17,14 +17,14 @@ from six.moves.urllib.request import pathname2url
 from six.moves.urllib.request import url2pathname
 from swagger_spec_validator.ref_validators import in_scope
 
-from easyesi.core import cached_property
-from easyesi.core import determine_object_type
-from easyesi.core import is_dict_like
-from easyesi.core import is_list_like
-from easyesi.core import is_ref
-from easyesi.core import model_discovery
-from easyesi.core import MODEL_MARKER
-from easyesi.core import ObjectType
+from easyesi.core.model import model_discovery
+from easyesi.core.model import MODEL_MARKER
+from easyesi.core.schema import is_dict_like
+from easyesi.core.schema import is_list_like
+from easyesi.core.schema import is_ref
+from easyesi.core.util import cached_property
+from easyesi.core.util import determine_object_type
+from easyesi.core.util import ObjectType
 
 
 MARSHAL_REPLACEMENT_PATTERNS = {
@@ -305,7 +305,7 @@ class _SpecFlattener(object):
 
     def model_discovery(self):
         # local imports due to circular dependency
-        from easyesi.core import Spec
+        from easyesi.core.spec import Spec
 
         # Run model-discovery in order to tag the models available in known_mappings['definitions']
         # This is a required step that removes duplications of models due to the presence of models

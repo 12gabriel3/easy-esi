@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from six import itervalues
 
-from easyesi.core import log
-from easyesi.core import unmarshal_param
+from easyesi.core.operation import log
+from easyesi.core.param import unmarshal_param
 from easyesi.core.validate import validate_security_object
 
 

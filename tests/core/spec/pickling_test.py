@@ -23,7 +23,7 @@ def test_ensure_spec_is_pickleable(petstore_dict, petstore_abspath, internally_d
 
 
 def test_ensure_warning_presence_in_case_of_version_mismatch(petstore_spec):
-    with mock.patch('core.spec._version', '0.0.0'):
+    with mock.patch('easyesi.core.spec._version', '0.0.0'):
         petstore_pickle = dumps(petstore_spec)
 
     with pytest.warns(UserWarning, match='different easy-esi-core version.*created by version 0.0.0, current version'):

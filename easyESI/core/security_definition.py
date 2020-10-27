@@ -5,8 +5,8 @@ from copy import deepcopy
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from easyesi.core import JSONDict
-    from easyesi.core import Spec  # pragma: no cover
+    from easyesi.core._compat_typing import JSONDict
+    from easyesi.core.spec import Spec  # pragma: no cover
 
 
 log = logging.getLogger(__name__)

@@ -4,12 +4,12 @@ import typing
 
 import six
 
-from easyesi.core import SwaggerSchemaError
+from easyesi.core.exception import SwaggerSchemaError
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from easyesi.core import JSONDict
-    from easyesi.core import SecurityDefinition
-    from easyesi.core import Spec
+    from easyesi.core._compat_typing import JSONDict
+    from easyesi.core.security_definition import SecurityDefinition
+    from easyesi.core.spec import Spec
 
     T = typing.TypeVar('T')
 

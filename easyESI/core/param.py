@@ -7,18 +7,18 @@ import simplejson as json
 import six
 from six.moves.urllib.parse import quote
 
-from easyesi.core import APP_JSON
-from easyesi.core import marshal_schema_object
 from easyesi.core import schema
-from easyesi.core import SwaggerMappingError
-from easyesi.core import unmarshal_schema_object
+from easyesi.core.content_type import APP_JSON
+from easyesi.core.exception import SwaggerMappingError
+from easyesi.core.marshal import marshal_schema_object
+from easyesi.core.unmarshal import unmarshal_schema_object
 from easyesi.core.validate import validate_schema_object
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from easyesi.core import Operation  # pragma: no cover
-    from easyesi.core import Spec  # pragma: no cover
-    from easyesi.core import JSONDict
+    from easyesi.core.operation import Operation  # pragma: no cover
+    from easyesi.core.spec import Spec  # pragma: no cover
+    from easyesi.core._compat_typing import JSONDict
 
 
 log = logging.getLogger(__name__)

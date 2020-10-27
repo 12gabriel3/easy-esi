@@ -3,7 +3,7 @@ import typing
 
 import monotonic
 
-from easyesi.core import IncomingResponse
+from easyesi.core.response import IncomingResponse
 
 if getattr(typing, 'TYPE_CHECKING', False):  # Needed to avoid cyclic import.
     from easyesi.config import RequestConfig  # pragma: no cover

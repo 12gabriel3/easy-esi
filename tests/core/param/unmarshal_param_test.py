@@ -238,7 +238,7 @@ def test_body(empty_swagger_spec, param_spec):
 
 
 def assert_validate_call_count(expected_call_count, config, petstore_dict):
-    with patch('core.param.validate_schema_object') as m_validate:
+    with patch('easyesi.core.param.validate_schema_object') as m_validate:
         petstore_spec = Spec.from_dict(petstore_dict, config=config)
         request = Mock(spec=IncomingRequest, path={'petId': 34})
         op = petstore_spec.resources['pet'].operations['getPetById']

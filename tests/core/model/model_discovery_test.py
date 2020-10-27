@@ -10,7 +10,7 @@ from easyesi.core.spec import Spec
 @pytest.fixture
 def wrap__run_post_processing():
     with mock.patch(
-        'core.model._run_post_processing',
+        'easyesi.core.model._run_post_processing',
         wraps=_run_post_processing,
     ) as _wrap__run_post_processing:
         yield _wrap__run_post_processing

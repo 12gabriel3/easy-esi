@@ -8,14 +8,14 @@ from enum import Enum
 from six import iteritems
 from six import iterkeys
 
-from easyesi.core import get_function_spec
-from easyesi.core import is_dict_like
-from easyesi.core import is_list_like
-from easyesi.core import wraps
+from easyesi.core._compat import get_function_spec
+from easyesi.core._compat import wraps
+from easyesi.core.schema import is_dict_like
+from easyesi.core.schema import is_list_like
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from easyesi.core import FuncType
-    from easyesi.core import JSONDict
+    from easyesi.core._compat_typing import FuncType
+    from easyesi.core._compat_typing import JSONDict
 
     CacheKey = typing.Tuple[typing.Tuple[typing.Text, int], ...]  # pragma: no cover
     T = typing.TypeVar('T')  # pragma: no cover

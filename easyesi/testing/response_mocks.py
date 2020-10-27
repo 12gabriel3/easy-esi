@@ -4,7 +4,7 @@ import typing
 from typing_extensions import overload  # typing.overload won't work on Python 3.5.0/3.5.1
 
 from easyesi.config import RequestConfig
-from easyesi.core import IncomingResponse
+from easyesi.core.response import IncomingResponse
 from easyesi.exception import EasyEsiTimeoutError
 from easyesi.http_future import _SENTINEL
 from easyesi.http_future import FALLBACK_EXCEPTIONS

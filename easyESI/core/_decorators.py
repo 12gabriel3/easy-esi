@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 import typing
 
-from easyesi.core import memoize_by_id
-from easyesi.core import RecursiveCallException
 from easyesi.core import schema
-from easyesi.core import SwaggerMappingError
-from easyesi.core import wraps
+from easyesi.core._compat import wraps
+from easyesi.core.exception import SwaggerMappingError
+from easyesi.core.util import memoize_by_id
+from easyesi.core.util import RecursiveCallException
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from easyesi.core import Spec  # pragma: no cover
-    from easyesi.core import JSONDict
-    from easyesi.core import Func
+    from easyesi.core.spec import Spec  # pragma: no cover
+    from easyesi.core._compat_typing import JSONDict
+    from easyesi.core._compat_typing import Func
 
 
 @memoize_by_id

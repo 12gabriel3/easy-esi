@@ -12,8 +12,8 @@ from msgpack import packb
 from msgpack import unpackb
 
 from easyesi.client import SwaggerClient
-from easyesi.core import APP_MSGPACK
-from easyesi.core import IncomingResponse
+from easyesi.core.content_type import APP_MSGPACK
+from easyesi.core.response import IncomingResponse
 from easyesi.exception import EasyEsiConnectionError
 from easyesi.exception import EasyEsiTimeoutError
 from easyesi.exception import HTTPMovedPermanently

@@ -194,7 +194,7 @@ def test_formData_file(empty_swagger_spec, param_spec, request_dict):
 
 
 def assert_validate_call_count(expected_call_count, config, petstore_dict):
-    with patch('core.param.validate_schema_object') as m_validate:
+    with patch('easyesi.core.param.validate_schema_object') as m_validate:
         petstore_spec = Spec.from_dict(petstore_dict, config=config)
         request = {'url': '/pet/{petId}'}
         op = petstore_spec.resources['pet'].operations['getPetById']

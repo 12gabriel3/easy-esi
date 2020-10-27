@@ -53,7 +53,7 @@ def test_localized_datetime(minimal_swagger_spec):
     )
 
 
-@patch('core.spec.warnings.warn')
+@patch('easyesi.core.spec.warnings.warn')
 def test_no_registered_format_returns_value_as_is(mock_warn, minimal_swagger_spec):
     string_spec = {'type': 'string', 'format': 'bar'}
     assert 'baz' == to_wire(minimal_swagger_spec, string_spec, 'baz')

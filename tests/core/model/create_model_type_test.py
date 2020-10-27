@@ -30,7 +30,7 @@ def test_no_arg_constructor(empty_swagger_spec, pet_spec):
         assert hasattr(Pet, attr_name)
 
 
-@mock.patch('core.model.create_model_docstring', autospec=True)
+@mock.patch('easyesi.core.model.create_model_docstring', autospec=True)
 def test_create_model_type_lazy_docstring(mock_create_docstring, empty_swagger_spec, pet_spec):
     pet_type = create_model_type(empty_swagger_spec, 'Pet', pet_spec)
     assert mock_create_docstring.call_count == 0

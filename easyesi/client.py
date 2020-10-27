@@ -52,11 +52,11 @@ from six import itervalues
 
 from easyesi.config import bravado_config_from_config_dict
 from easyesi.config import RequestConfig
-from easyesi.core import create_operation_docstring
-from easyesi.core import marshal_param
-from easyesi.core import Spec
-from easyesi.core import SwaggerMappingError
+from easyesi.core.docstring import create_operation_docstring
+from easyesi.core.exception import SwaggerMappingError
 from easyesi.core.formatter import SwaggerFormat  # noqa
+from easyesi.core.param import marshal_param
+from easyesi.core.spec import Spec
 from easyesi.docstring_property import docstring_property
 from easyesi.requests_client import RequestsClient
 from easyesi.swagger_model import Loader

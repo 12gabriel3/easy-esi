@@ -114,7 +114,7 @@ def test_memoize_by_id_decorator():
     assert calls == [[1, None], [2, 3], [1, None]]
 
 
-@mock.patch('core.util.inspect.getcallargs', wraps=getcallargs)
+@mock.patch('easyesi.core.util.inspect.getcallargs', wraps=getcallargs)
 def test_memoize_by_id_do_not_use_inspect_if_only_kwargs_are_provided(mock_getcallargs):
     calls = []
 

@@ -14,7 +14,7 @@ from tests.core.validate.conftest import email_address_format
 
 def assert_validate_call_count(expected_call_count, config, petstore_dict):
     spec = Spec(petstore_dict, config=config)
-    with patch('core.spec.validator20.validate_spec') as m_validate:
+    with patch('easyesi.core.spec.validator20.validate_spec') as m_validate:
         spec.deref = Mock(return_value={})
         spec.build()
     assert expected_call_count == m_validate.call_count

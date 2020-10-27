@@ -2,7 +2,7 @@
 import typing
 
 from easyesi.config import RequestConfig
-from easyesi.core import Operation
+from easyesi.core.operation import Operation
 from easyesi.http_future import HttpFuture
 
 APP_FORM = 'application/x-www-form-urlencoded'

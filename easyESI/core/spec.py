@@ -27,22 +27,22 @@ except ImportError:
 
 from easyesi.core import formatter
 from easyesi.core import version as _version
-from easyesi.core import SwaggerSchemaError
-from easyesi.core import SwaggerValidationError
+from easyesi.core.exception import SwaggerSchemaError
+from easyesi.core.exception import SwaggerValidationError
 from easyesi.core.formatter import return_true_wrapper
-from easyesi.core import _from_pickleable_representation
-from easyesi.core import _to_pickleable_representation
-from easyesi.core import Model
-from easyesi.core import model_discovery
-from easyesi.core import build_resources
-from easyesi.core import is_dict_like
-from easyesi.core import is_list_like
-from easyesi.core import is_ref
-from easyesi.core import SecurityDefinition
-from easyesi.core import flattened_spec
-from easyesi.core import cached_property
-from easyesi.core import memoize_by_id
-from easyesi.core import strip_xscope
+from easyesi.core.model import _from_pickleable_representation
+from easyesi.core.model import _to_pickleable_representation
+from easyesi.core.model import Model
+from easyesi.core.model import model_discovery
+from easyesi.core.resource import build_resources
+from easyesi.core.schema import is_dict_like
+from easyesi.core.schema import is_list_like
+from easyesi.core.schema import is_ref
+from easyesi.core.security_definition import SecurityDefinition
+from easyesi.core.spec_flattening import flattened_spec
+from easyesi.core.util import cached_property
+from easyesi.core.util import memoize_by_id
+from easyesi.core.util import strip_xscope
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
