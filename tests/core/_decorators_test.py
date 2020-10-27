@@ -3,10 +3,10 @@ from functools import partial
 
 import pytest
 
-from core._decorators import handle_null_value
-from core._decorators import wrap_recursive_call_exception
-from core.exception import SwaggerMappingError
-from core.util import memoize_by_id
+from easyESI.core._decorators import handle_null_value
+from easyESI.core._decorators import wrap_recursive_call_exception
+from easyESI.core.exception import SwaggerMappingError
+from easyESI.core.util import memoize_by_id
 
 
 @pytest.mark.parametrize(

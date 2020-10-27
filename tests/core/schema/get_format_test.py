@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from core.schema import get_format
-from core.spec import Spec
+from easyESI.core.schema import get_format
+from easyESI.core.spec import Spec
 
 
 @pytest.fixture

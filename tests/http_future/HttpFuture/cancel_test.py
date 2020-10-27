@@ -2,7 +2,7 @@
 import mock
 import pytest
 
-from core.response import IncomingResponse
+from easyESI.core.response import IncomingResponse
 from easyESI.http_future import FutureAdapter
 from easyESI.http_future import HttpFuture
 

@@ -5,8 +5,8 @@ import pytest
 import simplejson as json
 import yaml
 
-from core.response import get_response_spec
-from core.spec import Spec
+from easyESI.core.response import get_response_spec
+from easyESI.core.spec import Spec
 from tests.core.conftest import _read_json
 from tests.core.conftest import get_url
 

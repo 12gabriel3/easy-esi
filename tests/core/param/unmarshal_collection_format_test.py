@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from core.exception import SwaggerMappingError
-from core.param import COLLECTION_FORMATS
-from core.param import unmarshal_collection_format
-from core.spec import Spec
+from easyESI.core.exception import SwaggerMappingError
+from easyESI.core.param import COLLECTION_FORMATS
+from easyESI.core.param import unmarshal_collection_format
+from easyESI.core.spec import Spec
 
 
 @pytest.fixture

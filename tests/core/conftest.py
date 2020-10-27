@@ -14,8 +14,8 @@ from six.moves.urllib.request import pathname2url
 from six.moves.urllib.request import url2pathname
 from swagger_spec_validator.common import SwaggerValidationWarning
 
-from core.spec import CONFIG_DEFAULTS
-from core.spec import Spec
+from easyESI.core.spec import CONFIG_DEFAULTS
+from easyESI.core.spec import Spec
 
 
 @pytest.fixture

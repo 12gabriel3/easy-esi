@@ -9,10 +9,10 @@ import six
 from six import iteritems
 from six.moves.urllib import parse as urlparse
 
-from core.operation import Operation
-from core.response import IncomingResponse
 from easyESI._equality_util import are_objects_equal as _are_objects_equal
 from easyESI.config import RequestConfig
+from easyESI.core import IncomingResponse
+from easyESI.core import Operation
 from easyESI.http_client import HttpClient
 from easyESI.http_future import FutureAdapter
 from easyESI.http_future import HttpFuture

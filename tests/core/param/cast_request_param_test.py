@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from mock import patch
 
-from core.param import cast_request_param
+from easyESI.core.param import cast_request_param
 
 
 @patch('core.param.log')

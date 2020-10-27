@@ -6,15 +6,15 @@ import pytest
 from mock import Mock
 from six import add_metaclass
 
-from core.content_type import APP_JSON
-from core.model import Model
-from core.model import ModelMeta
-from core.response import IncomingResponse
-from core.response import unmarshal_response
-from core.schema import collapsed_properties
-from core.schema import is_ref
-from core.spec import Spec
-from core.unmarshal import unmarshal_model
+from easyESI.core.content_type import APP_JSON
+from easyESI.core.model import Model
+from easyESI.core.model import ModelMeta
+from easyESI.core.response import IncomingResponse
+from easyESI.core.response import unmarshal_response
+from easyESI.core.schema import collapsed_properties
+from easyESI.core.schema import is_ref
+from easyESI.core.spec import Spec
+from easyESI.core.unmarshal import unmarshal_model
 
 
 @add_metaclass(ModelMeta)

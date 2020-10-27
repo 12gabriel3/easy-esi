@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from mock import Mock
 
-from core.operation import Operation
 from easyESI.client import inject_headers_for_remote_refs
+from easyESI.core.operation import Operation
 
 
 def test_headers_inject_when_retrieving_remote_ref():

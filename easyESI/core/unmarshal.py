@@ -12,25 +12,25 @@ from functools import partial
 
 from six import iteritems
 
-from core import _decorators
-from core import schema
-from core.exception import SwaggerMappingError
-from core.model import MODEL_MARKER
-from core.schema import collapsed_properties
-from core.schema import collapsed_required
-from core.schema import get_type_from_schema
-from core.schema import is_dict_like
-from core.schema import is_list_like
-from core.schema import SWAGGER_PRIMITIVES
-from core.util import memoize_by_id
+from easyESI.core import _decorators
+from easyESI.core import collapsed_properties
+from easyESI.core import collapsed_required
+from easyESI.core import get_type_from_schema
+from easyESI.core import is_dict_like
+from easyESI.core import is_list_like
+from easyESI.core import memoize_by_id
+from easyESI.core import MODEL_MARKER
+from easyESI.core import schema
+from easyESI.core import SWAGGER_PRIMITIVES
+from easyESI.core import SwaggerMappingError
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from core._compat_typing import JSONDict
-    from core._compat_typing import NoReturn
-    from core._compat_typing import UnmarshalingMethod
-    from core.model import Model  # pragma: no cover
-    from core.spec import Spec  # pragma: no cover
+    from easyESI.core import JSONDict
+    from easyESI.core import NoReturn
+    from easyESI.core import UnmarshalingMethod
+    from easyESI.core import Model  # pragma: no cover
+    from easyESI.core import Spec  # pragma: no cover
 
 
 _NOT_FOUND = object()

@@ -2,9 +2,9 @@
 import mock
 import pytest
 
-from core.response import IncomingResponse
 from easyESI.config import bravado_config_from_config_dict
 from easyESI.config import RequestConfig
+from easyESI.core.response import IncomingResponse
 from easyESI.exception import EasyEsiTimeoutError
 from easyESI.exception import ForcedFallbackResultError
 from easyESI.exception import HTTPInternalServerError

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from core.param import COLLECTION_FORMATS
-from core.param import marshal_collection_format
-from core.spec import Spec
+from easyESI.core.param import COLLECTION_FORMATS
+from easyESI.core.param import marshal_collection_format
+from easyESI.core.spec import Spec
 
 
 @pytest.fixture

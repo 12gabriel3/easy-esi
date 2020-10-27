@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from core.schema import is_prop_nullable
-from core.spec import Spec
+from easyESI.core.schema import is_prop_nullable
+from easyESI.core.spec import Spec
 
 
 def test_true(minimal_swagger_spec):

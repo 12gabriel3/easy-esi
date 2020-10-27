@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from core.exception import wrap_exception
+from easyESI.core.exception import wrap_exception
 
 
 def test_exception_gets_correctly_wrapped():

@@ -5,13 +5,13 @@ import typing
 from six import iteritems
 from six import string_types
 
-from core._compat import Mapping
-from core.exception import SwaggerMappingError
+from easyESI.core import Mapping
+from easyESI.core import SwaggerMappingError
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from core.spec import Spec  # pragma: no cover
-    from core._compat_typing import JSONDict
+    from easyESI.core import Spec  # pragma: no cover
+    from easyESI.core import JSONDict
 
 
 # 'object' and 'array' are omitted since this should really be read as

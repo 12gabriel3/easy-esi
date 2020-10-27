@@ -9,11 +9,11 @@ from jsonschema.exceptions import ValidationError
 from jsonschema.validators import Draft4Validator
 from swagger_spec_validator.ref_validators import in_scope
 
-from core.model import MODEL_MARKER
-from core.schema import is_param_spec
-from core.schema import is_prop_nullable
-from core.schema import is_required
-from core.util import memoize_by_id
+from easyESI.core import is_param_spec
+from easyESI.core import is_prop_nullable
+from easyESI.core import is_required
+from easyESI.core import memoize_by_id
+from easyESI.core import MODEL_MARKER
 
 
 """Draft4Validator is not completely compatible with Swagger 2.0 schema
@@ -23,8 +23,8 @@ validator.
 """
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from core._compat_typing import JSONDict
-    from core.spec import Spec  # pragma: no cover
+    from easyESI.core import JSONDict
+    from easyESI.core import Spec  # pragma: no cover
 
     class ValidatorType(typing.Protocol):
         def __init__(
@@ -254,7 +254,7 @@ def discriminator_validator(
         for all_of_schema in new_schema['allOf']
     ]
 
-    from core.validate import validate_object  # Local import due to circular dependency
+    from easyESI.core.validate import validate_object  # Local import due to circular dependency
     validate_object(swagger_spec=swagger_spec, object_spec=new_schema, value=instance)
 
 

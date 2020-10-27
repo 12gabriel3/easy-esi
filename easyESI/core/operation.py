@@ -5,17 +5,17 @@ import typing
 from six import iteritems
 from six import PY2
 
-from core.exception import SwaggerSchemaError
-from core.param import Param
-from core.security_requirement import SecurityRequirement
-from core.util import AliasKeyDict
-from core.util import cached_property
-from core.util import sanitize_name
+from easyESI.core import AliasKeyDict
+from easyESI.core import cached_property
+from easyESI.core import Param
+from easyESI.core import sanitize_name
+from easyESI.core import SecurityRequirement
+from easyESI.core import SwaggerSchemaError
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from core._compat_typing import JSONDict
-    from core.spec import Spec  # pragma: no cover
+    from easyESI.core import JSONDict
+    from easyESI.core import Spec  # pragma: no cover
 
 
 log = logging.getLogger(__name__)

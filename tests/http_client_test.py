@@ -8,7 +8,7 @@ import mock
 import pytest
 import requests
 
-from core.response import IncomingResponse
+from easyESI.core.response import IncomingResponse
 from easyESI.requests_client import Authenticator
 from easyESI.requests_client import RequestsClient
 

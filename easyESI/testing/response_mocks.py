@@ -3,8 +3,8 @@ import typing
 
 from typing_extensions import overload  # typing.overload won't work on Python 3.5.0/3.5.1
 
-from core.response import IncomingResponse
 from easyESI.config import RequestConfig
+from easyESI.core import IncomingResponse
 from easyESI.exception import EasyEsiTimeoutError
 from easyESI.http_future import _SENTINEL
 from easyESI.http_future import FALLBACK_EXCEPTIONS

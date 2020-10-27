@@ -13,15 +13,15 @@ import dateutil.parser
 import pytz
 import six
 
-from core import schema
-from core.exception import SwaggerMappingError
+from easyESI.core import schema
+from easyESI.core import SwaggerMappingError
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from core._compat_typing import JSONDict
-    from core._compat_typing import MarshalingMethod  # noqa: F401
-    from core._compat_typing import UnmarshalingMethod  # noqa: F401
-    from core.spec import Spec  # pragma: no cover
+    from easyESI.core import JSONDict
+    from easyESI.core import MarshalingMethod  # noqa: F401
+    from easyESI.core import UnmarshalingMethod  # noqa: F401
+    from easyESI.core import Spec  # pragma: no cover
 
     T = typing.TypeVar('T')
 

@@ -8,11 +8,11 @@ import pytest
 from six.moves.urllib.parse import urlparse
 from swagger_spec_validator import validator20
 
-from core import spec
-from core.spec import CONFIG_DEFAULTS
-from core.spec import Spec
-from core.spec_flattening import _marshal_uri
-from core.spec_flattening import _SpecFlattener
+from easyESI.core import spec
+from easyESI.core.spec import CONFIG_DEFAULTS
+from easyESI.core.spec import Spec
+from easyESI.core.spec_flattening import _marshal_uri
+from easyESI.core.spec_flattening import _SpecFlattener
 from tests.core.conftest import _read_json
 from tests.core.conftest import get_url
 

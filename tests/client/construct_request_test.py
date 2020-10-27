@@ -5,12 +5,12 @@ from typing import Dict
 import mock
 import pytest
 
-from core.operation import Operation
-from core.request import IncomingRequest
-from core.request import unmarshal_request
-from core.spec import Spec
 from easyESI.client import CallableOperation
 from easyESI.client import construct_request
+from easyESI.core.operation import Operation
+from easyESI.core.request import IncomingRequest
+from easyESI.core.request import unmarshal_request
+from easyESI.core.spec import Spec
 
 
 def build_swagger_spec(swagger_dict):

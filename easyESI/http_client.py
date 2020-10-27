@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import typing
 
-from core.operation import Operation
 from easyESI.config import RequestConfig
+from easyESI.core import Operation
 from easyESI.http_future import HttpFuture
 
 APP_FORM = 'application/x-www-form-urlencoded'

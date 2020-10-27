@@ -4,7 +4,7 @@ import pytest
 from six.moves.cPickle import dumps
 from six.moves.cPickle import loads
 
-from core.spec import Spec
+from easyESI.core.spec import Spec
 from tests.core.conftest import get_url
 
 

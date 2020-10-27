@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from core.schema import collapsed_properties
+from easyESI.core.schema import collapsed_properties
 
 
 def test_allOf(users_spec, users_swagger_spec):

@@ -2,10 +2,10 @@
 import pytest
 from mock import patch
 
-from core.exception import SwaggerMappingError
-from core.operation import Operation
 from easyESI.client import CallableOperation
 from easyESI.client import construct_params
+from easyESI.core.exception import SwaggerMappingError
+from easyESI.core.operation import Operation
 
 
 @patch('easyESI.client.marshal_param')

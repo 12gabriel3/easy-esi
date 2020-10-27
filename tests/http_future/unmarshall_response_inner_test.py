@@ -3,10 +3,10 @@ import mock
 import msgpack
 import pytest
 
-from core.content_type import APP_JSON
-from core.content_type import APP_MSGPACK
-from core.response import IncomingResponse
-from core.spec import Spec
+from easyESI.core.content_type import APP_JSON
+from easyESI.core.content_type import APP_MSGPACK
+from easyESI.core.response import IncomingResponse
+from easyESI.core.spec import Spec
 from easyESI.http_future import unmarshal_response_inner
 
 

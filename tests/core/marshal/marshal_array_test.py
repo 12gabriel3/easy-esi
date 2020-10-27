@@ -3,9 +3,9 @@ import copy
 
 import pytest
 
-from core.exception import SwaggerMappingError
-from core.marshal import marshal_array
-from core.spec import Spec
+from easyESI.core.exception import SwaggerMappingError
+from easyESI.core.marshal import marshal_array
+from easyESI.core.spec import Spec
 
 
 @pytest.fixture

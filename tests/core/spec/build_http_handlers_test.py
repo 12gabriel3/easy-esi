@@ -6,7 +6,7 @@ import mock
 import pytest
 import yaml
 
-from core.spec import build_http_handlers
+from easyESI.core.spec import build_http_handlers
 
 
 def _build_http_client(content):

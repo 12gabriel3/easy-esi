@@ -7,14 +7,13 @@ import crochet
 import fido.exceptions
 import requests.structures
 import six
-import twisted.internet.error
 import twisted.web.client
 from yelp_bytes import to_bytes
 
-from core.operation import Operation
-from core.response import IncomingResponse
 from easyESI._equality_util import are_objects_equal as _are_objects_equal
 from easyESI.config import RequestConfig
+from easyESI.core import IncomingResponse
+from easyESI.core import Operation
 from easyESI.http_client import HttpClient
 from easyESI.http_future import FutureAdapter
 from easyESI.http_future import HttpFuture

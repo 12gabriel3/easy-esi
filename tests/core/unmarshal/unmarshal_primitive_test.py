@@ -3,9 +3,9 @@ import datetime
 
 import pytest
 
-from core.exception import SwaggerMappingError
-from core.spec import Spec
-from core.unmarshal import unmarshal_primitive
+from easyESI.core.exception import SwaggerMappingError
+from easyESI.core.spec import Spec
+from easyESI.core.unmarshal import unmarshal_primitive
 
 
 def test_integer(minimal_swagger_spec):

@@ -3,9 +3,9 @@ import pytest
 from jsonschema.exceptions import ValidationError
 from mock import Mock
 
-from core.operation import Operation
-from core.response import OutgoingResponse
-from core.response import validate_response_headers
+from easyESI.core.operation import Operation
+from easyESI.core.response import OutgoingResponse
+from easyESI.core.response import validate_response_headers
 
 
 @pytest.fixture

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from core.model import is_object
-from core.spec import Spec
+from easyESI.core.model import is_object
+from easyESI.core.spec import Spec
 
 
 # deref = swagger_spec.deref

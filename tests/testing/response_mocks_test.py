@@ -4,8 +4,8 @@ import inspect
 import mock
 import pytest
 
-from core.response import IncomingResponse
 from easyESI.config import RequestConfig
+from easyESI.core.response import IncomingResponse
 from easyESI.exception import HTTPServerError
 from easyESI.http_future import HttpFuture
 from easyESI.response import EasyEsiResponseMetadata

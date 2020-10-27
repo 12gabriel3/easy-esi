@@ -9,7 +9,7 @@ try:
     from yaml import CSafeLoader as SafeLoader
 except ImportError:  # pragma: no cover
     from yaml import SafeLoader  # type: ignore
-from core.spec import is_yaml
+from easyESI.core import is_yaml
 from six import iteritems
 from six import itervalues
 from six.moves import urllib

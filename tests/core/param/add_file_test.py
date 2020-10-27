@@ -2,10 +2,10 @@
 import pytest
 from mock import Mock
 
-from core.exception import SwaggerMappingError
-from core.operation import Operation
-from core.param import add_file
-from core.param import Param
+from easyESI.core.exception import SwaggerMappingError
+from easyESI.core.operation import Operation
+from easyESI.core.param import add_file
+from easyESI.core.param import Param
 
 
 def test_single_file(empty_swagger_spec):

@@ -25,28 +25,28 @@ try:
 except ImportError:
     from yaml import SafeLoader  # type: ignore
 
-from core import formatter
-from core import version as _version
-from core.exception import SwaggerSchemaError
-from core.exception import SwaggerValidationError
-from core.formatter import return_true_wrapper
-from core.model import _from_pickleable_representation
-from core.model import _to_pickleable_representation
-from core.model import Model
-from core.model import model_discovery
-from core.resource import build_resources
-from core.schema import is_dict_like
-from core.schema import is_list_like
-from core.schema import is_ref
-from core.security_definition import SecurityDefinition
-from core.spec_flattening import flattened_spec
-from core.util import cached_property
-from core.util import memoize_by_id
-from core.util import strip_xscope
+from easyESI.core import formatter
+from easyESI.core import version as _version
+from easyESI.core import SwaggerSchemaError
+from easyESI.core import SwaggerValidationError
+from easyESI.core.formatter import return_true_wrapper
+from easyESI.core import _from_pickleable_representation
+from easyESI.core import _to_pickleable_representation
+from easyESI.core import Model
+from easyESI.core import model_discovery
+from easyESI.core import build_resources
+from easyESI.core import is_dict_like
+from easyESI.core import is_list_like
+from easyESI.core import is_ref
+from easyESI.core import SecurityDefinition
+from easyESI.core import flattened_spec
+from easyESI.core import cached_property
+from easyESI.core import memoize_by_id
+from easyESI.core import strip_xscope
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from core.formatter import SwaggerFormat  # pragma: no cover
+    from easyESI.core.formatter import SwaggerFormat  # pragma: no cover
 
     T = typing.TypeVar('T')
 

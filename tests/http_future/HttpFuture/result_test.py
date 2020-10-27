@@ -5,9 +5,9 @@ import pytest
 from mock import Mock
 from mock import patch
 
-from core.operation import Operation
-from core.response import IncomingResponse
 from easyESI.config import RequestConfig
+from easyESI.core.operation import Operation
+from easyESI.core.response import IncomingResponse
 from easyESI.exception import HTTPError
 from easyESI.http_future import HttpFuture
 

@@ -5,9 +5,9 @@ from datetime import datetime
 import six
 from mock import patch
 
-from core.formatter import SwaggerFormat
-from core.formatter import to_python
-from core.spec import Spec
+from easyESI.core.formatter import SwaggerFormat
+from easyESI.core.formatter import to_python
+from easyESI.core.spec import Spec
 
 
 if not six.PY2:

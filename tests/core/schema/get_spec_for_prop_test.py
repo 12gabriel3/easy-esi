@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from core.exception import SwaggerMappingError
-from core.schema import get_spec_for_prop
-from core.spec import Spec
+from easyESI.core.exception import SwaggerMappingError
+from easyESI.core.schema import get_spec_for_prop
+from easyESI.core.spec import Spec
 
 
 @pytest.fixture

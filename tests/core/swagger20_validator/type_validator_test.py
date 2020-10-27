@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from mock import patch
 
-from core.swagger20_validator import type_validator
+from easyESI.core.swagger20_validator import type_validator
 
 
 @patch('core.swagger20_validator._DRAFT4_TYPE_VALIDATOR')

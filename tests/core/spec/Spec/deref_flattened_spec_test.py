@@ -4,9 +4,9 @@ from typing import Any
 from six import iterkeys
 from six import itervalues
 
-from core.schema import is_dict_like
-from core.schema import is_list_like
-from core.spec import Spec
+from easyESI.core.schema import is_dict_like
+from easyESI.core.schema import is_list_like
+from easyESI.core.spec import Spec
 from tests.core.conftest import get_url
 
 

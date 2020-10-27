@@ -2,9 +2,9 @@
 import mock
 import pytest
 
-from core.model import _run_post_processing
-from core.model import model_discovery
-from core.spec import Spec
+from easyESI.core.model import _run_post_processing
+from easyESI.core.model import model_discovery
+from easyESI.core.spec import Spec
 
 
 @pytest.fixture

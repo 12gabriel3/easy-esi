@@ -9,14 +9,14 @@ from six import iteritems
 from six import iterkeys
 from six import PY2
 
-from core.exception import SwaggerMappingError
-from core.operation import Operation
-from core.util import AliasKeyDict
-from core.util import sanitize_name
+from easyESI.core import AliasKeyDict
+from easyESI.core import Operation
+from easyESI.core import sanitize_name
+from easyESI.core import SwaggerMappingError
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from core.spec import Spec  # pragma: no cover
+    from easyESI.core import Spec  # pragma: no cover
 
 
 log = logging.getLogger(__name__)

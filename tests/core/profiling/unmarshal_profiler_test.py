@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from core.unmarshal import unmarshal_schema_object
+from easyESI.core.unmarshal import unmarshal_schema_object
 
 
 def test_small_objects(benchmark, perf_petstore_spec, findByStatusReponseSchema, small_pets):

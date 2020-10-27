@@ -3,8 +3,8 @@ import pytest
 from jsonschema.exceptions import ValidationError
 from six import iteritems
 
-from core.spec import Spec
-from core.validate import validate_object
+from easyESI.core.spec import Spec
+from easyESI.core.validate import validate_object
 from tests.core.conftest import get_url
 from tests.core.validate.conftest import email_address_format
 

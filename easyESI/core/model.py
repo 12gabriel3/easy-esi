@@ -12,19 +12,19 @@ from six import iteritems
 from six import string_types
 from swagger_spec_validator.ref_validators import attach_scope
 
-from core.schema import collapsed_properties
-from core.schema import is_dict_like
-from core.schema import is_list_like
-from core.schema import is_ref
-from core.schema import SWAGGER_PRIMITIVES
-from core.util import determine_object_type
-from core.util import lazy_class_attribute
-from core.util import ObjectType
-from core.util import strip_xscope
+from easyESI.core import collapsed_properties
+from easyESI.core import determine_object_type
+from easyESI.core import is_dict_like
+from easyESI.core import is_list_like
+from easyESI.core import is_ref
+from easyESI.core import lazy_class_attribute
+from easyESI.core import ObjectType
+from easyESI.core import strip_xscope
+from easyESI.core import SWAGGER_PRIMITIVES
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from core._compat_typing import JSONDict
-    from core.spec import Spec  # pragma: no cover
+    from easyESI.core import JSONDict
+    from easyESI.core import Spec  # pragma: no cover
 
 
 log = logging.getLogger(__name__)
@@ -574,7 +574,7 @@ class Model(object):
 
         :rtype: dict
         """
-        from core.marshal import marshal_schema_object
+        from easyESI.core import marshal_schema_object
         return marshal_schema_object(self._swagger_spec, self._model_spec, self)
 
     @classmethod
@@ -592,7 +592,7 @@ class Model(object):
         :type val: dict
         :rtype: .Model
         """
-        from core.unmarshal import unmarshal_schema_object
+        from easyESI.core import unmarshal_schema_object
         return unmarshal_schema_object(cls._swagger_spec, cls._model_spec, val)
 
     @classmethod
@@ -916,7 +916,7 @@ def model_discovery(swagger_spec):
     _run_post_processing(swagger_spec)
 
     if swagger_spec.config['internally_dereference_refs']:
-        from core.spec import Spec  # Local import to avoid circular import
+        from easyESI.core import Spec  # Local import to avoid circular import
         deref_flattened_spec = swagger_spec.deref_flattened_spec
         tmp_spec = Spec(deref_flattened_spec, swagger_spec.origin_url, swagger_spec.http_client, swagger_spec.config)
 

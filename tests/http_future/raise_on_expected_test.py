@@ -2,7 +2,7 @@
 import pytest
 from mock import Mock
 
-from core.response import IncomingResponse
+from easyESI.core.response import IncomingResponse
 from easyESI.exception import HTTPError
 from easyESI.http_future import raise_on_expected
 

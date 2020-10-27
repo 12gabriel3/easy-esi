@@ -50,13 +50,13 @@ from copy import deepcopy
 from six import iteritems
 from six import itervalues
 
-from core.docstring import create_operation_docstring
-from core.exception import SwaggerMappingError
-from core.formatter import SwaggerFormat  # noqa
-from core.param import marshal_param
-from core.spec import Spec
 from easyESI.config import bravado_config_from_config_dict
 from easyESI.config import RequestConfig
+from easyESI.core import create_operation_docstring
+from easyESI.core import marshal_param
+from easyESI.core import Spec
+from easyESI.core import SwaggerMappingError
+from easyESI.core.formatter import SwaggerFormat  # noqa
 from easyESI.docstring_property import docstring_property
 from easyESI.requests_client import RequestsClient
 from easyESI.swagger_model import Loader

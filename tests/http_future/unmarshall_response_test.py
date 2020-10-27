@@ -3,9 +3,9 @@ import pytest
 from mock import Mock
 from mock import patch
 
-from core.exception import MatchingResponseNotFound
-from core.operation import Operation
-from core.response import IncomingResponse
+from easyESI.core.exception import MatchingResponseNotFound
+from easyESI.core.operation import Operation
+from easyESI.core.response import IncomingResponse
 from easyESI.exception import HTTPError
 from easyESI.http_future import unmarshal_response
 

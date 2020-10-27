@@ -7,10 +7,10 @@ import six
 from mock import patch
 from pytz import timezone
 
-from core.exception import SwaggerMappingError
-from core.formatter import SwaggerFormat
-from core.formatter import to_wire
-from core.spec import Spec
+from easyESI.core.exception import SwaggerMappingError
+from easyESI.core.formatter import SwaggerFormat
+from easyESI.core.formatter import to_wire
+from easyESI.core.spec import Spec
 
 
 if not six.PY2:

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 
-from core.param import stringify_body
+from easyESI.core.param import stringify_body
 
 
 def test_stringify_body_converts_dict_to_str():

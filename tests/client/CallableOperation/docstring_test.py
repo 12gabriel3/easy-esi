@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from core.operation import Operation
 from easyESI.client import CallableOperation
+from easyESI.core.operation import Operation
 
 
 def test_success(minimal_swagger_spec, getPetById_spec, request_dict):

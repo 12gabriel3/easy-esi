@@ -3,12 +3,12 @@ import msgpack
 import pytest
 from mock import Mock
 
-from core.content_type import APP_MSGPACK
-from core.exception import SwaggerMappingError
-from core.operation import Operation
-from core.response import EMPTY_BODIES
-from core.response import OutgoingResponse
-from core.response import validate_response_body
+from easyESI.core.content_type import APP_MSGPACK
+from easyESI.core.exception import SwaggerMappingError
+from easyESI.core.operation import Operation
+from easyESI.core.response import EMPTY_BODIES
+from easyESI.core.response import OutgoingResponse
+from easyESI.core.response import validate_response_body
 
 
 def test_success_spec_empty_and_body_empty(minimal_swagger_spec):
