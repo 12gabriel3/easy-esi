@@ -5,11 +5,11 @@ import pytest
 from mock import Mock
 from mock import patch
 
-from easyESI.config import RequestConfig
-from easyESI.core.operation import Operation
-from easyESI.core.response import IncomingResponse
-from easyESI.exception import HTTPError
-from easyESI.http_future import HttpFuture
+from easyesi.config import RequestConfig
+from easyesi.core.operation import Operation
+from easyesi.core.response import IncomingResponse
+from easyesi.exception import HTTPError
+from easyesi.http_future import HttpFuture
 
 
 def test_200_get_swagger_spec(mock_future_adapter):
@@ -36,7 +36,7 @@ def test_500_get_swagger_spec(mock_future_adapter):
     assert excinfo.value.response.status_code == 500
 
 
-@patch('easyESI.http_future.unmarshal_response', autospec=True)
+@patch('easyesi.http_future.unmarshal_response', autospec=True)
 def test_200_service_call(_, mock_future_adapter):
     response_adapter_instance = Mock(
         spec=IncomingResponse,
@@ -55,7 +55,7 @@ def test_200_service_call(_, mock_future_adapter):
     assert 'hello world' == http_future.result()
 
 
-@patch('easyESI.http_future.unmarshal_response', autospec=True)
+@patch('easyesi.http_future.unmarshal_response', autospec=True)
 def test_400_service_call(mock_unmarshal_response, mock_future_adapter):
     response_adapter_instance = Mock(
         spec=IncomingResponse,
@@ -76,7 +76,7 @@ def test_400_service_call(mock_unmarshal_response, mock_future_adapter):
     assert excinfo.value.response.status_code == 400
 
 
-@patch('easyESI.http_future.unmarshal_response', autospec=True)
+@patch('easyesi.http_future.unmarshal_response', autospec=True)
 def test_also_return_response_true(_, mock_future_adapter):
     # Verify HTTPFuture(..., also_return_response=True).result()
     # returns the (swagger_result, http_response) and not just swagger_result

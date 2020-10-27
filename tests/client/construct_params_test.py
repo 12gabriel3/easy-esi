@@ -2,13 +2,13 @@
 import pytest
 from mock import patch
 
-from easyESI.client import CallableOperation
-from easyESI.client import construct_params
-from easyESI.core.exception import SwaggerMappingError
-from easyESI.core.operation import Operation
+from easyesi.client import CallableOperation
+from easyesi.client import construct_params
+from easyesi.core.exception import SwaggerMappingError
+from easyesi.core.operation import Operation
 
 
-@patch('easyESI.client.marshal_param')
+@patch('easyesi.client.marshal_param')
 def test_simple(
     mock_marshal_param, minimal_swagger_spec, getPetById_spec,
     request_dict,
@@ -23,7 +23,7 @@ def test_simple(
     assert 2 == mock_marshal_param.call_count
 
 
-@patch('easyESI.client.marshal_param')
+@patch('easyesi.client.marshal_param')
 def test_no_params(mock_marshal_param, minimal_swagger_spec, request_dict):
     get_op = minimal_swagger_spec.spec_dict['paths']['/pet/{petId}']['get']
     del get_op['parameters'][0]
@@ -65,7 +65,7 @@ def test_required_parameter_missing(
     assert 'required parameter' in str(excinfo.value)
 
 
-@patch('easyESI.client.marshal_param')
+@patch('easyesi.client.marshal_param')
 def test_validate_header_parameter_from_request_options(
         mock_marshal_param, minimal_swagger_spec, getPetById_spec, request_dict,
 ):
@@ -81,7 +81,7 @@ def test_validate_header_parameter_from_request_options(
     assert 2 == mock_marshal_param.call_count
 
 
-@patch('easyESI.client.marshal_param')
+@patch('easyesi.client.marshal_param')
 def test_non_required_parameter_with_default_used(
         mock_marshal_param, minimal_swagger_spec, getPetById_spec,
         request_dict,

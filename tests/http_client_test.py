@@ -8,9 +8,9 @@ import mock
 import pytest
 import requests
 
-from easyESI.core.response import IncomingResponse
-from easyESI.requests_client import Authenticator
-from easyESI.requests_client import RequestsClient
+from easyesi.core.response import IncomingResponse
+from easyesi.requests_client import Authenticator
+from easyesi.requests_client import RequestsClient
 
 
 class RequestsClientTestCase(unittest.TestCase):

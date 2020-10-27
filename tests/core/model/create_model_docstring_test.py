@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from easyESI.core.model import create_model_docstring
+from easyesi.core.model import create_model_docstring
 
 
 def test_pet(petstore_spec):

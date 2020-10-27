@@ -5,12 +5,12 @@ from typing import Dict
 import mock
 import pytest
 
-from easyESI.client import CallableOperation
-from easyESI.client import construct_request
-from easyESI.core.operation import Operation
-from easyESI.core.request import IncomingRequest
-from easyESI.core.request import unmarshal_request
-from easyESI.core.spec import Spec
+from easyesi.client import CallableOperation
+from easyesi.client import construct_request
+from easyesi.core.operation import Operation
+from easyesi.core.request import IncomingRequest
+from easyesi.core.request import unmarshal_request
+from easyesi.core.spec import Spec
 
 
 def build_swagger_spec(swagger_dict):
@@ -25,7 +25,7 @@ def build_swagger_spec(swagger_dict):
         ('connect_timeout', 2),
     ],
 )
-@mock.patch('easyESI.client.marshal_param')
+@mock.patch('easyesi.client.marshal_param')
 def test_with_timeouts(
     mock_marshal_param, minimal_swagger_spec,
     getPetById_spec, request_dict, timeout_kv,

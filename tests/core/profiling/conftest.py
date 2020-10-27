@@ -3,7 +3,7 @@ import uuid
 
 import pytest
 
-from easyESI.core.spec import Spec
+from easyesi.core.spec import Spec
 
 
 @pytest.fixture(

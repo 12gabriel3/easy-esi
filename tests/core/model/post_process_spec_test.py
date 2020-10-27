@@ -3,8 +3,8 @@ import functools
 
 from mock import Mock
 
-from easyESI.core.model import _post_process_spec
-from easyESI.core.spec import Spec
+from easyesi.core.model import _post_process_spec
+from easyesi.core.spec import Spec
 
 
 def test_empty():

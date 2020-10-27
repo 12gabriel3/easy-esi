@@ -2,7 +2,7 @@
 import mock
 import pytest
 
-from easyESI.http_future import FutureAdapter
+from easyesi.http_future import FutureAdapter
 
 
 @pytest.fixture

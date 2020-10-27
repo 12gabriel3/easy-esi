@@ -2,11 +2,11 @@
 from mock import Mock
 from mock import patch
 
-from easyESI.client import CallableOperation
-from easyESI.warning import warn_for_deprecated_op
+from easyesi.client import CallableOperation
+from easyesi.warning import warn_for_deprecated_op
 
 
-@patch('easyESI.warning.warnings.warn')
+@patch('easyesi.warning.warnings.warn')
 def test_warn(mock_warn):
     op_spec = {
         'deprecated': True,
@@ -21,7 +21,7 @@ def test_warn(mock_warn):
     )
 
 
-@patch('easyESI.warning.warnings.warn')
+@patch('easyesi.warning.warnings.warn')
 def test_no_warn_if_false(mock_warn):
     op_spec = {'deprecated': False}
     op = Mock(spec=CallableOperation, operation_id='bla', op_spec=op_spec)
@@ -29,7 +29,7 @@ def test_no_warn_if_false(mock_warn):
     assert not mock_warn.called
 
 
-@patch('easyESI.warning.warnings.warn')
+@patch('easyesi.warning.warnings.warn')
 def test_no_warn_if_deprecate_flag_not_present(mock_warn):
     op = Mock(spec=CallableOperation, operation_id='bla', op_spec={})
     warn_for_deprecated_op(op)

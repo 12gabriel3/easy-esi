@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easyESI.core.spec import Spec
+from easyesi.core.spec import Spec
 from tests.core.conftest import get_url
 
 

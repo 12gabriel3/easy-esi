@@ -7,11 +7,11 @@ import os
 from setuptools import find_packages
 from setuptools import setup
 
-import easyESI
+import easyesi
 
 setup(
     name='easy-esi',
-    version=easyESI.version,
+    version=easyesi.version,
     license='BSD 3-Clause License',
     description='Library for accessing EVE Online Swagger API\'s',
     long_description=open(

@@ -3,9 +3,9 @@ import fido.exceptions
 import twisted.internet.error
 import twisted.web.client
 
-from easyESI.fido_client import FidoClient
-from easyESI.fido_client import FidoFutureAdapter
-from easyESI.testing.integration_test import IntegrationTestsBaseClass
+from easyesi.fido_client import FidoClient
+from easyesi.fido_client import FidoFutureAdapter
+from easyesi.testing.integration_test import IntegrationTestsBaseClass
 
 
 class TestServerFidoClient(IntegrationTestsBaseClass):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from easyESI.core.operation import Operation
-from easyESI.core.spec import Spec
+from easyesi.core.operation import Operation
+from easyesi.core.spec import Spec
 
 
 def test_returns_consumes_from_op(minimal_swagger_dict):

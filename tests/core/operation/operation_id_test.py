@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easyESI.core.operation import Operation
-from easyESI.core.spec import Spec
+from easyesi.core.operation import Operation
+from easyesi.core.spec import Spec
 
 
 def test_returns_operation_id_from_operation_spec():

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from easyESI.core.schema import collapsed_required
+from easyesi.core.schema import collapsed_required
 
 
 def test_allOf(users_spec, users_swagger_spec):

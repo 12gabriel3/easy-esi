@@ -2,10 +2,10 @@
 from mock import Mock
 from mock import patch
 
-from easyESI.core.operation import Operation
-from easyESI.core.response import OutgoingResponse
-from easyESI.core.response import validate_response
-from easyESI.core.spec import Spec
+from easyesi.core.operation import Operation
+from easyesi.core.response import OutgoingResponse
+from easyesi.core.response import validate_response
+from easyesi.core.spec import Spec
 
 
 @patch('core.response.validate_response_headers')

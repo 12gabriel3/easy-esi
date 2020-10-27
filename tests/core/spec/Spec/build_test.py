@@ -6,7 +6,7 @@ from six import iterkeys
 from six.moves.urllib.request import pathname2url
 from swagger_spec_validator.common import SwaggerValidationError
 
-from easyESI.core.spec import Spec
+from easyesi.core.spec import Spec
 from tests.core.conftest import get_url
 from tests.core.conftest import get_url_path
 from tests.core.validate.conftest import email_address_format

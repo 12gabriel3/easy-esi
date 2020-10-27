@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easyESI.core.exception import SwaggerMappingError
-from easyESI.core.resource import convert_path_to_resource
+from easyesi.core.exception import SwaggerMappingError
+from easyesi.core.resource import convert_path_to_resource
 
 
 def test_success():

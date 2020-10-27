@@ -4,7 +4,7 @@ from jsonschema.exceptions import ValidationError
 from mock import Mock
 from mock import patch
 
-from easyESI.core.swagger20_validator import required_validator
+from easyesi.core.swagger20_validator import required_validator
 
 
 @pytest.fixture

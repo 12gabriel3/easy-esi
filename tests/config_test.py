@@ -2,12 +2,12 @@
 import mock
 import pytest
 
-from easyESI.config import _get_response_metadata_class
-from easyESI.config import bravado_config_from_config_dict
-from easyESI.config import CONFIG_DEFAULTS
-from easyESI.config import EasyEsiConfig
-from easyESI.config import RequestConfig
-from easyESI.response import EasyEsiResponseMetadata
+from easyesi.config import _get_response_metadata_class
+from easyesi.config import bravado_config_from_config_dict
+from easyesi.config import CONFIG_DEFAULTS
+from easyesi.config import EasyEsiConfig
+from easyesi.config import RequestConfig
+from easyesi.response import EasyEsiResponseMetadata
 
 
 class IncorrectResponseMetadata(object):
@@ -20,7 +20,7 @@ class ResponseMetadata(EasyEsiResponseMetadata):
 
 @pytest.fixture
 def mock_log():
-    with mock.patch('easyESI.config.log') as mock_log:
+    with mock.patch('easyesi.config.log') as mock_log:
         yield mock_log
 
 

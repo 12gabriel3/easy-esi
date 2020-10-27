@@ -2,14 +2,14 @@
 import mock
 import pytest
 
-from easyESI.config import bravado_config_from_config_dict
-from easyESI.config import RequestConfig
-from easyESI.core.response import IncomingResponse
-from easyESI.exception import EasyEsiTimeoutError
-from easyESI.exception import ForcedFallbackResultError
-from easyESI.exception import HTTPInternalServerError
-from easyESI.http_future import HttpFuture
-from easyESI.response import EasyEsiResponseMetadata
+from easyesi.config import bravado_config_from_config_dict
+from easyesi.config import RequestConfig
+from easyesi.core.response import IncomingResponse
+from easyesi.exception import EasyEsiTimeoutError
+from easyesi.exception import ForcedFallbackResultError
+from easyesi.exception import HTTPInternalServerError
+from easyesi.http_future import HttpFuture
+from easyesi.response import EasyEsiResponseMetadata
 
 
 class ResponseMetadata(EasyEsiResponseMetadata):
@@ -48,7 +48,7 @@ def fallback_result():
 def test_fallback_result(fallback_result, mock_future_adapter, mock_operation, http_future):
     mock_future_adapter.result.side_effect = EasyEsiTimeoutError()
     mock_operation.swagger_spec.config = {
-        'easyESI': bravado_config_from_config_dict({'disable_fallback_results': False}),
+        'easyesi': bravado_config_from_config_dict({'disable_fallback_results': False}),
     }
 
     response = http_future.response(fallback_result=fallback_result)
@@ -60,7 +60,7 @@ def test_fallback_result(fallback_result, mock_future_adapter, mock_operation, h
 def test_fallback_result_callable(fallback_result, mock_future_adapter, mock_operation, http_future):
     mock_future_adapter.result.side_effect = EasyEsiTimeoutError()
     mock_operation.swagger_spec.config = {
-        'easyESI': bravado_config_from_config_dict({'disable_fallback_results': False}),
+        'easyesi': bravado_config_from_config_dict({'disable_fallback_results': False}),
     }
 
     response = http_future.response(fallback_result=lambda e: fallback_result)
@@ -72,10 +72,10 @@ def test_fallback_result_callable(fallback_result, mock_future_adapter, mock_ope
 
 def test_no_is_fallback_result_if_no_exceptions(http_future, mock_operation):
     mock_operation.swagger_spec.config = {
-        'easyESI': bravado_config_from_config_dict({'disable_fallback_results': False}),
+        'easyesi': bravado_config_from_config_dict({'disable_fallback_results': False}),
     }
 
-    with mock.patch('easyESI.http_future.unmarshal_response'):
+    with mock.patch('easyesi.http_future.unmarshal_response'):
         response = http_future.response()
     assert response.metadata.is_fallback_result is False
 
@@ -100,7 +100,7 @@ def test_no_fallback_result_if_not_provided(mock_future_adapter, http_future):
 def test_no_fallback_result_if_config_disabled(mock_future_adapter, mock_operation, http_future):
     mock_future_adapter.result.side_effect = EasyEsiTimeoutError()
     mock_operation.swagger_spec.config = {
-        'easyESI': bravado_config_from_config_dict({'disable_fallback_results': True}),
+        'easyesi': bravado_config_from_config_dict({'disable_fallback_results': True}),
     }
 
     with pytest.raises(EasyEsiTimeoutError):
@@ -113,10 +113,10 @@ def test_force_fallback_result(mock_operation, fallback_result, http_future):
         also_return_response_default=False,
     )
     mock_operation.swagger_spec.config = {
-        'easyESI': bravado_config_from_config_dict({}),
+        'easyesi': bravado_config_from_config_dict({}),
     }
 
-    with mock.patch('easyESI.http_future.unmarshal_response', autospec=True):
+    with mock.patch('easyesi.http_future.unmarshal_response', autospec=True):
         response = http_future.response(fallback_result=lambda e: fallback_result)
 
     assert response.result == fallback_result
@@ -130,10 +130,10 @@ def test_no_force_fallback_result_if_disabled(http_future, mock_operation, mock_
         also_return_response_default=False,
     )
     mock_operation.swagger_spec.config = {
-        'easyESI': bravado_config_from_config_dict({'disable_fallback_results': True}),
+        'easyesi': bravado_config_from_config_dict({'disable_fallback_results': True}),
     }
 
-    with mock.patch('easyESI.http_future.unmarshal_response', autospec=True):
+    with mock.patch('easyesi.http_future.unmarshal_response', autospec=True):
         response = http_future.response(fallback_result=lambda e: fallback_result)
 
     assert response.result == mock_incoming_response.swagger_result
@@ -141,11 +141,11 @@ def test_no_force_fallback_result_if_disabled(http_future, mock_operation, mock_
 
 def test_custom_response_metadata(mock_operation, http_future):
     mock_operation.swagger_spec.config = {
-        'easyESI': bravado_config_from_config_dict(
+        'easyesi': bravado_config_from_config_dict(
             {'response_metadata_class': 'tests.http_future.HttpFuture.response_test.ResponseMetadata'},
         ),
     }
 
-    with mock.patch('easyESI.http_future.unmarshal_response'):
+    with mock.patch('easyesi.http_future.unmarshal_response'):
         response = http_future.response()
     assert response.metadata.__class__ is ResponseMetadata

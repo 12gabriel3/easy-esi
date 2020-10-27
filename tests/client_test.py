@@ -5,16 +5,16 @@ from copy import deepcopy
 import mock
 import pytest
 
-from easyESI.client import SwaggerClient
-from easyESI.config import CONFIG_DEFAULTS
-from easyESI.http_client import HttpClient
-from easyESI.requests_client import RequestsClient
-from easyESI.swagger_model import load_file
+from easyesi.client import SwaggerClient
+from easyesi.config import CONFIG_DEFAULTS
+from easyesi.http_client import HttpClient
+from easyesi.requests_client import RequestsClient
+from easyesi.swagger_model import load_file
 
 
 _HTTP_CLIENTS = [None, RequestsClient()]  # type: typing.List[typing.Optional[HttpClient]]
 try:
-    from easyESI.fido_client import FidoClient
+    from easyesi.fido_client import FidoClient
     _HTTP_CLIENTS.append(FidoClient())
 except ImportError:
     pass
@@ -22,7 +22,7 @@ except ImportError:
 
 @pytest.fixture
 def mock_spec():
-    with mock.patch('easyESI.client.Spec') as _mock:
+    with mock.patch('easyesi.client.Spec') as _mock:
         yield _mock
 
 
@@ -37,14 +37,14 @@ def test_remove_bravado_configs(mock_spec, processed_default_config):
         None,  # spec_url
         mock.ANY,  # http_client
         {
-            'easyESI': processed_default_config,
+            'easyesi': processed_default_config,
             'validate_swagger_spec': False,
         },  # config
     )
 
 
 def test_also_return_response(mock_spec):
-    with mock.patch('easyESI.client.SwaggerClient.__init__') as mock_init:
+    with mock.patch('easyesi.client.SwaggerClient.__init__') as mock_init:
         mock_init.return_value = None
         SwaggerClient.from_spec({}, config={'also_return_response': True})
 

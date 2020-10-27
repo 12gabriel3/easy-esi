@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easyESI.client import ResourceDecorator
-from easyESI.client import SwaggerClient
+from easyesi.client import ResourceDecorator
+from easyesi.client import SwaggerClient
 
 
 def test_resource_exists(petstore_client):

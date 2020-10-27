@@ -4,8 +4,8 @@ import os
 
 import pytest
 
-from easyESI.config import EasyEsiConfig
-from easyESI.response import EasyEsiResponseMetadata
+from easyesi.config import EasyEsiConfig
+from easyesi.response import EasyEsiResponseMetadata
 
 
 @pytest.fixture

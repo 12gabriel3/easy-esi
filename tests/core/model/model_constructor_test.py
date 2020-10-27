@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easyESI.core.schema import collapsed_properties
+from easyesi.core.schema import collapsed_properties
 
 
 def test_simple(user_type, user_kwargs):

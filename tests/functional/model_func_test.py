@@ -7,7 +7,7 @@ import pytest
 import simplejson
 from jsonschema.exceptions import ValidationError
 
-from easyESI.client import SwaggerClient
+from easyesi.client import SwaggerClient
 from tests.functional.conftest import API_DOCS_URL
 from tests.functional.conftest import register_get
 from tests.functional.conftest import register_spec

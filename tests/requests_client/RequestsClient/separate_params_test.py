@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from easyESI.requests_client import RequestsClient
+from easyesi.requests_client import RequestsClient
 
 
 def test_separate_params():

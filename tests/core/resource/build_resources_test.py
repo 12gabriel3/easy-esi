@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easyESI.core.param import Param
-from easyESI.core.resource import build_resources
-from easyESI.core.spec import Spec
+from easyesi.core.param import Param
+from easyesi.core.resource import build_resources
+from easyesi.core.spec import Spec
 
 
 def test_empty():

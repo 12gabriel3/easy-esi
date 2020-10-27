@@ -3,10 +3,10 @@ import pytest
 from jsonschema import ValidationError
 from mock import patch
 
-from easyESI.core.exception import SwaggerValidationError
-from easyESI.core.formatter import SwaggerFormat
-from easyESI.core.swagger20_validator import format_validator
-from easyESI.core.validate import validate_object
+from easyesi.core.exception import SwaggerValidationError
+from easyesi.core.formatter import SwaggerFormat
+from easyesi.core.swagger20_validator import format_validator
+from easyesi.core.validate import validate_object
 
 
 @patch('core.swagger20_validator._DRAFT4_FORMAT_VALIDATOR')

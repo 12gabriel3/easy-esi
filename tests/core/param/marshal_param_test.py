@@ -8,14 +8,14 @@ from jsonschema import ValidationError
 from mock import Mock
 from mock import patch
 
-from easyESI.core.content_type import APP_JSON
-from easyESI.core.operation import Operation
-from easyESI.core.param import encode_request_param
-from easyESI.core.param import marshal_param
-from easyESI.core.param import Param
-from easyESI.core.param import unmarshal_param
-from easyESI.core.request import IncomingRequest
-from easyESI.core.spec import Spec
+from easyesi.core.content_type import APP_JSON
+from easyesi.core.operation import Operation
+from easyesi.core.param import encode_request_param
+from easyesi.core.param import marshal_param
+from easyesi.core.param import Param
+from easyesi.core.param import unmarshal_param
+from easyesi.core.request import IncomingRequest
+from easyesi.core.spec import Spec
 
 
 @pytest.fixture

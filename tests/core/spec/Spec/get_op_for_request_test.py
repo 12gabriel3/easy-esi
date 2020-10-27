@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from easyESI.core.spec import Spec
+from easyesi.core.spec import Spec
 
 
 def test_found_with_no_basepath(petstore_dict):

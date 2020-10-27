@@ -3,11 +3,11 @@ import mock
 import msgpack
 import pytest
 
-from easyESI.core.content_type import APP_JSON
-from easyESI.core.content_type import APP_MSGPACK
-from easyESI.core.response import IncomingResponse
-from easyESI.core.spec import Spec
-from easyESI.http_future import unmarshal_response_inner
+from easyesi.core.content_type import APP_JSON
+from easyesi.core.content_type import APP_MSGPACK
+from easyesi.core.response import IncomingResponse
+from easyesi.core.spec import Spec
+from easyesi.http_future import unmarshal_response_inner
 
 
 @pytest.fixture
@@ -27,13 +27,13 @@ def response_spec():
 
 @pytest.fixture
 def mock_get_response_spec():
-    with mock.patch('easyESI.http_future.get_response_spec') as m:
+    with mock.patch('easyesi.http_future.get_response_spec') as m:
         yield m
 
 
 @pytest.fixture
 def mock_validate_schema_object():
-    with mock.patch('easyESI.http_future.validate_schema_object') as m:
+    with mock.patch('easyesi.http_future.validate_schema_object') as m:
         yield m
 
 

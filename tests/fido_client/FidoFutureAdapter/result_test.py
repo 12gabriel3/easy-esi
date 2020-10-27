@@ -4,7 +4,7 @@ import fido.exceptions
 import pytest
 from mock import Mock
 
-from easyESI.fido_client import FidoFutureAdapter
+from easyesi.fido_client import FidoFutureAdapter
 
 
 def test_eventual_result_not_cancelled():

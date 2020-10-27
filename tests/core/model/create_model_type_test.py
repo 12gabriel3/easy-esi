@@ -2,8 +2,8 @@
 import mock
 import pytest
 
-from easyESI.core.model import create_model_type
-from easyESI.core.schema import is_ref
+from easyesi.core.model import create_model_type
+from easyesi.core.schema import is_ref
 
 
 def test_pet_model(empty_swagger_spec, pet_spec):

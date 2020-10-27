@@ -2,7 +2,7 @@
 import mock
 import pytest
 
-from easyESI.core.model import _get_model_name
+from easyesi.core.model import _get_model_name
 
 
 @pytest.mark.parametrize(

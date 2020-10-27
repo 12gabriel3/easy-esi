@@ -4,15 +4,15 @@ from inspect import getcallargs
 import mock
 import pytest
 
-from easyESI.core.util import AliasKeyDict
-from easyESI.core.util import cached_property
-from easyESI.core.util import determine_object_type
-from easyESI.core.util import lazy_class_attribute
-from easyESI.core.util import memoize_by_id
-from easyESI.core.util import ObjectType
-from easyESI.core.util import RecursiveCallException
-from easyESI.core.util import sanitize_name
-from easyESI.core.util import strip_xscope
+from easyesi.core.util import AliasKeyDict
+from easyesi.core.util import cached_property
+from easyesi.core.util import determine_object_type
+from easyesi.core.util import lazy_class_attribute
+from easyesi.core.util import memoize_by_id
+from easyesi.core.util import ObjectType
+from easyesi.core.util import RecursiveCallException
+from easyesi.core.util import sanitize_name
+from easyesi.core.util import strip_xscope
 
 
 def test_cached_property():

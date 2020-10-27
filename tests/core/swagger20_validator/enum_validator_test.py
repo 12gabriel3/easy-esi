@@ -4,9 +4,9 @@ from jsonschema import ValidationError
 from mock import Mock
 from mock import patch
 
-from easyESI.core.spec import Spec
-from easyESI.core.swagger20_validator import enum_validator
-from easyESI.core.validate import validate_object
+from easyesi.core.spec import Spec
+from easyesi.core.swagger20_validator import enum_validator
+from easyesi.core.validate import validate_object
 
 
 def test_multiple_jsonschema_calls_if_enum_items_present_as_array():

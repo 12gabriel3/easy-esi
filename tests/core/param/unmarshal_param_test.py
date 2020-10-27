@@ -5,11 +5,11 @@ import pytest
 from mock import Mock
 from mock import patch
 
-from easyESI.core.operation import Operation
-from easyESI.core.param import Param
-from easyESI.core.param import unmarshal_param
-from easyESI.core.request import IncomingRequest
-from easyESI.core.spec import Spec
+from easyesi.core.operation import Operation
+from easyesi.core.param import Param
+from easyesi.core.param import unmarshal_param
+from easyesi.core.request import IncomingRequest
+from easyesi.core.spec import Spec
 
 
 @pytest.fixture

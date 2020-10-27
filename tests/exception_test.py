@@ -2,16 +2,16 @@
 import pytest
 from requests.models import Response
 
-from easyESI.exception import HTTPClientError
-from easyESI.exception import HTTPError
-from easyESI.exception import HTTPForbidden
-from easyESI.exception import HTTPInternalServerError
-from easyESI.exception import HTTPMovedPermanently
-from easyESI.exception import HTTPRedirection
-from easyESI.exception import HTTPServerError
-from easyESI.exception import HTTPServiceUnavailable
-from easyESI.exception import make_http_exception
-from easyESI.requests_client import RequestsResponseAdapter
+from easyesi.exception import HTTPClientError
+from easyesi.exception import HTTPError
+from easyesi.exception import HTTPForbidden
+from easyesi.exception import HTTPInternalServerError
+from easyesi.exception import HTTPMovedPermanently
+from easyesi.exception import HTTPRedirection
+from easyesi.exception import HTTPServerError
+from easyesi.exception import HTTPServiceUnavailable
+from easyesi.exception import make_http_exception
+from easyesi.requests_client import RequestsResponseAdapter
 
 
 @pytest.fixture

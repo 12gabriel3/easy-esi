@@ -2,7 +2,7 @@
 import pytest
 from jsonschema.exceptions import ValidationError
 
-from easyESI.core.validate import validate_array
+from easyesi.core.validate import validate_array
 from tests.core.validate.conftest import email_address_format
 
 

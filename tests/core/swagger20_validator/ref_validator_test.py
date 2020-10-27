@@ -4,7 +4,7 @@ from jsonschema.validators import RefResolver
 from mock import MagicMock
 from mock import Mock
 
-from easyESI.core.swagger20_validator import ref_validator
+from easyesi.core.swagger20_validator import ref_validator
 
 
 @pytest.fixture

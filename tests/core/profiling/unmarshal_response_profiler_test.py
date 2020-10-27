@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from easyESI.core.response import IncomingResponse
-from easyESI.core.response import unmarshal_response
+from easyesi.core.response import IncomingResponse
+from easyesi.core.response import unmarshal_response
 
 
 class FakeJsonResponse(IncomingResponse):

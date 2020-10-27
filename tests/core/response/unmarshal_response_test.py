@@ -5,11 +5,11 @@ from jsonschema import ValidationError
 from mock import Mock
 from mock import patch
 
-from easyESI.core.content_type import APP_JSON
-from easyESI.core.content_type import APP_MSGPACK
-from easyESI.core.response import IncomingResponse
-from easyESI.core.response import unmarshal_response
-from easyESI.core.spec import Spec
+from easyesi.core.content_type import APP_JSON
+from easyesi.core.content_type import APP_MSGPACK
+from easyesi.core.response import IncomingResponse
+from easyesi.core.response import unmarshal_response
+from easyesi.core.spec import Spec
 
 
 @pytest.fixture

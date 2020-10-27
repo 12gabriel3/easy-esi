@@ -2,7 +2,7 @@
 import pytest
 from six import itervalues
 
-from easyESI.core.spec import Spec
+from easyesi.core.spec import Spec
 from tests.core.conftest import get_url
 
 

@@ -5,9 +5,9 @@ from collections import defaultdict
 
 import pytest
 
-from easyESI.core.exception import SwaggerMappingError
-from easyESI.core.marshal import marshal_schema_object
-from easyESI.core.spec import Spec
+from easyesi.core.exception import SwaggerMappingError
+from easyesi.core.marshal import marshal_schema_object
+from easyesi.core.spec import Spec
 
 
 def test_dicts_can_be_used_instead_of_models(petstore_dict):

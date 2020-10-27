@@ -4,7 +4,7 @@ import sys
 
 import pytest
 
-from easyESI.swagger_model import load_file
+from easyesi.swagger_model import load_file
 
 
 def test_success():

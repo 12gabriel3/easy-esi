@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easyESI.client import SwaggerClient
-from easyESI.core.spec import Spec
+from easyesi.client import SwaggerClient
+from easyesi.core.spec import Spec
 
 
 @pytest.fixture

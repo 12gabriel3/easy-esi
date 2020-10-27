@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easyESI.core.response import IncomingResponse
+from easyesi.core.response import IncomingResponse
 
 
 def test_required_attr_returned():

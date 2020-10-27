@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easyESI.core.exception import SwaggerMappingError
-from easyESI.core.validate import validate_schema_object
+from easyesi.core.exception import SwaggerMappingError
+from easyesi.core.validate import validate_schema_object
 
 
 def test_unknown_type(minimal_swagger_spec):

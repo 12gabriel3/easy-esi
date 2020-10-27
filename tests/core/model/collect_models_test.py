@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easyESI.core.model import _collect_models
-from easyESI.core.model import create_model_type
-from easyESI.core.spec import Spec
+from easyesi.core.model import _collect_models
+from easyesi.core.model import create_model_type
+from easyesi.core.spec import Spec
 
 
 @pytest.fixture

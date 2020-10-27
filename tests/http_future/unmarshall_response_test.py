@@ -3,16 +3,16 @@ import pytest
 from mock import Mock
 from mock import patch
 
-from easyESI.core.exception import MatchingResponseNotFound
-from easyESI.core.operation import Operation
-from easyESI.core.response import IncomingResponse
-from easyESI.exception import HTTPError
-from easyESI.http_future import unmarshal_response
+from easyesi.core.exception import MatchingResponseNotFound
+from easyesi.core.operation import Operation
+from easyesi.core.response import IncomingResponse
+from easyesi.exception import HTTPError
+from easyesi.http_future import unmarshal_response
 
 
 @pytest.fixture
 def mock_unmarshal_response_inner():
-    with patch('easyESI.http_future.unmarshal_response_inner') as m:
+    with patch('easyesi.http_future.unmarshal_response_inner') as m:
         yield m
 
 

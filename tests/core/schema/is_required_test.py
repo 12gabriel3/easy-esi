@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easyESI.core.schema import is_required
-from easyESI.core.spec import Spec
+from easyesi.core.schema import is_required
+from easyesi.core.spec import Spec
 
 
 @pytest.fixture

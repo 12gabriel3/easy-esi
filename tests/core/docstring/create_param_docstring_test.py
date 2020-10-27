@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easyESI.core.docstring import create_param_docstring
+from easyesi.core.docstring import create_param_docstring
 
 
 def test_param_with_no_default_value(param_spec):

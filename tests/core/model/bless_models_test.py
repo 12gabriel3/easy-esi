@@ -2,8 +2,8 @@
 import mock
 import pytest
 
-from easyESI.core.model import _bless_models
-from easyESI.core.spec import Spec
+from easyesi.core.model import _bless_models
+from easyesi.core.spec import Spec
 
 
 @mock.patch('core.model.is_dict_like', return_value=False)

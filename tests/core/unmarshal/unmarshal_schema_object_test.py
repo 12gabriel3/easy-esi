@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easyESI.core.exception import SwaggerMappingError
-from easyESI.core.spec import Spec
-from easyESI.core.unmarshal import unmarshal_schema_object
+from easyesi.core.exception import SwaggerMappingError
+from easyesi.core.spec import Spec
+from easyesi.core.unmarshal import unmarshal_schema_object
 from tests.core.conftest import get_url
 
 

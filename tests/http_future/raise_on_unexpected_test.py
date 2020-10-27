@@ -2,9 +2,9 @@
 import pytest
 from mock import Mock
 
-from easyESI.core.response import IncomingResponse
-from easyESI.exception import HTTPError
-from easyESI.http_future import raise_on_unexpected
+from easyesi.core.response import IncomingResponse
+from easyesi.exception import HTTPError
+from easyesi.http_future import raise_on_unexpected
 
 
 def test_5XX():

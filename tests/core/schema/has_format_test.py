@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from easyESI.core.schema import has_format
-from easyESI.core.spec import Spec
+from easyesi.core.schema import has_format
+from easyesi.core.spec import Spec
 
 
 def test_true(minimal_swagger_spec):

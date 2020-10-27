@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from easyESI.core.docstring import create_operation_docstring
-from easyESI.core.operation import Operation
+from easyesi.core.docstring import create_operation_docstring
+from easyesi.core.operation import Operation
 
 
 def test_simple(op_spec, empty_swagger_spec):

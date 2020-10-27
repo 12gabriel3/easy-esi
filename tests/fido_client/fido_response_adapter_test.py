@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 import mock
 
-from easyESI.fido_client import FidoResponseAdapter
+from easyesi.fido_client import FidoResponseAdapter
 
 
 def test_header_conversion():

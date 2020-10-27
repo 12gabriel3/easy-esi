@@ -4,9 +4,9 @@ import datetime
 import pytest
 from dateutil.tz import tzutc
 
-from easyESI.core.exception import SwaggerMappingError
-from easyESI.core.marshal import marshal_object
-from easyESI.core.spec import Spec
+from easyesi.core.exception import SwaggerMappingError
+from easyesi.core.marshal import marshal_object
+from easyesi.core.spec import Spec
 
 
 @pytest.fixture

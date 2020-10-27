@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easyESI.core.exception import SwaggerValidationError
-from easyESI.core.validate import validate_security_object
+from easyesi.core.exception import SwaggerValidationError
+from easyesi.core.validate import validate_security_object
 
 
 @pytest.mark.parametrize(

@@ -6,8 +6,8 @@ import httpretty
 import pytest
 from swagger_spec_validator.common import SwaggerValidationError
 
-from easyESI.client import ResourceDecorator
-from easyESI.client import SwaggerClient
+from easyesi.client import ResourceDecorator
+from easyesi.client import SwaggerClient
 from tests.functional.conftest import API_DOCS_URL
 from tests.functional.conftest import register_get
 from tests.functional.conftest import register_spec

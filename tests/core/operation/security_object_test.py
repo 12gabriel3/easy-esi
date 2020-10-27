@@ -3,12 +3,12 @@ import pytest
 from mock import Mock
 from six import iteritems
 
-from easyESI.core.exception import SwaggerSchemaError
-from easyESI.core.exception import SwaggerSecurityValidationError
-from easyESI.core.request import IncomingRequest
-from easyESI.core.request import unmarshal_request
-from easyESI.core.resource import build_resources
-from easyESI.core.spec import Spec
+from easyesi.core.exception import SwaggerSchemaError
+from easyesi.core.exception import SwaggerSecurityValidationError
+from easyesi.core.request import IncomingRequest
+from easyesi.core.request import unmarshal_request
+from easyesi.core.resource import build_resources
+from easyesi.core.spec import Spec
 from tests.core.operation.conftest import SECURITY_DEFINITIONS
 from tests.core.operation.conftest import SECURITY_OBJECTS
 

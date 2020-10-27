@@ -4,10 +4,10 @@ import typing
 import pytest
 import requests.exceptions
 
-from easyESI.exception import EasyEsiTimeoutError
-from easyESI.requests_client import RequestsClient
-from easyESI.requests_client import RequestsFutureAdapter
-from easyESI.testing.integration_test import IntegrationTestsBaseClass
+from easyesi.exception import EasyEsiTimeoutError
+from easyesi.requests_client import RequestsClient
+from easyesi.requests_client import RequestsFutureAdapter
+from easyesi.testing.integration_test import IntegrationTestsBaseClass
 
 
 class TestServerRequestsClient(IntegrationTestsBaseClass):

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easyESI.core.exception import SwaggerSchemaError
-from easyESI.core.spec import build_api_serving_url
+from easyesi.core.exception import SwaggerSchemaError
+from easyesi.core.spec import build_api_serving_url
 
 
 @pytest.fixture

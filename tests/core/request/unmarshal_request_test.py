@@ -2,10 +2,10 @@
 import pytest
 from mock import Mock
 
-from easyESI.core.exception import SwaggerMappingError
-from easyESI.core.operation import Operation
-from easyESI.core.request import IncomingRequest
-from easyESI.core.request import unmarshal_request
+from easyesi.core.exception import SwaggerMappingError
+from easyesi.core.operation import Operation
+from easyesi.core.request import IncomingRequest
+from easyesi.core.request import unmarshal_request
 
 
 def test_request_with_path_parameter(getPetByIdPetstoreOperation):
