@@ -4,9 +4,9 @@ import copy
 import mock
 import pytest
 
-from easy_esi_core import model
-from easy_esi_core.model import _tag_models
-from easy_esi_core.spec import Spec
+from core import model
+from core.model import _tag_models
+from core.spec import Spec
 
 
 @pytest.fixture

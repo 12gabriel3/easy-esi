@@ -4,10 +4,10 @@ from typing import Any
 from six import iterkeys
 from six import itervalues
 
-from easy_esi_core.schema import is_dict_like
-from easy_esi_core.schema import is_list_like
-from easy_esi_core.spec import Spec
-from tests.conftest import get_url
+from core.schema import is_dict_like
+from core.schema import is_list_like
+from core.spec import Spec
+from tests.core.conftest import get_url
 
 
 def _get_model(spec_dict, model_name):

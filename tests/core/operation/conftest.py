@@ -11,7 +11,7 @@ SECURITY_DEFINITIONS = {
     'apiKey': {
         'apiKey': {
             'type': 'apiKey',
-            'name': 'api_key',
+            'name': 'api-key',
             'in': 'header',
         },
     },

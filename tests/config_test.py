@@ -2,12 +2,12 @@
 import mock
 import pytest
 
-from easy_esi.config import _get_response_metadata_class
-from easy_esi.config import bravado_config_from_config_dict
-from easy_esi.config import EasyEsiConfig
-from easy_esi.config import CONFIG_DEFAULTS
-from easy_esi.config import RequestConfig
-from easy_esi.response import EasyEsiResponseMetadata
+from easyESI.config import _get_response_metadata_class
+from easyESI.config import bravado_config_from_config_dict
+from easyESI.config import CONFIG_DEFAULTS
+from easyESI.config import EasyEsiConfig
+from easyESI.config import RequestConfig
+from easyESI.response import EasyEsiResponseMetadata
 
 
 class IncorrectResponseMetadata(object):
@@ -20,7 +20,7 @@ class ResponseMetadata(EasyEsiResponseMetadata):
 
 @pytest.fixture
 def mock_log():
-    with mock.patch('easy_esi.config.log') as mock_log:
+    with mock.patch('easyESI.config.log') as mock_log:
         yield mock_log
 
 
@@ -93,7 +93,7 @@ def test_request_config_all_values():
 
     request_config = RequestConfig(request_options, also_return_response_default=False)
     request_options['additional_properties'] = {
-        'http_client_option': request_options.pop('http_client_option')
+        'http_client_option': request_options.pop('http_client_option'),
     }
     _assert_request_config_equals(request_config, **request_options)
 

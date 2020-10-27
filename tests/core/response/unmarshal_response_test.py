@@ -5,11 +5,11 @@ from jsonschema import ValidationError
 from mock import Mock
 from mock import patch
 
-from easy_esi_core.content_type import APP_JSON
-from easy_esi_core.content_type import APP_MSGPACK
-from easy_esi_core.response import IncomingResponse
-from easy_esi_core.response import unmarshal_response
-from easy_esi_core.spec import Spec
+from core.content_type import APP_JSON
+from core.content_type import APP_MSGPACK
+from core.response import IncomingResponse
+from core.response import unmarshal_response
+from core.spec import Spec
 
 
 @pytest.fixture
@@ -28,7 +28,7 @@ def test_no_content(empty_swagger_spec):
     }
     response = Mock(spec=IncomingResponse, status_code=200)
 
-    with patch('easy_esi_core.response.get_response_spec') as m:
+    with patch('core.response.get_response_spec') as m:
         m.return_value = response_spec
         op = Mock(swagger_spec=empty_swagger_spec)
         result = unmarshal_response(response, op)
@@ -43,7 +43,7 @@ def test_json_content(empty_swagger_spec, response_spec):
         json=Mock(return_value='Monday'),
     )
 
-    with patch('easy_esi_core.response.get_response_spec') as m:
+    with patch('core.response.get_response_spec') as m:
         m.return_value = response_spec
         op = Mock(swagger_spec=empty_swagger_spec)
         assert 'Monday' == unmarshal_response(response, op)
@@ -59,7 +59,7 @@ def test_msgpack_content(empty_swagger_spec, response_spec):
     )
 
     with patch(
-        'easy_esi_core.response.get_response_spec',
+        'core.response.get_response_spec',
         return_value=response_spec,
     ):
         op = Mock(swagger_spec=empty_swagger_spec)
@@ -74,7 +74,7 @@ def test_text_content(empty_swagger_spec, response_spec):
         text='Monday',
     )
 
-    with patch('easy_esi_core.response.get_response_spec') as m:
+    with patch('core.response.get_response_spec') as m:
         m.return_value = response_spec
         op = Mock(swagger_spec=empty_swagger_spec)
         assert 'Monday' == unmarshal_response(response, op)
@@ -89,8 +89,8 @@ def test_skips_validation(empty_swagger_spec, response_spec):
         json=Mock(return_value='Monday'),
     )
 
-    with patch('easy_esi_core.response.validate_schema_object') as val_schem:
-        with patch('easy_esi_core.response.get_response_spec') as get_resp:
+    with patch('core.response.validate_schema_object') as val_schem:
+        with patch('core.response.get_response_spec') as get_resp:
             get_resp.return_value = response_spec
             op = Mock(swagger_spec=empty_swagger_spec)
             unmarshal_response(response, op)
@@ -106,8 +106,8 @@ def test_performs_validation(empty_swagger_spec, response_spec):
         json=Mock(return_value='Monday'),
     )
 
-    with patch('easy_esi_core.response.validate_schema_object') as val_schem:
-        with patch('easy_esi_core.response.get_response_spec') as get_resp:
+    with patch('core.response.validate_schema_object') as val_schem:
+        with patch('core.response.get_response_spec') as get_resp:
             get_resp.return_value = response_spec
             op = Mock(swagger_spec=empty_swagger_spec)
             unmarshal_response(response, op)

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from tests.conftest import check_object_deepcopy
+from tests.core.conftest import check_object_deepcopy
 
 
 @pytest.fixture

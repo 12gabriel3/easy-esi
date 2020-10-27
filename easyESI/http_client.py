@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import typing
-from easy_esi_core.operation import Operation
 
-from easy_esi.config import RequestConfig
-from easy_esi.http_future import HttpFuture
+from core.operation import Operation
+from easyESI.config import RequestConfig
+from easyESI.http_future import HttpFuture
 
 APP_FORM = 'application/x-www-form-urlencoded'
 MULT_FORM = 'multipart/form-data'
@@ -28,15 +28,16 @@ class HttpClient(object):
         :param operation: operation that this http request is for. Defaults
             to None - in which case, we're obviously just retrieving a Swagger
             Spec.
-        :type operation: :class:`easy_esi_core.operation.Operation`
+        :type operation: :class:`core.operation.Operation`
         :param RequestConfig request_config: Per-request config that is passed to
-            :class:`easy_esi.http_future.HttpFuture`.
+            :class:`easyESI.http_future.HttpFuture`.
 
         :returns: HTTP Future object
-        :rtype: :class: `easy_esi_core.http_future.HttpFuture`
+        :rtype: :class: `core.http_future.HttpFuture`
         """
         raise NotImplementedError(
-            u"%s: Method not implemented", self.__class__.__name__)
+            u"%s: Method not implemented", self.__class__.__name__,
+        )
 
     def __repr__(self):
         # type: () -> str

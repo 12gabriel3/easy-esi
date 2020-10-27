@@ -7,7 +7,7 @@ import pytest
 import simplejson
 from jsonschema.exceptions import ValidationError
 
-from easy_esi.client import SwaggerClient
+from easyESI.client import SwaggerClient
 from tests.functional.conftest import API_DOCS_URL
 from tests.functional.conftest import register_get
 from tests.functional.conftest import register_spec
@@ -19,8 +19,8 @@ def sample_model():
         "id": 42,
         "schools": [
             {"name": "School1"},
-            {"name": "School2"}
-        ]
+            {"name": "School2"},
+        ],
     }
 
 
@@ -31,27 +31,27 @@ def swagger_dict():
             "type": "object",
             "properties": {
                 "name": {
-                    "type": "string"
-                }
+                    "type": "string",
+                },
             },
-            "required": ["name"]
+            "required": ["name"],
         },
         "User": {
             "type": "object",
             "properties": {
                 "id": {
                     "type": "integer",
-                    "format": "int64"
+                    "format": "int64",
                 },
                 "schools": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/School"
-                    }
-                }
+                        "$ref": "#/definitions/School",
+                    },
+                },
             },
-            "required": ["id"]
-        }
+            "required": ["id"],
+        },
     }
     operation = {
         "tags": ["api_test"],
@@ -62,9 +62,9 @@ def swagger_dict():
                 "description": "blah",
                 "schema": {
                     "$ref": "#/definitions/User",
-                }
-            }
-        }
+                },
+            },
+        },
     }
     operation_post = {
         "tags": ["api_test"],
@@ -72,9 +72,9 @@ def swagger_dict():
         "parameters": [],
         "responses": {
             "200": {
-                "description": "Successs"
-            }
-        }
+                "description": "Successs",
+            },
+        },
     }
     paths = {
         "/test_http": {
@@ -86,11 +86,11 @@ def swagger_dict():
         "swagger": "2.0",
         "info": {
             "version": "1.0.0",
-            "title": "Simple"
+            "title": "Simple",
         },
         "basePath": "/",
         "paths": paths,
-        "definitions": models
+        "definitions": models,
     }
 
 
@@ -99,10 +99,11 @@ def swagger_dict():
     (
         ('json',),
         ('yaml',),
-    )
+    ),
 )
 def test_model_in_response(
-        httprettified, swagger_dict, sample_model, spec_type):
+        httprettified, swagger_dict, sample_model, spec_type,
+):
     register_spec(swagger_dict, spec_type=spec_type)
     register_get("http://localhost/test_http", body=simplejson.dumps(sample_model))
     client = SwaggerClient.from_url(API_DOCS_URL)
@@ -116,12 +117,14 @@ def test_model_in_response(
         id=42,
         schools=[
             School(name="School1"),
-            School(name="School2")
-        ]) == result
+            School(name="School2"),
+        ],
+    ) == result
 
 
 def test_model_missing_required_property_in_response_raises_ValidationError(
-        httprettified, swagger_dict, sample_model):
+        httprettified, swagger_dict, sample_model,
+):
     register_spec(swagger_dict)
     sample_model.pop("id")
     register_get("http://localhost/test_http", body=simplejson.dumps(sample_model))
@@ -131,7 +134,8 @@ def test_model_missing_required_property_in_response_raises_ValidationError(
 
 
 def test_additionalProperty_in_model_in_response(
-        httprettified, swagger_dict, sample_model):
+        httprettified, swagger_dict, sample_model,
+):
     register_spec(swagger_dict)
     sample_model["extra"] = 42
     register_get("http://localhost/test_http", body=simplejson.dumps(sample_model))
@@ -141,7 +145,8 @@ def test_additionalProperty_in_model_in_response(
 
 
 def test_invalid_type_in_response_raises_ValidationError(
-        httprettified, swagger_dict, sample_model):
+        httprettified, swagger_dict, sample_model,
+):
     register_spec(swagger_dict)
     register_get("http://localhost/test_http", body='"NOT_COMPLEX_TYPE"')
     with pytest.raises(ValidationError) as excinfo:
@@ -150,7 +155,8 @@ def test_invalid_type_in_response_raises_ValidationError(
 
 
 def test_error_on_wrong_type_inside_complex_type(
-        httprettified, swagger_dict, sample_model):
+        httprettified, swagger_dict, sample_model,
+):
     register_spec(swagger_dict)
     sample_model["id"] = "Not Integer"
     register_get("http://localhost/test_http", body=simplejson.dumps(sample_model))
@@ -160,7 +166,8 @@ def test_error_on_wrong_type_inside_complex_type(
 
 
 def test_error_on_missing_type_in_model(
-        httprettified, swagger_dict, sample_model):
+        httprettified, swagger_dict, sample_model,
+):
     register_spec(swagger_dict)
     sample_model["schools"][0] = {}  # Omit 'name'
     register_get("http://localhost/test_http", body=simplejson.dumps(sample_model))
@@ -174,8 +181,8 @@ def test_model_in_body_of_request(httprettified, swagger_dict, sample_model):
         "in": "body",
         "name": "body",
         "schema": {
-            "$ref": "#/definitions/User"
-        }
+            "$ref": "#/definitions/User",
+        },
     }
     swagger_dict["paths"]["/test_http"]['post']["parameters"] = [param_spec]
     register_spec(swagger_dict)

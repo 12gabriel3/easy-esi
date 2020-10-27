@@ -2,11 +2,11 @@
 import mock
 from mock import patch
 
-from easy_esi.fido_client import FidoClient
+from easyESI.fido_client import FidoClient
 
 
 def test_request_no_timeouts_passed_to_fido():
-    with patch('easy_esi.fido_client.fido.fetch') as fetch:
+    with patch('easyESI.fido_client.fido.fetch') as fetch:
         request_params = dict(url='http://foo.com/')
         FidoClient().request(request_params)
         assert fetch.call_args == mock.call(
@@ -18,7 +18,7 @@ def test_request_no_timeouts_passed_to_fido():
 
 
 def test_request_timeout_passed_to_fido():
-    with patch('easy_esi.fido_client.fido.fetch') as fetch:
+    with patch('easyESI.fido_client.fido.fetch') as fetch:
         request_params = dict(url='http://foo.com/', timeout=1)
         FidoClient().request(request_params)
         assert fetch.call_args == mock.call(
@@ -31,7 +31,7 @@ def test_request_timeout_passed_to_fido():
 
 
 def test_request_connect_timeout_passed_to_fido():
-    with patch('easy_esi.fido_client.fido.fetch') as fetch:
+    with patch('easyESI.fido_client.fido.fetch') as fetch:
         request_params = dict(url='http://foo.com/', connect_timeout=1)
         FidoClient().request(request_params)
         assert fetch.call_args == mock.call(
@@ -44,9 +44,11 @@ def test_request_connect_timeout_passed_to_fido():
 
 
 def test_request_connect_timeout_and_timeout_passed_to_fido():
-    with patch('easy_esi.fido_client.fido.fetch') as fetch:
-        request_params = dict(url='http://foo.com/', connect_timeout=1,
-                              timeout=2)
+    with patch('easyESI.fido_client.fido.fetch') as fetch:
+        request_params = dict(
+            url='http://foo.com/', connect_timeout=1,
+            timeout=2,
+        )
         FidoClient().request(request_params)
         assert fetch.call_args == mock.call(
             url='http://foo.com/',
@@ -59,7 +61,7 @@ def test_request_connect_timeout_and_timeout_passed_to_fido():
 
 
 def test_request_tcp_nodeley_passed_to_fido():
-    with patch('easy_esi.fido_client.fido.fetch') as fetch:
+    with patch('easyESI.fido_client.fido.fetch') as fetch:
         request_params = dict(url='http://foo.com/', tcp_nodelay=True)
         FidoClient().request(request_params)
         assert fetch.call_args == mock.call(
@@ -67,5 +69,5 @@ def test_request_tcp_nodeley_passed_to_fido():
             body=None,
             headers={},
             method='GET',
-            tcp_nodelay=True
+            tcp_nodelay=True,
         )

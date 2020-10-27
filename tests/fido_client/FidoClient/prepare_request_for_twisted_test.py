@@ -4,12 +4,12 @@ Not Tested:
 1) Callbacks triggered by twisted and crochet
 2) Timeouts by crochet's wait()
 """
-from easy_esi.fido_client import FidoClient
+from easyESI.fido_client import FidoClient
 
 
 def test_prepare_request_for_twisted_get():
     request_params = {
-        'url': 'http://example.com/api-docs'
+        'url': 'http://example.com/api-docs',
     }
     request_for_twisted = FidoClient.prepare_request_for_twisted(request_params)
 
@@ -34,7 +34,7 @@ def test_prepare_request_for_twisted_body_is_bytes():
         'body': b'42',
         'headers': {'Content-Type': 'application/x-www-form-urlencoded'},
         'method': 'POST',
-        'url': 'http://example.com/api-docs?username=yelp'
+        'url': 'http://example.com/api-docs?username=yelp',
     }
 
 
@@ -50,7 +50,7 @@ def test_prepare_request_for_twisted_header_values_are_bytes():
         'body': None,
         'headers': {'X-Foo': b'hi'},
         'method': 'GET',
-        'url': 'http://example.com/api-docs'
+        'url': 'http://example.com/api-docs',
     }
 
 
@@ -58,7 +58,7 @@ def test_prepare_request_for_twisted_timeouts_added():
     request_params = {
         'url': 'http://example.com/api-docs',
         'timeout': 15,
-        'connect_timeout': 15
+        'connect_timeout': 15,
     }
     request_for_twisted = FidoClient.prepare_request_for_twisted(request_params)
 

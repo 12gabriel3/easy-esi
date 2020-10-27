@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import mock
 
-from easy_esi.config import RequestConfig
-from easy_esi.response import EasyEsiResponseMetadata
+from easyESI.config import RequestConfig
+from easyESI.response import EasyEsiResponseMetadata
 
 
 def test_response_metadata_times():

@@ -1,25 +1,25 @@
 # -*- coding: utf-8 -*-
 import json
 import time
+import typing
 from multiprocessing import Process
 
 import bottle
 import ephemeral_port_reserve
 import pytest
 import requests.exceptions
-import typing
-from easy_esi_core.content_type import APP_MSGPACK
-from easy_esi_core.response import IncomingResponse
 from msgpack import packb
 from msgpack import unpackb
 
-from easy_esi.client import SwaggerClient
-from easy_esi.exception import EasyEsiConnectionError
-from easy_esi.exception import EasyEsiTimeoutError
-from easy_esi.exception import HTTPMovedPermanently
-from easy_esi.http_client import HttpClient
-from easy_esi.http_future import FutureAdapter
-from easy_esi.swagger_model import Loader
+from core.content_type import APP_MSGPACK
+from core.response import IncomingResponse
+from easyESI.client import SwaggerClient
+from easyESI.exception import EasyEsiConnectionError
+from easyESI.exception import EasyEsiTimeoutError
+from easyESI.exception import HTTPMovedPermanently
+from easyESI.http_client import HttpClient
+from easyESI.http_future import FutureAdapter
+from easyESI.swagger_model import Loader
 
 
 def _class_fqn(clz):
@@ -36,14 +36,14 @@ SWAGGER_SPEC_DICT = {
         'api_response': {
             'properties': {
                 'answer': {
-                    'type': 'integer'
+                    'type': 'integer',
                 },
             },
             'required': ['answer'],
             'type': 'object',
             'x-model': 'api_response',
             'title': 'api_response',
-        }
+        },
     },
     'basePath': '/',
     'paths': {
@@ -62,15 +62,15 @@ SWAGGER_SPEC_DICT = {
             'get': {
                 'produces': [
                     'application/msgpack',
-                    'application/json'
+                    'application/json',
                 ],
                 'responses': {
                     '200': {
                         'description': 'HTTP/200',
                         'schema': {'$ref': '#/definitions/api_response'},
-                    }
-                }
-            }
+                    },
+                },
+            },
         },
         '/echo': {
             'get': {
@@ -81,7 +81,7 @@ SWAGGER_SPEC_DICT = {
                         'name': 'message',
                         'type': 'string',
                         'required': True,
-                    }
+                    },
                 ],
                 'responses': {
                     '200': {
@@ -109,7 +109,7 @@ SWAGGER_SPEC_DICT = {
                         'name': 'special',
                         'type': 'string',
                         'required': True,
-                    }
+                    },
                 ],
                 'responses': {
                     '200': {
@@ -129,7 +129,7 @@ SWAGGER_SPEC_DICT = {
                         'name': 'X-User-Id',
                         'type': 'string',
                         'required': True,
-                    }
+                    },
                 ],
                 'responses': {
                     '200': {
@@ -150,7 +150,7 @@ SWAGGER_SPEC_DICT = {
                         'type': 'number',
                         'format': 'float',
                         'required': True,
-                    }
+                    },
                 ],
                 'responses': {
                     '200': {
@@ -319,11 +319,11 @@ class IntegrationTestingFixturesMixin(IntegrationTestingServicesAndClient):
     def setup_class(cls):
         if cls.http_client_type is None:
             raise RuntimeError(  # pragma: no cover
-                'Define http_client_type for {}'.format(cls.__name__)
+                'Define http_client_type for {}'.format(cls.__name__),
             )
         if cls.http_future_adapter_type is None:
             raise RuntimeError(  # pragma: no cover
-                'Define http_future_adapter_type for {}'.format(cls.__name__)
+                'Define http_future_adapter_type for {}'.format(cls.__name__),
             )
         if cls.connection_errors_exceptions is None:
             raise RuntimeError(  # pragma: no cover
@@ -337,9 +337,10 @@ class IntegrationTestingFixturesMixin(IntegrationTestingServicesAndClient):
     def swagger_client(self, swagger_http_server):
         return SwaggerClient.from_url(
             spec_url='{server_address}/swagger.json'.format(
-                server_address=swagger_http_server),
+                server_address=swagger_http_server,
+            ),
             http_client=self.http_client,
-            config={'use_models': False, 'also_return_response': True}
+            config={'use_models': False, 'also_return_response': True},
         )
 
     @classmethod
@@ -412,9 +413,11 @@ class IntegrationTestsBaseClass(IntegrationTestingFixturesMixin):
 
     def test_unsanitized_param_as_header(self, swagger_client, result_getter):
         headers = {'X-User-Id': 'admin'}
-        marshaled_response, _ = result_getter(swagger_client.sanitize_test.get_sanitized_param(
-            _request_options={'headers': headers},
-        ), timeout=1)
+        marshaled_response, _ = result_getter(
+            swagger_client.sanitize_test.get_sanitized_param(
+                _request_options={'headers': headers},
+            ), timeout=1,
+        )
         assert marshaled_response == API_RESPONSE
 
     def test_multiple_requests(self, swagger_http_server):
@@ -460,12 +463,14 @@ class IntegrationTestsBaseClass(IntegrationTestingFixturesMixin):
             'Header-Integer': 1,
             'Header-Bytes': b'0',
         }
-        response = typing.cast(IncomingResponse, self.http_client.request({
-            'method': 'GET',
-            'headers': headers,
-            'url': '{server_address}/headers'.format(server_address=swagger_http_server),
-            'params': {},
-        }).result(timeout=1))
+        response = typing.cast(
+            IncomingResponse, self.http_client.request({
+                'method': 'GET',
+                'headers': headers,
+                'url': '{server_address}/headers'.format(server_address=swagger_http_server),
+                'params': {},
+            }).result(timeout=1),
+        )
 
         expected_header_representations = {
             'Header-Boolean': repr('True'),
@@ -475,20 +480,22 @@ class IntegrationTestsBaseClass(IntegrationTestingFixturesMixin):
         assert {
             header_name: {
                 'type': _class_fqn(str),
-                'representation': expected_header_representations[header_name]
+                'representation': expected_header_representations[header_name],
             }
             for header_name, header_value in headers.items()
         } == response.json()
 
     def test_msgpack_support(self, swagger_http_server):
-        response = typing.cast(IncomingResponse, self.http_client.request({
-            'method': 'GET',
-            'url': '{server_address}/json_or_msgpack'.format(server_address=swagger_http_server),
-            'params': {},
-            'headers': {
-                'Accept': APP_MSGPACK,
-            },
-        }).result(timeout=1))
+        response = typing.cast(
+            IncomingResponse, self.http_client.request({
+                'method': 'GET',
+                'url': '{server_address}/json_or_msgpack'.format(server_address=swagger_http_server),
+                'params': {},
+                'headers': {
+                    'Accept': APP_MSGPACK,
+                },
+            }).result(timeout=1),
+        )
 
         assert response.headers['Content-Type'] == APP_MSGPACK
         assert unpackb(response.raw_bytes) == API_RESPONSE
@@ -499,7 +506,7 @@ class IntegrationTestsBaseClass(IntegrationTestingFixturesMixin):
             # so rather than load dependencies unnecessarily, skip the test if that's not the case
             # the coverage test incorrectly marks the exception handling as uncovered
             # hence the pragma usage
-            from easy_esi.fido_client import FidoClient
+            from easyESI.fido_client import FidoClient
         except ImportError:  # pragma: no cover
             pytest.skip('Fido dependencies have not been loaded, skipping test')  # pragma: no cover
         else:
@@ -632,9 +639,11 @@ class IntegrationTestsBaseClass(IntegrationTestingFixturesMixin):
         swagger_client.swagger_spec.api_url = not_answering_http_server
         with pytest.raises(EasyEsiConnectionError):
             result_getter(
-                swagger_client.json.get_json(_request_options={
-                    'connect_timeout': 0.001,
-                    'timeout': 0.01,
-                }),
+                swagger_client.json.get_json(
+                    _request_options={
+                        'connect_timeout': 0.001,
+                        'timeout': 0.01,
+                    },
+                ),
                 timeout=0.1,
             )

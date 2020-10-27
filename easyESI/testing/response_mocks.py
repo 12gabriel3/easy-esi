@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 import typing
-from easy_esi_core.response import IncomingResponse
+
 from typing_extensions import overload  # typing.overload won't work on Python 3.5.0/3.5.1
 
-from easy_esi.config import RequestConfig
-from easy_esi.exception import EasyEsiTimeoutError
-from easy_esi.http_future import _SENTINEL
-from easy_esi.http_future import FALLBACK_EXCEPTIONS
-from easy_esi.http_future import SENTINEL
-from easy_esi.response import EasyEsiResponse
-from easy_esi.response import EasyEsiResponseMetadata
+from core.response import IncomingResponse
+from easyESI.config import RequestConfig
+from easyESI.exception import EasyEsiTimeoutError
+from easyESI.http_future import _SENTINEL
+from easyESI.http_future import FALLBACK_EXCEPTIONS
+from easyESI.http_future import SENTINEL
+from easyESI.response import EasyEsiResponse
+from easyESI.response import EasyEsiResponseMetadata
 
 
 T = typing.TypeVar('T')

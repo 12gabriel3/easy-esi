@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 import sys
+import typing
 
 import crochet
 import fido.exceptions
@@ -8,16 +9,15 @@ import requests.structures
 import six
 import twisted.internet.error
 import twisted.web.client
-import typing
-from easy_esi_core.operation import Operation
-from easy_esi_core.response import IncomingResponse
 from yelp_bytes import to_bytes
 
-from easy_esi._equality_util import are_objects_equal as _are_objects_equal
-from easy_esi.config import RequestConfig
-from easy_esi.http_client import HttpClient
-from easy_esi.http_future import FutureAdapter
-from easy_esi.http_future import HttpFuture
+from core.operation import Operation
+from core.response import IncomingResponse
+from easyESI._equality_util import are_objects_equal as _are_objects_equal
+from easyESI.config import RequestConfig
+from easyESI.http_client import HttpClient
+from easyESI.http_future import FutureAdapter
+from easyESI.http_future import HttpFuture
 
 if getattr(typing, 'TYPE_CHECKING', False):
     class _FidoStub(typing.Protocol):
@@ -137,7 +137,7 @@ class FidoFutureAdapter(FutureAdapter[T]):
                 fido.exceptions.HTTPTimeoutError(
                     'Connection was closed by fido after blocking for '
                     'timeout={timeout} seconds waiting for the server to '
-                    'send the response'.format(timeout=timeout)
+                    'send the response'.format(timeout=timeout),
                 ),
                 sys.exc_info()[2],
             )
@@ -193,20 +193,22 @@ class FidoClient(HttpClient):
         :param operation: operation that this http request is for. Defaults
             to None - in which case, we're obviously just retrieving a Swagger
             Spec.
-        :type operation: :class:`easy_esi_core.operation.Operation`
+        :type operation: :class:`core.operation.Operation`
         :param RequestConfig request_config: per-request configuration
 
-        :rtype: :class: `easy_esi_core.http_future.HttpFuture`
+        :rtype: :class: `core.http_future.HttpFuture`
         """
 
         request_for_twisted = self.prepare_request_for_twisted(request_params)
 
         future_adapter = self.future_adapter_class(fido.fetch(**request_for_twisted))  # type: FidoFutureAdapter[T]
 
-        return HttpFuture(future_adapter,
-                          self.response_adapter_class,
-                          operation,
-                          request_config)
+        return HttpFuture(
+            future_adapter,
+            self.response_adapter_class,
+            operation,
+            request_config,
+        )
 
     @staticmethod
     def prepare_request_for_twisted(request_params):

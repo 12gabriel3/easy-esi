@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easy_esi.swagger_model import Loader
+from easyESI.swagger_model import Loader
 
 
 @pytest.fixture

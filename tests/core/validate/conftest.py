@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from easy_esi_core.exception import SwaggerValidationError
-from easy_esi_core.formatter import SwaggerFormat
+from core.exception import SwaggerValidationError
+from core.formatter import SwaggerFormat
 
 
 def validate_email_address(email_address):

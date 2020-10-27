@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import pytest
-from easy_esi_core.response import IncomingResponse
 from mock import Mock
 
-from easy_esi.exception import HTTPError
-from easy_esi.http_future import raise_on_unexpected
+from core.response import IncomingResponse
+from easyESI.exception import HTTPError
+from easyESI.http_future import raise_on_unexpected
 
 
 def test_5XX():

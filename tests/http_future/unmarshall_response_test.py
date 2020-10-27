@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 import pytest
-from easy_esi_core.exception import MatchingResponseNotFound
-from easy_esi_core.operation import Operation
-from easy_esi_core.response import IncomingResponse
 from mock import Mock
 from mock import patch
 
-from easy_esi.exception import HTTPError
-from easy_esi.http_future import unmarshal_response
+from core.exception import MatchingResponseNotFound
+from core.operation import Operation
+from core.response import IncomingResponse
+from easyESI.exception import HTTPError
+from easyESI.http_future import unmarshal_response
 
 
 @pytest.fixture
 def mock_unmarshal_response_inner():
-    with patch('easy_esi.http_future.unmarshal_response_inner') as m:
+    with patch('easyESI.http_future.unmarshal_response_inner') as m:
         yield m
 
 
@@ -68,8 +68,10 @@ def test_response_callbacks_executed_on_happy_path(mock_unmarshal_response_inner
     incoming_response.status_code = 200
     operation = Mock(spec=Operation)
     callback = Mock()
-    unmarshal_response(incoming_response, operation,
-                       response_callbacks=[callback])
+    unmarshal_response(
+        incoming_response, operation,
+        response_callbacks=[callback],
+    )
     assert incoming_response.swagger_result == 99
     assert callback.call_count == 1
 
@@ -80,7 +82,9 @@ def test_response_callbacks_executed_on_failure(mock_unmarshal_response_inner):
     operation = Mock(spec=Operation)
     callback = Mock()
     with pytest.raises(HTTPError) as excinfo:
-        unmarshal_response(incoming_response, operation,
-                           response_callbacks=[callback])
+        unmarshal_response(
+            incoming_response, operation,
+            response_callbacks=[callback],
+        )
     assert excinfo.value.response.status_code == 404
     assert callback.call_count == 1

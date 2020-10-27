@@ -1,6 +1,0 @@
-EndpointErrorObject:
-  allOf:
-  - $ref: ../../definitions.yaml#/ErrorResponse
-  - properties:
-      error_specific_to_this_endpoint:
-        type: string

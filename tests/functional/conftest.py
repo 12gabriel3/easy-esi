@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import functools
 import json
+import typing
 
 import httpretty
 import pytest
-import typing
 import yaml
 
 
@@ -38,12 +38,12 @@ def swagger_dict():
     parameter = {
         "in": "query",
         "name": "test_param",
-        "type": "string"
+        "type": "string",
     }
     responses = {
         "200": {
-            "description": "Success"
-        }
+            "description": "Success",
+        },
     }
     operation = {
         "operationId": "testHTTP",
@@ -53,17 +53,17 @@ def swagger_dict():
     }
     paths = {
         "/test_http": {
-            "get": operation
-        }
+            "get": operation,
+        },
     }
     return {
         "swagger": "2.0",
         "info": {
             "version": "1.0.0",
-            "title": "Simple"
+            "title": "Simple",
         },
         "basePath": "/",
-        "paths": paths
+        "paths": paths,
     }
 
 

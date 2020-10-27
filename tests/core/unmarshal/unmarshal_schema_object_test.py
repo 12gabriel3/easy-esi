@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easy_esi_core.exception import SwaggerMappingError
-from easy_esi_core.spec import Spec
-from easy_esi_core.unmarshal import unmarshal_schema_object
-from tests.conftest import get_url
+from core.exception import SwaggerMappingError
+from core.spec import Spec
+from core.unmarshal import unmarshal_schema_object
+from tests.core.conftest import get_url
 
 
 def test_unmarshal_schema_object_allOf(composition_dict, composition_abspath):

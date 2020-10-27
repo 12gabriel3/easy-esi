@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from easy_esi_core.schema import is_param_spec
-from easy_esi_core.spec import Spec
+from core.schema import is_param_spec
+from core.spec import Spec
 
 
 def test_true(minimal_swagger_spec):

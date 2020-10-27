@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-import mock
-import pytest
-from easy_esi_core.operation import Operation
-from easy_esi_core.request import IncomingRequest
-from easy_esi_core.request import unmarshal_request
-from easy_esi_core.spec import Spec
 from typing import Any
 from typing import Dict
 
-from easy_esi.client import CallableOperation
-from easy_esi.client import construct_request
+import mock
+import pytest
+
+from core.operation import Operation
+from core.request import IncomingRequest
+from core.request import unmarshal_request
+from core.spec import Spec
+from easyESI.client import CallableOperation
+from easyESI.client import construct_request
 
 
 def build_swagger_spec(swagger_dict):
@@ -18,18 +19,23 @@ def build_swagger_spec(swagger_dict):
     return spec
 
 
-@pytest.mark.parametrize('timeout_kv', [
-    ('timeout', 1),
-    ('connect_timeout', 2),
-])
-@mock.patch('easy_esi.client.marshal_param')
+@pytest.mark.parametrize(
+    'timeout_kv', [
+        ('timeout', 1),
+        ('connect_timeout', 2),
+    ],
+)
+@mock.patch('easyESI.client.marshal_param')
 def test_with_timeouts(
     mock_marshal_param, minimal_swagger_spec,
     getPetById_spec, request_dict, timeout_kv,
 ):
     request_dict['url'] = '/pet/{petId}'
-    op = CallableOperation(Operation.from_spec(
-        minimal_swagger_spec, '/pet/{petId}', 'get', getPetById_spec))
+    op = CallableOperation(
+        Operation.from_spec(
+            minimal_swagger_spec, '/pet/{petId}', 'get', getPetById_spec,
+        ),
+    )
     k, v = timeout_kv
     request = construct_request(op, request_options={k: v}, petId=34, api_key='foo')
     assert request[k] == v
@@ -79,13 +85,15 @@ def test_with_not_string_headers(
 
     # To unmarshall a request easy-esi-core needs the request to be wrapped
     # by an object with a specific list of attributes
-    request_object = type('IncomingRequest', (IncomingRequest,), {
-        'path': {'petId': petId},
-        'query': {},
-        'form': {},
-        'headers': request['headers'],
-        'files': mock.Mock(),
-    })
+    request_object = type(
+        'IncomingRequest', (IncomingRequest,), {
+            'path': {'petId': petId},
+            'query': {},
+            'form': {},
+            'headers': request['headers'],
+            'files': mock.Mock(),
+        },
+    )
 
     expected_header_value = str(header_value)
     # we need to handle a backwards-incompatible change in easy-esi-core 5.0.5
@@ -107,12 +115,12 @@ def test_use_msgpack(
             minimal_swagger_spec,
             '/pet/{petId}',
             'get',
-            getPetById_spec
-        )
+            getPetById_spec,
+        ),
     )
     request_options = {
         'use_msgpack': True,
-        'headers': {'Some-Header': 'header-value'}
+        'headers': {'Some-Header': 'header-value'},
     }  # type: Dict[str, Any]
     request = construct_request(
         op,

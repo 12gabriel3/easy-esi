@@ -2,21 +2,21 @@
 import contextlib
 import logging
 import os.path
-
 import typing
+
 import yaml
 try:
     from yaml import CSafeLoader as SafeLoader
 except ImportError:  # pragma: no cover
     from yaml import SafeLoader  # type: ignore
-from easy_esi_core.spec import is_yaml
+from core.spec import is_yaml
 from six import iteritems
 from six import itervalues
 from six.moves import urllib
 from six.moves.urllib import parse as urlparse
 
 import simplejson
-from easy_esi.requests_client import RequestsClient
+from easyESI.requests_client import RequestsClient
 
 log = logging.getLogger(__name__)
 
@@ -63,7 +63,7 @@ class FileEventual(object):
 def request(http_client, url, headers):
     """Download and parse JSON from a URL.
 
-    :param http_client: a :class:`easy_esi.http_client.HttpClient`
+    :param http_client: a :class:`easyESI.http_client.HttpClient`
     :param url: url for api docs
     :return: an object with a :func`wait` method which returns the api docs
     """

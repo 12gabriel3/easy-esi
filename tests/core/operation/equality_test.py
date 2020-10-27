@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easy_esi_core.spec import Spec
-from tests.conftest import get_url
+from core.spec import Spec
+from tests.core.conftest import get_url
 
 
 def test_equality_of_the_same_object_returns_True(getPetByIdPetstoreOperation):
@@ -17,7 +17,10 @@ def test_equality_of_different_instances_returns_True_if_the_specs_are_the_same(
     assert getPetByIdPetstoreOperation.is_equal(other_getPetByIdPetstoreOperation)
 
 
-def test_equality_of_different_instances_returns_False_if_the_specs_are_the_different(petstore_spec, getPetByIdPetstoreOperation):
+def test_equality_of_different_instances_returns_False_if_the_specs_are_the_different(
+    petstore_spec,
+    getPetByIdPetstoreOperation,
+):
     assert not getPetByIdPetstoreOperation.is_equal(petstore_spec.resources['pet'].operations['addPet'])
 
 

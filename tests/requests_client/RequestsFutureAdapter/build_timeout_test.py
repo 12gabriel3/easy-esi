@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from easy_esi.requests_client import RequestsFutureAdapter
+from easyESI.requests_client import RequestsFutureAdapter
 
 
 def test_no_timeouts(session_mock, request_mock):

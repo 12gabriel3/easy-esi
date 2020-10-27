@@ -2,8 +2,8 @@
 import pytest
 from six import itervalues
 
-from easy_esi_core.spec import Spec
-from tests.conftest import get_url
+from core.spec import Spec
+from tests.core.conftest import get_url
 
 
 @pytest.fixture
@@ -23,7 +23,10 @@ def test_equality_of_different_instances_returns_True_if_the_specs_are_the_same(
     assert petPetstoreResource.is_equal(other_petPetstoreResource)
 
 
-def test_equality_of_different_instances_returns_False_if_the_specs_are_the_different(petstore_spec, petPetstoreResource):
+def test_equality_of_different_instances_returns_False_if_the_specs_are_the_different(
+    petstore_spec,
+    petPetstoreResource,
+):
     assert not petPetstoreResource.is_equal(petstore_spec.resources['user'])
 
 

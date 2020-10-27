@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from easy_esi_core.docstring import formatted_type
+from core.docstring import formatted_type
 
 
 def test_type_only():

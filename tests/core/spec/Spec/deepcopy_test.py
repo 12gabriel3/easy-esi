@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from tests.conftest import check_object_deepcopy
+from tests.core.conftest import check_object_deepcopy
 
 
 def test_spec_instance_is_deep_copyable(petstore_spec):

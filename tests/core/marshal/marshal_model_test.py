@@ -4,9 +4,9 @@ import datetime
 
 import pytest
 
-from easy_esi_core.exception import SwaggerMappingError
-from easy_esi_core.marshal import marshal_model
-from easy_esi_core.spec import Spec
+from core.exception import SwaggerMappingError
+from core.marshal import marshal_model
+from core.spec import Spec
 
 
 def test_pet(petstore_dict):

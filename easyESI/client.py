@@ -41,26 +41,26 @@ To get a client
 
 .. code-block:: python
 
-    client = easy_esi.client.SwaggerClient.from_url(swagger_spec_url)
+    client = easyESI.client.SwaggerClient.from_url(swagger_spec_url)
 """
 import logging
+import typing
 from copy import deepcopy
 
-import typing
-from easy_esi_core.docstring import create_operation_docstring
-from easy_esi_core.exception import SwaggerMappingError
-from easy_esi_core.formatter import SwaggerFormat  # noqa
-from easy_esi_core.param import marshal_param
-from easy_esi_core.spec import Spec
 from six import iteritems
 from six import itervalues
 
-from easy_esi.config import bravado_config_from_config_dict
-from easy_esi.config import RequestConfig
-from easy_esi.docstring_property import docstring_property
-from easy_esi.requests_client import RequestsClient
-from easy_esi.swagger_model import Loader
-from easy_esi.warning import warn_for_deprecated_op
+from core.docstring import create_operation_docstring
+from core.exception import SwaggerMappingError
+from core.formatter import SwaggerFormat  # noqa
+from core.param import marshal_param
+from core.spec import Spec
+from easyESI.config import bravado_config_from_config_dict
+from easyESI.config import RequestConfig
+from easyESI.docstring_property import docstring_property
+from easyESI.requests_client import RequestsClient
+from easyESI.swagger_model import Loader
+from easyESI.warning import warn_for_deprecated_op
 
 log = logging.getLogger(__name__)
 
@@ -68,7 +68,7 @@ log = logging.getLogger(__name__)
 class SwaggerClient(object):
     """A client for accessing a Swagger-documented RESTful service.
 
-    :type swagger_spec: :class:`easy_esi_core.spec.Spec`
+    :type swagger_spec: :class:`core.spec.Spec`
     """
 
     def __init__(self, swagger_spec, also_return_response=False):
@@ -86,9 +86,9 @@ class SwaggerClient(object):
         :type  http_client: :class:`bravado.http_client.HttpClient`
         :param request_headers: Headers to pass with http requests
         :type  request_headers: dict
-        :param config: Config dict for easy_esi and easy_esi_core.
-            See CONFIG_DEFAULTS in :module:`easy_esi_core.spec`.
-            See CONFIG_DEFAULTS in :module:`easy_esi.client`.
+        :param config: Config dict for easyESI and core.
+            See CONFIG_DEFAULTS in :module:`core.spec`.
+            See CONFIG_DEFAULTS in :module:`easyESI.client`.
 
         :rtype: :class:`SwaggerClient`
         """
@@ -104,13 +104,16 @@ class SwaggerClient(object):
         # functional.
         if request_headers is not None:
             http_client.request = inject_headers_for_remote_refs(
-                http_client.request, request_headers)
+                http_client.request, request_headers,
+            )
 
         return cls.from_spec(spec_dict, spec_url, http_client, config)
 
     @classmethod
-    def from_spec(cls, spec_dict, origin_url=None, http_client=None,
-                  config=None):
+    def from_spec(
+        cls, spec_dict, origin_url=None, http_client=None,
+        config=None,
+    ):
         """
         Build a :class:`SwaggerClient` from a Swagger spec in dict form.
 
@@ -124,13 +127,13 @@ class SwaggerClient(object):
         http_client = http_client or RequestsClient()
         config = config or {}
 
-        # Apply easy_esi config defaults
+        # Apply easyESI config defaults
         bravado_config = bravado_config_from_config_dict(config)
-        # remove easy_esi configs from config dict
+        # remove easyESI configs from config dict
         for key in set(bravado_config._fields).intersection(set(config)):
             del config[key]
-        # set easy_esi config object
-        config['easy_esi'] = bravado_config
+        # set easyESI config object
+        config['easyESI'] = bravado_config
 
         swagger_spec = Spec.from_dict(
             spec_dict, origin_url, http_client, config,
@@ -149,7 +152,8 @@ class SwaggerClient(object):
         if not resource:
             raise AttributeError(
                 'Resource {0} not found. Available resources: {1}'
-                .format(item, ', '.join(dir(self))))
+                .format(item, ', '.join(dir(self))),
+            )
 
         # Wrap easy-esi-core's Resource and Operation objects in order to
         # execute a service call via the http_client.
@@ -211,13 +215,13 @@ def inject_headers_for_remote_refs(request_callable, request_headers):
 
 class ResourceDecorator(object):
     """
-    Wraps :class:`easy_esi_core.resource.Resource` so that accesses to contained
+    Wraps :class:`core.resource.Resource` so that accesses to contained
     operations can be instrumented.
     """
 
     def __init__(self, resource, also_return_response=False):
         """
-        :type resource: :class:`easy_esi_core.resource.Resource`
+        :type resource: :class:`core.resource.Resource`
         """
         self.also_return_response = also_return_response
         self.resource = resource
@@ -239,7 +243,7 @@ class CallableOperation(object):
     """Wraps an operation to make it callable and provides a docstring. Calling
     the operation uses the configured http_client.
 
-    :type operation: :class:`easy_esi_core.operation.Operation`
+    :type operation: :class:`core.operation.Operation`
     """
 
     def __init__(self, operation, also_return_response=False):
@@ -259,7 +263,7 @@ class CallableOperation(object):
     def __call__(self, **op_kwargs):
         """Invoke the actual HTTP request and return a future.
 
-        :rtype: :class:`easy_esi.http_future.HTTPFuture`
+        :rtype: :class:`easyESI.http_future.HTTPFuture`
         """
         log.debug(u'%s(%s)', self.operation.operation_id, op_kwargs)
         warn_for_deprecated_op(self.operation)
@@ -269,7 +273,8 @@ class CallableOperation(object):
         request_config = RequestConfig(request_options, self.also_return_response)
 
         request_params = construct_request(
-            self.operation, request_options, **op_kwargs)
+            self.operation, request_options, **op_kwargs
+        )
 
         http_client = self.operation.swagger_spec.http_client
 
@@ -283,7 +288,7 @@ class CallableOperation(object):
 def construct_request(operation, request_options, **op_kwargs):
     """Construct the outgoing request dict.
 
-    :type operation: :class:`easy_esi_core.operation.Operation`
+    :type operation: :class:`core.operation.Operation`
     :param request_options: _request_options passed into the operation
         invocation.
     :param op_kwargs: parameter name/value pairs to passed to the
@@ -297,8 +302,10 @@ def construct_request(operation, request_options, **op_kwargs):
         'url': url,
         'params': {},  # filled in downstream
         # Create shallow copy to avoid modifying input
-        'headers': (request_options['headers'].copy()
-                    if 'headers' in request_options else {}),
+        'headers': (
+            request_options['headers'].copy()
+            if 'headers' in request_options else {}
+        ),
     }
     # Adds Accept header to request for msgpack response if specified
     if request_options.get('use_msgpack', False):
@@ -318,7 +325,7 @@ def construct_params(operation, request, op_kwargs):
     """Given the parameters passed to the operation invocation, validates and
     marshals the parameters into the provided request dict.
 
-    :type operation: :class:`easy_esi_core.operation.Operation`
+    :type operation: :class:`core.operation.Operation`
     :type request: dict
     :param op_kwargs: the kwargs passed to the operation invocation
 
@@ -331,7 +338,8 @@ def construct_params(operation, request, op_kwargs):
         if param is None:
             raise SwaggerMappingError(
                 "{0} does not have parameter {1}"
-                .format(operation.operation_id, param_name))
+                .format(operation.operation_id, param_name),
+            )
         marshal_param(param, param_value, request)
 
     # Check required params and non-required params with a 'default' value
@@ -341,6 +349,7 @@ def construct_params(operation, request, op_kwargs):
         else:
             if remaining_param.required:
                 raise SwaggerMappingError(
-                    '{0} is a required parameter'.format(remaining_param.name))
+                    '{0} is a required parameter'.format(remaining_param.name),
+                )
             if not remaining_param.required and remaining_param.has_default():
                 marshal_param(remaining_param, None, request)

@@ -1,8 +1,0 @@
-# Unit test dependencies
-mock
-mypy; python_version>='3.7'
-mypy-extensions; python_version>='3.7'
-pre-commit
-pytest<4.7  # need support for Python 2.7, see https://docs.pytest.org/en/latest/py27-py34-deprecation.html
-pytest-benchmark[histogram]
-pytest-cov

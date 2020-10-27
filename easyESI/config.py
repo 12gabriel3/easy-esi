@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 import logging
+import typing
 from importlib import import_module
 
-import typing
-from easy_esi_core.operation import Operation
-from easy_esi_core.response import IncomingResponse
-
-from easy_esi.response import EasyEsiResponseMetadata
+from core.operation import Operation
+from core.response import IncomingResponse
+from easyESI.response import EasyEsiResponseMetadata
 
 try:
     from typing import Type
@@ -19,12 +18,12 @@ log = logging.getLogger(__name__)
 
 
 CONFIG_DEFAULTS = {
-    # See the constructor of :class:`easy_esi.http_future.HttpFuture` for an
+    # See the constructor of :class:`easyESI.http_future.HttpFuture` for an
     # in depth explanation of what this means.
     'also_return_response': False,
     # Kill switch to disable returning fallback results even if provided.
     'disable_fallback_results': False,
-    'response_metadata_class': 'easy_esi.response.EasyEsiResponseMetadata',
+    'response_metadata_class': 'easyESI.response.EasyEsiResponseMetadata',
 }
 
 
@@ -62,9 +61,9 @@ class RequestConfig(object):
     #
     # The callback should expect two arguments:
     #   param : incoming_response
-    #   type  : subclass of class:`easy_esi_core.response.IncomingResponse`
+    #   type  : subclass of class:`core.response.IncomingResponse`
     #   param : operation
-    #   type  : class:`easy_esi_core.operation.Operation`
+    #   type  : class:`core.operation.Operation`
     response_callbacks = []  # type: typing.List[typing.Callable[[IncomingResponse, Operation], None]]
 
     # options used to construct the request params
@@ -99,7 +98,7 @@ def _get_response_metadata_class(fully_qualified_class_str):
         return class_to_import
 
     log.warning(
-        'easy_esi configuration error: the metadata class \'%s\' does not extend '
+        'easyESI configuration error: the metadata class \'%s\' does not extend '
         'EasyEsiResponseMetadata. Using default class instead.',
         fully_qualified_class_str,
     )

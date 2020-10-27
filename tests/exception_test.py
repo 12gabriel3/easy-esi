@@ -2,16 +2,16 @@
 import pytest
 from requests.models import Response
 
-from easy_esi.exception import HTTPClientError
-from easy_esi.exception import HTTPError
-from easy_esi.exception import HTTPForbidden
-from easy_esi.exception import HTTPInternalServerError
-from easy_esi.exception import HTTPMovedPermanently
-from easy_esi.exception import HTTPRedirection
-from easy_esi.exception import HTTPServerError
-from easy_esi.exception import HTTPServiceUnavailable
-from easy_esi.exception import make_http_exception
-from easy_esi.requests_client import RequestsResponseAdapter
+from easyESI.exception import HTTPClientError
+from easyESI.exception import HTTPError
+from easyESI.exception import HTTPForbidden
+from easyESI.exception import HTTPInternalServerError
+from easyESI.exception import HTTPMovedPermanently
+from easyESI.exception import HTTPRedirection
+from easyESI.exception import HTTPServerError
+from easyESI.exception import HTTPServiceUnavailable
+from easyESI.exception import make_http_exception
+from easyESI.requests_client import RequestsResponseAdapter
 
 
 @pytest.fixture
@@ -41,10 +41,13 @@ def test_response_and_swagger_result(response_500):
 
 def test_response_and_message_and_swagger_result(response_500):
     incoming_response = RequestsResponseAdapter(response_500)
-    actual = str(HTTPError(
-        incoming_response,
-        message="Holy moly!",
-        swagger_result={'msg': 'Kaboom'}))
+    actual = str(
+        HTTPError(
+            incoming_response,
+            message="Holy moly!",
+            swagger_result={'msg': 'Kaboom'},
+        ),
+    )
     assert actual == "500 Server Error: Holy moly!: {'msg': 'Kaboom'}"
 
 
@@ -53,7 +56,7 @@ def test_make_http_exception(response_500):
     exc = make_http_exception(
         incoming_response,
         message="Holy moly!",
-        swagger_result={'msg': 'Kaboom'}
+        swagger_result={'msg': 'Kaboom'},
     )
     assert isinstance(exc, HTTPError)
     assert isinstance(exc, HTTPServerError)

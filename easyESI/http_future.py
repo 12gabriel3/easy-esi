@@ -2,32 +2,32 @@
 import logging
 import sys
 import traceback
+import typing
 from functools import wraps
 from itertools import chain
 
 import monotonic
 import six
-import typing
-from easy_esi_core.content_type import APP_JSON
-from easy_esi_core.content_type import APP_MSGPACK
-from easy_esi_core.exception import MatchingResponseNotFound
-from easy_esi_core.operation import Operation
-from easy_esi_core.response import get_response_spec
-from easy_esi_core.response import IncomingResponse
-from easy_esi_core.unmarshal import unmarshal_schema_object
-from easy_esi_core.validate import validate_schema_object
 from msgpack import unpackb
 
-from easy_esi.config import bravado_config_from_config_dict
-from easy_esi.config import EasyEsiConfig
-from easy_esi.config import CONFIG_DEFAULTS
-from easy_esi.config import RequestConfig
-from easy_esi.exception import EasyEsiConnectionError
-from easy_esi.exception import EasyEsiTimeoutError
-from easy_esi.exception import ForcedFallbackResultError
-from easy_esi.exception import HTTPServerError
-from easy_esi.exception import make_http_exception
-from easy_esi.response import EasyEsiResponse
+from core.content_type import APP_JSON
+from core.content_type import APP_MSGPACK
+from core.exception import MatchingResponseNotFound
+from core.operation import Operation
+from core.response import get_response_spec
+from core.response import IncomingResponse
+from core.unmarshal import unmarshal_schema_object
+from core.validate import validate_schema_object
+from easyESI.config import bravado_config_from_config_dict
+from easyESI.config import CONFIG_DEFAULTS
+from easyESI.config import EasyEsiConfig
+from easyESI.config import RequestConfig
+from easyESI.exception import EasyEsiConnectionError
+from easyESI.exception import EasyEsiTimeoutError
+from easyESI.exception import ForcedFallbackResultError
+from easyESI.exception import HTTPServerError
+from easyESI.exception import make_http_exception
+from easyESI.response import EasyEsiResponse
 
 
 FuncType = typing.Callable[..., typing.Any]
@@ -55,7 +55,7 @@ class FutureAdapter(typing.Generic[T]):
     Mimics a :class:`concurrent.futures.Future` regardless of which client is
     performing the request, whether it is synchronous or actually asynchronous.
 
-    This adapter must be implemented by all easy_esi clients such as FidoClient
+    This adapter must be implemented by all easyESI clients such as FidoClient
     or RequestsClient to wrap the object returned by their 'request' method.
 
     """
@@ -99,7 +99,7 @@ class FutureAdapter(typing.Generic[T]):
             None which means blocking undefinitely.
         """
         raise NotImplementedError(
-            "FutureAdapter must implement 'result' method"
+            "FutureAdapter must implement 'result' method",
         )
 
     def cancel(self):
@@ -138,9 +138,9 @@ class HttpFuture(typing.Generic[T]):
     :param response_adapter: Adapter type which exposes the innards of the HTTP
         response in a non-http client specific way.
     :type response_adapter: type that is a subclass of
-        :class:`easy_esi_core.response.IncomingResponse`.
-    :param RequestConfig request_config: See :class:`easy_esi.config.RequestConfig` and
-        :data:`easy_esi.client.REQUEST_OPTIONS_DEFAULTS`
+        :class:`core.response.IncomingResponse`.
+    :param RequestConfig request_config: See :class:`easyESI.config.RequestConfig` and
+        :data:`easyESI.client.REQUEST_OPTIONS_DEFAULTS`
     """
 
     def __init__(
@@ -164,7 +164,7 @@ class HttpFuture(typing.Generic[T]):
     def _bravado_config(self):
         # type: () -> EasyEsiConfig
         if self.operation:
-            return self.operation.swagger_spec.config['easy_esi']
+            return self.operation.swagger_spec.config['easyESI']
         else:
             return bravado_config_from_config_dict(CONFIG_DEFAULTS)
 
@@ -207,7 +207,7 @@ class HttpFuture(typing.Generic[T]):
                 if self._bravado_config.disable_fallback_results:
                     log.warning(
                         'force_fallback_result set in request options and disable_fallback_results '
-                        'set in client config; not using fallback result.'
+                        'set in client config; not using fallback result.',
                     )
                 else:
                     # raise an exception to trigger fallback result handling
@@ -229,7 +229,7 @@ class HttpFuture(typing.Generic[T]):
             if (
                 fallback_result is not SENTINEL and
                 self.operation and
-                not self.operation.swagger_spec.config['easy_esi'].disable_fallback_results
+                not self.operation.swagger_spec.config['easyESI'].disable_fallback_results
             ):
                 if callable(fallback_result):
                     swagger_result = fallback_result(e)
@@ -314,13 +314,13 @@ def unmarshal_response(
 ):
     # type: (...) -> None
     """So the http_client is finished with its part of processing the response.
-    This hands the response over to easy_esi_core for validation and
+    This hands the response over to core for validation and
     unmarshalling and then runs any response callbacks. On success, the
     swagger_result is available as ``incoming_response.swagger_result``.
-    :type incoming_response: :class:`easy_esi_core.response.IncomingResponse`
-    :type operation: :class:`easy_esi_core.operation.Operation`
+    :type incoming_response: :class:`core.response.IncomingResponse`
+    :type operation: :class:`core.operation.Operation`
     :type response_callbacks: list of callable. See
-        easy_esi_core.client.REQUEST_OPTIONS_DEFAULTS.
+        core.client.REQUEST_OPTIONS_DEFAULTS.
     :raises: HTTPError
         - On 5XX status code, the HTTPError has minimal information.
         - On non-2XX status code with no matching response, the HTTPError
@@ -339,12 +339,13 @@ def unmarshal_response(
     except MatchingResponseNotFound as e:
         exception = make_http_exception(
             response=incoming_response,
-            message=str(e)
+            message=str(e),
         )
         six.reraise(
             type(exception),
             exception,
-            sys.exc_info()[2])
+            sys.exc_info()[2],
+        )
     finally:
         # Always run the callbacks regardless of success/failure
         for response_callback in response_callbacks:
@@ -361,8 +362,8 @@ def unmarshal_response_inner(
     """
     Unmarshal incoming http response into a value based on the
     response specification.
-    :type response: :class:`easy_esi_core.response.IncomingResponse`
-    :type op: :class:`easy_esi_core.operation.Operation`
+    :type response: :class:`core.response.IncomingResponse`
+    :type op: :class:`core.operation.Operation`
     :returns: value where type(value) matches response_spec['schema']['type']
         if it exists, None otherwise.
     """
@@ -401,7 +402,7 @@ def raise_on_unexpected(http_response):
     # type: (IncomingResponse) -> None
     """Raise an HTTPError if the response is 5XX.
 
-    :param http_response: :class:`easy_esi_core.response.IncomingResponse`
+    :param http_response: :class:`core.response.IncomingResponse`
     :raises: HTTPError
     """
     if 500 <= http_response.status_code <= 599:
@@ -413,10 +414,11 @@ def raise_on_expected(http_response):
     """Raise an HTTPError if the response is non-2XX and matches a response
     in the swagger spec.
 
-    :param http_response: :class:`easy_esi_core.response.IncomingResponse`
+    :param http_response: :class:`core.response.IncomingResponse`
     :raises: HTTPError
     """
     if not 200 <= http_response.status_code < 300:
         raise make_http_exception(
             response=http_response,
-            swagger_result=http_response.swagger_result)
+            swagger_result=http_response.swagger_result,
+        )

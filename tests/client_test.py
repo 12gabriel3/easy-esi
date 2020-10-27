@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
+import typing
 from copy import deepcopy
 
 import mock
 import pytest
-import typing
 
-from easy_esi.client import SwaggerClient
-from easy_esi.config import CONFIG_DEFAULTS
-from easy_esi.http_client import HttpClient
-from easy_esi.requests_client import RequestsClient
-from easy_esi.swagger_model import load_file
+from easyESI.client import SwaggerClient
+from easyESI.config import CONFIG_DEFAULTS
+from easyESI.http_client import HttpClient
+from easyESI.requests_client import RequestsClient
+from easyESI.swagger_model import load_file
 
 
 _HTTP_CLIENTS = [None, RequestsClient()]  # type: typing.List[typing.Optional[HttpClient]]
 try:
-    from easy_esi.fido_client import FidoClient
+    from easyESI.fido_client import FidoClient
     _HTTP_CLIENTS.append(FidoClient())
 except ImportError:
     pass
@@ -22,13 +22,13 @@ except ImportError:
 
 @pytest.fixture
 def mock_spec():
-    with mock.patch('easy_esi.client.Spec') as _mock:
+    with mock.patch('easyESI.client.Spec') as _mock:
         yield _mock
 
 
 def test_remove_bravado_configs(mock_spec, processed_default_config):
     config = CONFIG_DEFAULTS.copy()
-    config['validate_swagger_spec'] = False  # easy_esi_core config
+    config['validate_swagger_spec'] = False  # core config
 
     SwaggerClient.from_spec({}, config=config)
 
@@ -37,14 +37,14 @@ def test_remove_bravado_configs(mock_spec, processed_default_config):
         None,  # spec_url
         mock.ANY,  # http_client
         {
-            'easy_esi': processed_default_config,
+            'easyESI': processed_default_config,
             'validate_swagger_spec': False,
         },  # config
     )
 
 
 def test_also_return_response(mock_spec):
-    with mock.patch('easy_esi.client.SwaggerClient.__init__') as mock_init:
+    with mock.patch('easyESI.client.SwaggerClient.__init__') as mock_init:
         mock_init.return_value = None
         SwaggerClient.from_spec({}, config={'also_return_response': True})
 
@@ -60,7 +60,7 @@ def test_also_return_response(mock_spec):
 )
 def swagger_client(request):
     return SwaggerClient.from_spec(
-        spec_dict=load_file('test-data/2.0/simple/swagger.json'),
+        spec_dict=load_file('tests/test-data/2.0/simple/swagger.json'),
         http_client=request.param,
     )
 
@@ -86,7 +86,7 @@ def test_equality_of_the_same_swagger_client(swagger_client):
 
 def test_equality_of_different_swagger_clients(swagger_client):
     assert not swagger_client.is_equal(
-        SwaggerClient.from_spec(spec_dict=load_file('test-data/2.0/petstore/swagger.json')),
+        SwaggerClient.from_spec(spec_dict=load_file('tests/test-data/2.0/petstore/swagger.json')),
     )
 
 

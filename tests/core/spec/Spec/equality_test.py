@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easy_esi_core.spec import Spec
-from tests.conftest import get_url
+from core.spec import Spec
+from tests.core.conftest import get_url
 
 
 def test_equality_of_the_same_object_returns_True(petstore_spec):
     assert petstore_spec.is_equal(petstore_spec)
 
 
-def test_equality_of_different_instances_returns_True_if_the_specs_are_the_same(petstore_spec, petstore_dict, petstore_abspath):
+def test_equality_of_different_instances_returns_True_if_the_specs_are_the_same(
+    petstore_spec,
+    petstore_dict,
+    petstore_abspath,
+):
     other_petstore_spec_instance = Spec.from_dict(petstore_dict, origin_url=get_url(petstore_abspath))
     assert petstore_spec.is_equal(other_petstore_spec_instance)
 
@@ -52,7 +56,11 @@ def test_equality_checks_for_resources(petstore_spec, petstore_dict, petstore_ab
 
 
 @pytest.mark.parametrize('internally_dereference_refs', [True, False])
-def test_equality_of_specs_with_recursive_definition(minimal_swagger_dict, minimal_swagger_abspath, internally_dereference_refs):
+def test_equality_of_specs_with_recursive_definition(
+    minimal_swagger_dict,
+    minimal_swagger_abspath,
+    internally_dereference_refs,
+):
     minimal_swagger_dict['definitions']['recursive_definition'] = {
         'type': 'object',
         'properties': {
@@ -84,7 +92,7 @@ def test_equality_of_specs_with_recursive_definition(minimal_swagger_dict, minim
 def test_equality_early_exit(
     minimal_swagger_dict, minimal_swagger_abspath, __dict__,
 ):
-    # This test is mostly meant to ensure that early exit points of Spec.is_equal are triggered during tests.
+    # This test is mostly meant to ensure that early exit points of Spec.is_equal are triggered during tests.core.
     minimal_swagger_dict['definitions'] = {'model': {'type': 'object'}}
     minimal_swagger_dict['paths']['/new/path'] = {
         'get': {

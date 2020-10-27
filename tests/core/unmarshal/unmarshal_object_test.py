@@ -5,9 +5,9 @@ import datetime
 import pytest
 from dateutil.tz import tzutc
 
-from easy_esi_core.exception import SwaggerMappingError
-from easy_esi_core.spec import Spec
-from easy_esi_core.unmarshal import unmarshal_object
+from core.exception import SwaggerMappingError
+from core.spec import Spec
+from core.unmarshal import unmarshal_object
 
 
 @pytest.fixture

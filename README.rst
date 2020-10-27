@@ -73,7 +73,7 @@ Example with Header Authentication
     http_client = RequestsClient()
     http_client.set_api_key(
         'api.yourhost.com', 'token',
-        param_name='api_key', param_in='header'
+        param_name='api-key', param_in='header'
     )
     client = SwaggerClient.from_url(
         'http://petstore.swagger.io/v2/swagger.json',

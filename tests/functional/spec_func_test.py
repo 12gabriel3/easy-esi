@@ -6,15 +6,16 @@ import httpretty
 import pytest
 from swagger_spec_validator.common import SwaggerValidationError
 
-from easy_esi.client import ResourceDecorator
-from easy_esi.client import SwaggerClient
+from easyESI.client import ResourceDecorator
+from easyESI.client import SwaggerClient
 from tests.functional.conftest import API_DOCS_URL
 from tests.functional.conftest import register_get
 from tests.functional.conftest import register_spec
 
 
 def test_invalid_spec_raises_SwaggerValidationError(
-        httprettified, swagger_dict):
+        httprettified, swagger_dict,
+):
     swagger_dict['paths']['/test_http']['get']['parameters'][0]['type'] = 'X'
     register_spec(swagger_dict)
     with pytest.raises(SwaggerValidationError) as excinfo:
@@ -62,7 +63,8 @@ def test_hostname_if_passed_overrides_origin_url(httprettified, swagger_dict):
 def test_correct_route_with_basePath_no_slash(httprettified, swagger_dict):
     register_get(
         "http://localhost/lame/test/test_http?test_param=foo",
-        body=u'""')
+        body=u'""',
+    )
     swagger_dict["basePath"] = "/lame/test"
     register_spec(swagger_dict)
     resource = SwaggerClient.from_url(API_DOCS_URL).api_test

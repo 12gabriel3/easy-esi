@@ -3,14 +3,14 @@ import pytest
 from mock import Mock
 from six import iteritems
 
-from easy_esi_core.exception import SwaggerSchemaError
-from easy_esi_core.exception import SwaggerSecurityValidationError
-from easy_esi_core.request import IncomingRequest
-from easy_esi_core.request import unmarshal_request
-from easy_esi_core.resource import build_resources
-from easy_esi_core.spec import Spec
-from tests.operation.conftest import SECURITY_DEFINITIONS
-from tests.operation.conftest import SECURITY_OBJECTS
+from core.exception import SwaggerSchemaError
+from core.exception import SwaggerSecurityValidationError
+from core.request import IncomingRequest
+from core.request import unmarshal_request
+from core.resource import build_resources
+from core.spec import Spec
+from tests.core.operation.conftest import SECURITY_DEFINITIONS
+from tests.core.operation.conftest import SECURITY_OBJECTS
 
 
 def test_security_object_and_definition_constants():

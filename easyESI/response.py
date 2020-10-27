@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
-import monotonic
 import typing
-from easy_esi_core.response import IncomingResponse
+
+import monotonic
+
+from core.response import IncomingResponse
 
 if getattr(typing, 'TYPE_CHECKING', False):  # Needed to avoid cyclic import.
-    from easy_esi.config import RequestConfig
+    from easyESI.config import RequestConfig
 
 
 T = typing.TypeVar('T')
@@ -58,11 +60,11 @@ class EasyEsiResponseMetadata(typing.Generic[T]):
     ):
         # type: (...) -> None
         """
-        :param incoming_response: a subclass of easy_esi_core.response.IncomingResponse.
+        :param incoming_response: a subclass of core.response.IncomingResponse.
         :param swagger_result: the unmarshalled result that is being returned to the user.
         :param start_time: monotonic timestamp indicating when the HTTP future was created. Depending on the
             internal operation of the HTTP client used, this is either before the HTTP request was initiated
-            (default client) or right after the HTTP request was sent (e.g. easy_esi-asyncio / fido).
+            (default client) or right after the HTTP request was sent (e.g. easyESI-asyncio / fido).
         :param request_end_time: monotonic timestamp indicating when we received the incoming response,
             excluding unmarshalling, validation or potential fallback result processing.
         :param handled_exception_info: sys.exc_info() data if an exception was caught and handled as

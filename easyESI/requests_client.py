@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
 import copy
 import logging
+import typing
 
 import requests.auth
 import requests.exceptions
 import six
-import typing
-from easy_esi_core.operation import Operation
-from easy_esi_core.response import IncomingResponse
 from six import iteritems
 from six.moves.urllib import parse as urlparse
 
-from easy_esi._equality_util import are_objects_equal as _are_objects_equal
-from easy_esi.config import RequestConfig
-from easy_esi.http_client import HttpClient
-from easy_esi.http_future import FutureAdapter
-from easy_esi.http_future import HttpFuture
+from core.operation import Operation
+from core.response import IncomingResponse
+from easyESI._equality_util import are_objects_equal as _are_objects_equal
+from easyESI.config import RequestConfig
+from easyESI.http_client import HttpClient
+from easyESI.http_future import FutureAdapter
+from easyESI.http_future import HttpFuture
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
@@ -55,8 +55,10 @@ class Authenticator(object):
 
         :param request: Request to add authentication information to.
         """
-        raise NotImplementedError(u"%s: Method not implemented",
-                                  self.__class__.__name__)
+        raise NotImplementedError(
+            u"%s: Method not implemented",
+            self.__class__.__name__,
+        )
 
 
 # noinspection PyDocstring
@@ -75,7 +77,7 @@ class ApiKeyAuthenticator(Authenticator):
         self,
         host,  # type: str
         api_key,  # type: typing.Text
-        param_name=u'api_key',  # type: typing.Text
+        param_name=u'api-key',  # type: typing.Text
         param_in=u'query',  # type: typing.Text
     ):
         # type: (...) -> None
@@ -386,11 +388,11 @@ class RequestsClient(HttpClient):
         :param operation: operation that this http request is for. Defaults
             to None - in which case, we're obviously just retrieving a Swagger
             Spec.
-        :type operation: :class:`easy_esi_core.operation.Operation`
+        :type operation: :class:`core.operation.Operation`
         :param RequestConfig request_config: per-request configuration
 
         :returns: HTTP Future object
-        :rtype: :class: `easy_esi_core.http_future.HttpFuture`
+        :rtype: :class: `core.http_future.HttpFuture`
         """
         sanitized_params, misc_options = self.separate_params(request_params)
 
@@ -424,7 +426,7 @@ class RequestsClient(HttpClient):
         self,
         host,  # type: str
         api_key,  # type: typing.Text
-        param_name=u'api_key',  # type: typing.Text
+        param_name=u'api-key',  # type: typing.Text
         param_in=u'query',  # type: typing.Text
     ):
         # type: (...) -> None

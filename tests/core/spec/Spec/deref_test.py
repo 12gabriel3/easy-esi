@@ -2,7 +2,7 @@
 import pytest
 from jsonschema.exceptions import RefResolutionError
 
-from easy_esi_core.spec import Spec
+from core.spec import Spec
 
 
 def test_none(minimal_swagger_spec):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from easy_esi_core.operation import build_params
-from easy_esi_core.operation import Operation
-from easy_esi_core.spec import Spec
+from core.operation import build_params
+from core.operation import Operation
+from core.spec import Spec
 
 
 def test_no_params(minimal_swagger_dict):

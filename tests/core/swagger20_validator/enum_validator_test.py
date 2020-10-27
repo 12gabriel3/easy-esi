@@ -4,9 +4,9 @@ from jsonschema import ValidationError
 from mock import Mock
 from mock import patch
 
-from easy_esi_core.spec import Spec
-from easy_esi_core.swagger20_validator import enum_validator
-from easy_esi_core.validate import validate_object
+from core.spec import Spec
+from core.swagger20_validator import enum_validator
+from core.validate import validate_object
 
 
 def test_multiple_jsonschema_calls_if_enum_items_present_as_array():
@@ -30,7 +30,7 @@ def test_multiple_jsonschema_calls_if_enum_items_present_as_array():
     assert "'d4' is not one of ['a1', 'b2', 'c3']" in str(errors[0])
 
 
-@patch('easy_esi_core.swagger20_validator._DRAFT4_ENUM_VALIDATOR')
+@patch('core.swagger20_validator._DRAFT4_ENUM_VALIDATOR')
 def test_single_jsonschema_call_if_enum_instance_not_array(jsonschema_enum_validator):
     enums = ['a1', 'b2', 'c3']
     param_schema = {
@@ -44,7 +44,7 @@ def test_single_jsonschema_call_if_enum_instance_not_array(jsonschema_enum_valid
     )
 
 
-@patch('easy_esi_core.swagger20_validator._DRAFT4_ENUM_VALIDATOR')
+@patch('core.swagger20_validator._DRAFT4_ENUM_VALIDATOR')
 def test_skip_validation_for_optional_enum_with_None_value(jsonschema_enum_validator):
     enums = ['encrypted', 'plaintext']
     param_schema = {

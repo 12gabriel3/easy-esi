@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 import base64
+import typing
 import unittest
 
 import httpretty
 import mock
 import pytest
 import requests
-import typing
-from easy_esi_core.response import IncomingResponse
 
-from easy_esi.requests_client import Authenticator
-from easy_esi.requests_client import RequestsClient
+from core.response import IncomingResponse
+from easyESI.requests_client import Authenticator
+from easyESI.requests_client import RequestsClient
 
 
 class RequestsClientTestCase(unittest.TestCase):
@@ -26,7 +26,8 @@ class RequestsClientTestCase(unittest.TestCase):
     def test_simple_get(self):
         httpretty.register_uri(
             httpretty.GET, "http://swagger.py/client-test",
-            body='expected')
+            body='expected',
+        )
 
         client = RequestsClient()
         params = self._default_params()
@@ -36,14 +37,17 @@ class RequestsClientTestCase(unittest.TestCase):
 
         self.assertEqual(200, resp.status_code)
         self.assertEqual('expected', resp.text)
-        self.assertEqual({'foo': ['bar']},
-                         httpretty.last_request().querystring)
+        self.assertEqual(
+            {'foo': ['bar']},
+            httpretty.last_request().querystring,
+        )
 
     @httpretty.activate
     def test_unicode_to_utf8_encode_params(self):
         httpretty.register_uri(
             httpretty.GET, "http://swagger.py/client-test",
-            body='expected')
+            body='expected',
+        )
 
         client = RequestsClient()
         params = self._default_params()
@@ -53,14 +57,17 @@ class RequestsClientTestCase(unittest.TestCase):
 
         self.assertEqual(200, resp.status_code)
         self.assertEqual('expected', resp.text)
-        self.assertEqual({'foo': [u'酒場']},
-                         httpretty.last_request().querystring)
+        self.assertEqual(
+            {'foo': [u'酒場']},
+            httpretty.last_request().querystring,
+        )
 
     @httpretty.activate
     def test_real_post(self):
         httpretty.register_uri(
             httpretty.POST, "http://swagger.py/client-test",
-            body='expected', content_type='text/json')
+            body='expected', content_type='text/json',
+        )
 
         client = RequestsClient()
         params = self._default_params()
@@ -72,16 +79,21 @@ class RequestsClientTestCase(unittest.TestCase):
         self.assertEqual(200, resp.status_code)
         self.assertEqual('expected', resp.text)
 
-        self.assertEqual('application/x-www-form-urlencoded',
-                         httpretty.last_request().headers['content-type'])
-        self.assertEqual(b"foo=bar",
-                         httpretty.last_request().body)
+        self.assertEqual(
+            'application/x-www-form-urlencoded',
+            httpretty.last_request().headers['content-type'],
+        )
+        self.assertEqual(
+            b"foo=bar",
+            httpretty.last_request().body,
+        )
 
     @httpretty.activate
     def test_basic_auth(self):
         httpretty.register_uri(
             httpretty.GET, "http://swagger.py/client-test",
-            body='expected')
+            body='expected',
+        )
 
         client = RequestsClient()
         client.set_basic_auth("swagger.py", 'unit', 'peekaboo')
@@ -92,17 +104,21 @@ class RequestsClientTestCase(unittest.TestCase):
 
         self.assertEqual(200, resp.status_code)
         self.assertEqual('expected', resp.text)
-        self.assertEqual({'foo': ['bar']},
-                         httpretty.last_request().querystring)
+        self.assertEqual(
+            {'foo': ['bar']},
+            httpretty.last_request().querystring,
+        )
         self.assertEqual(
             'Basic %s' % base64.b64encode(b"unit:peekaboo").decode('utf-8'),
-            httpretty.last_request().headers.get('Authorization'))
+            httpretty.last_request().headers.get('Authorization'),
+        )
 
     @httpretty.activate
     def test_api_key(self):
         httpretty.register_uri(
             httpretty.GET, "http://swagger.py/client-test",
-            body='expected')
+            body='expected',
+        )
 
         client = RequestsClient()
         client.set_api_key("swagger.py", 'abc123', param_name='test')
@@ -113,19 +129,24 @@ class RequestsClientTestCase(unittest.TestCase):
 
         self.assertEqual(200, resp.status_code)
         self.assertEqual('expected', resp.text)
-        self.assertEqual({'foo': ['bar'], 'test': ['abc123']},
-                         httpretty.last_request().querystring)
+        self.assertEqual(
+            {'foo': ['bar'], 'test': ['abc123']},
+            httpretty.last_request().querystring,
+        )
         self.assertEqual(None, httpretty.last_request().headers.get('test'))
 
     @httpretty.activate
     def test_api_key_header(self):
         httpretty.register_uri(
             httpretty.GET, "http://swagger.py/client-test",
-            body='expected')
+            body='expected',
+        )
 
         client = RequestsClient()
-        client.set_api_key("swagger.py", 'abc123', param_name='Key',
-                           param_in='header')
+        client.set_api_key(
+            "swagger.py", 'abc123', param_name='Key',
+            param_in='header',
+        )
         params = self._default_params()
         params['params'] = {'foo': 'bar'}
 
@@ -133,19 +154,24 @@ class RequestsClientTestCase(unittest.TestCase):
 
         self.assertEqual(200, resp.status_code)
         self.assertEqual('expected', resp.text)
-        self.assertEqual({'foo': ['bar']},
-                         httpretty.last_request().querystring)
+        self.assertEqual(
+            {'foo': ['bar']},
+            httpretty.last_request().querystring,
+        )
         self.assertEqual('abc123', httpretty.last_request().headers['Key'])
 
     @httpretty.activate
     def test_api_key_header_overwrite(self):
         httpretty.register_uri(
             httpretty.GET, "http://swagger.py/client-test",
-            body='expected')
+            body='expected',
+        )
 
         client = RequestsClient()
-        client.set_api_key("swagger.py", 'abc123', param_name='Key',
-                           param_in='header')
+        client.set_api_key(
+            "swagger.py", 'abc123', param_name='Key',
+            param_in='header',
+        )
         params = self._default_params()
         params['params'] = {'foo': 'bar'}
         params['headers'] = {'Key': 'def456'}
@@ -154,15 +180,18 @@ class RequestsClientTestCase(unittest.TestCase):
 
         self.assertEqual(200, resp.status_code)
         self.assertEqual('expected', resp.text)
-        self.assertEqual({'foo': ['bar']},
-                         httpretty.last_request().querystring)
+        self.assertEqual(
+            {'foo': ['bar']},
+            httpretty.last_request().querystring,
+        )
         self.assertEqual('def456', httpretty.last_request().headers['Key'])
 
     @httpretty.activate
     def test_auth_leak(self):
         httpretty.register_uri(
             httpretty.GET, "http://hackerz.py",
-            body='expected')
+            body='expected',
+        )
 
         client = RequestsClient()
         client.set_basic_auth("swagger.py", 'unit', 'peekaboo')
@@ -174,10 +203,13 @@ class RequestsClientTestCase(unittest.TestCase):
 
         self.assertEqual(200, resp.status_code)
         self.assertEqual('expected', resp.text)
-        self.assertEqual({'foo': ['bar']},
-                         httpretty.last_request().querystring)
+        self.assertEqual(
+            {'foo': ['bar']},
+            httpretty.last_request().querystring,
+        )
         self.assertTrue(
-            httpretty.last_request().headers.get('Authorization') is None)
+            httpretty.last_request().headers.get('Authorization') is None,
+        )
 
 
 class AuthenticatorTestCase(unittest.TestCase):
@@ -200,7 +232,8 @@ def mock_request():
         requests.Request,
         method='GET',
         url='http://example.com',
-        params={})
+        params={},
+    )
 
 
 @pytest.mark.xfail(reason='Removed SynchronousEventual from http client')
@@ -213,7 +246,8 @@ class TestSynchronousEventual(object):
 
         mock_session.send.assert_called_once_with(
             mock_session.prepare_request.return_value,
-            timeout=timeout)
+            timeout=timeout,
+        )
 
     def test_cancel(self, mock_session, mock_request):
         # sync_eventual = SynchronousEventual(mock_session, mock_request)

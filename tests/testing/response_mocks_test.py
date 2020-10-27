@@ -3,14 +3,14 @@ import inspect
 
 import mock
 import pytest
-from easy_esi_core.response import IncomingResponse
 
-from easy_esi.config import RequestConfig
-from easy_esi.exception import HTTPServerError
-from easy_esi.http_future import HttpFuture
-from easy_esi.response import EasyEsiResponseMetadata
-from easy_esi.testing.response_mocks import EasyEsiResponseMock
-from easy_esi.testing.response_mocks import FallbackResultEasyEsiResponseMock
+from core.response import IncomingResponse
+from easyESI.config import RequestConfig
+from easyESI.exception import HTTPServerError
+from easyESI.http_future import HttpFuture
+from easyESI.response import EasyEsiResponseMetadata
+from easyESI.testing.response_mocks import EasyEsiResponseMock
+from easyESI.testing.response_mocks import FallbackResultEasyEsiResponseMock
 
 
 @pytest.fixture

@@ -2,15 +2,15 @@
 import mock
 import pytest
 
-from easy_esi_core.model import _run_post_processing
-from easy_esi_core.model import model_discovery
-from easy_esi_core.spec import Spec
+from core.model import _run_post_processing
+from core.model import model_discovery
+from core.spec import Spec
 
 
 @pytest.fixture
 def wrap__run_post_processing():
     with mock.patch(
-        'easy_esi_core.model._run_post_processing',
+        'core.model._run_post_processing',
         wraps=_run_post_processing,
     ) as _wrap__run_post_processing:
         yield _wrap__run_post_processing
@@ -39,7 +39,7 @@ def test_model_discovery_flow_with_ref_dereference(wrap__run_post_processing, mi
 
     # _run_post_processing is called 3 times
     # 1. post processing on initial specs
-    # 2. post processing on on easy_esi_core.spec_flattening.flattened_spec
+    # 2. post processing on on core.spec_flattening.flattened_spec
     # 3. post processing to rebuild definitions to remove possible references in the model specs
     assert wrap__run_post_processing.call_count == 3
 

@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
 from mock import patch
 
-from easy_esi_core.param import cast_request_param
+from core.param import cast_request_param
 
 
-@patch('easy_esi_core.param.log')
+@patch('core.param.log')
 def test_logs_cast_failure(mock_logger):
     cast_request_param('integer', 'gimme_int', 'not_int')
     assert mock_logger.warning.call_count == 1
 
 
-@patch('easy_esi_core.param.log')
+@patch('core.param.log')
 def test_cast_failures_return_untouched_value(mock_logger):
     initial_val = 'not_int'
     result_val = cast_request_param('integer', 'gimme_int', initial_val)
     assert result_val == initial_val
 
 
-@patch('easy_esi_core.param.log')
+@patch('core.param.log')
 def test_type_error_returns_untouched_value_and_logs(mock_logger):
     initial_val = ['123', '456']
     result_val = cast_request_param('integer', 'gimme_int', initial_val)

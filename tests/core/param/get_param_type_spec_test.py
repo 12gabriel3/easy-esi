@@ -2,11 +2,11 @@
 import pytest
 from mock import Mock
 
-from easy_esi_core.exception import SwaggerMappingError
-from easy_esi_core.operation import Operation
-from easy_esi_core.param import get_param_type_spec
-from easy_esi_core.param import Param
-from easy_esi_core.spec import Spec
+from core.exception import SwaggerMappingError
+from core.operation import Operation
+from core.param import get_param_type_spec
+from core.param import Param
+from core.spec import Spec
 
 
 @pytest.fixture

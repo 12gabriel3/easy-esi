@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easy_esi_core.exception import SwaggerMappingError
-from easy_esi_core.schema import handle_null_value
+from core.exception import SwaggerMappingError
+from core.schema import handle_null_value
 
 
 def test_default(empty_swagger_spec):

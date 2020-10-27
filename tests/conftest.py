@@ -4,8 +4,8 @@ import os
 
 import pytest
 
-from easy_esi.config import EasyEsiConfig
-from easy_esi.response import EasyEsiResponseMetadata
+from easyESI.config import EasyEsiConfig
+from easyESI.response import EasyEsiResponseMetadata
 
 
 @pytest.fixture
@@ -28,6 +28,6 @@ def processed_default_config(**kwargs):
 
 @pytest.fixture
 def petstore_dict(test_dir):
-    fpath = os.path.join(test_dir, '../test-data/2.0/petstore/swagger.json')
+    fpath = os.path.join(test_dir, 'test-data/2.0/petstore/swagger.json')
     with open(fpath) as f:
         return json.load(f)

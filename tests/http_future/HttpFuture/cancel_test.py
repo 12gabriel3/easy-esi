@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 import mock
 import pytest
-from easy_esi_core.response import IncomingResponse
 
-from easy_esi.http_future import FutureAdapter
-from easy_esi.http_future import HttpFuture
+from core.response import IncomingResponse
+from easyESI.http_future import FutureAdapter
+from easyESI.http_future import HttpFuture
 
 
 @pytest.fixture
 def mock_log():
-    with mock.patch('easy_esi.http_future.log') as mock_log:
+    with mock.patch('easyESI.http_future.log') as mock_log:
         yield mock_log
 
 

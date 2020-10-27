@@ -9,8 +9,8 @@ import pytest
 import simplejson
 from jsonschema.exceptions import ValidationError
 
-from easy_esi.client import SwaggerClient
-from easy_esi.exception import HTTPError
+from easyESI.client import SwaggerClient
+from easyESI.exception import HTTPError
 from tests.functional.conftest import API_DOCS_URL
 from tests.functional.conftest import register_get
 from tests.functional.conftest import register_spec
@@ -18,7 +18,8 @@ from tests.functional.conftest import register_spec
 
 register_test_http = functools.partial(
     register_get,
-    'http://localhost/test_http?test_param=foo')
+    'http://localhost/test_http?test_param=foo',
+)
 
 
 def assert_result(expected_result):
@@ -55,7 +56,7 @@ def test_primitive_types_returned_in_response(httprettified, swagger_dict):
         'string': '"test"',
         'integer': 42,
         'number': 3.4,
-        'boolean': True
+        'boolean': True,
     }
     for rtype, rvalue in rtypes.items():
         register_spec(swagger_dict, {'type': rtype})
@@ -64,12 +65,13 @@ def test_primitive_types_returned_in_response(httprettified, swagger_dict):
 
 
 def test_invalid_primitive_types_in_response_raises_ValidationError(
-        httprettified, swagger_dict):
+        httprettified, swagger_dict,
+):
     rtypes = {
         'string': 42,
         'integer': 3.4,
         'number': 'foo',
-        'boolean': '"NOT_BOOL"'
+        'boolean': '"NOT_BOOL"',
     }
     for rtype, rvalue in rtypes.items():
         register_spec(swagger_dict, {'type': rtype})

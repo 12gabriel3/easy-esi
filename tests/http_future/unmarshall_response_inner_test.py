@@ -2,12 +2,12 @@
 import mock
 import msgpack
 import pytest
-from easy_esi_core.content_type import APP_JSON
-from easy_esi_core.content_type import APP_MSGPACK
-from easy_esi_core.response import IncomingResponse
-from easy_esi_core.spec import Spec
 
-from easy_esi.http_future import unmarshal_response_inner
+from core.content_type import APP_JSON
+from core.content_type import APP_MSGPACK
+from core.response import IncomingResponse
+from core.spec import Spec
+from easyESI.http_future import unmarshal_response_inner
 
 
 @pytest.fixture
@@ -21,19 +21,19 @@ def response_spec():
         'description': "Day of the week",
         'schema': {
             'type': 'string',
-        }
+        },
     }
 
 
 @pytest.fixture
 def mock_get_response_spec():
-    with mock.patch('easy_esi.http_future.get_response_spec') as m:
+    with mock.patch('easyESI.http_future.get_response_spec') as m:
         yield m
 
 
 @pytest.fixture
 def mock_validate_schema_object():
-    with mock.patch('easy_esi.http_future.validate_schema_object') as m:
+    with mock.patch('easyESI.http_future.validate_schema_object') as m:
         yield m
 
 
@@ -95,7 +95,7 @@ def test_binary_content(mock_get_response_spec, empty_swagger_spec, response_spe
         status_code=200,
         headers={'content-type': 'application/octet-stream'},
         text='Monday',
-        raw_bytes='SomeBinaryData'
+        raw_bytes='SomeBinaryData',
     )
 
     mock_get_response_spec.return_value = response_spec

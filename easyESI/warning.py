@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
+import typing
 import warnings
 
-import typing
-
 if getattr(typing, 'TYPE_CHECKING', False):  # Needed to avoid cyclic import.
-    from easy_esi.client import CallableOperation
+    from easyESI.client import CallableOperation
 
 
 def warn_for_deprecated_op(op):
@@ -16,7 +15,8 @@ def warn_for_deprecated_op(op):
     """
     if op.op_spec.get('deprecated', False):
         message = "[DEPRECATED] {0} has now been deprecated. ".format(
-            op.operation_id)
+            op.operation_id,
+        )
 
         dep_date = op.op_spec.get('x-deprecated-date')
         if dep_date:

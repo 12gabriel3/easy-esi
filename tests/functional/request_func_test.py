@@ -6,7 +6,7 @@ import httpretty
 from six.moves import cStringIO
 from six.moves.urllib import parse as urlparse
 
-from easy_esi.client import SwaggerClient
+from easyESI.client import SwaggerClient
 from tests.functional.conftest import API_DOCS_URL
 from tests.functional.conftest import register_get
 from tests.functional.conftest import register_spec
@@ -16,12 +16,12 @@ def test_form_params_in_request(httprettified, swagger_dict):
     param1_spec = {
         'in': 'formData',
         'name': 'param_id',
-        'type': 'integer'
+        'type': 'integer',
     }
     param2_spec = {
         'in': 'formData',
         'name': 'param_name',
-        'type': 'string'
+        'type': 'string',
     }
     path_spec = swagger_dict['paths']['/test_http']
     path_spec['post'] = path_spec.pop('get')
@@ -40,12 +40,12 @@ def test_file_upload_in_request(httprettified, swagger_dict):
     param1_spec = {
         'in': 'formData',
         'name': 'param_id',
-        'type': 'integer'
+        'type': 'integer',
     }
     param2_spec = {
         'in': 'formData',
         'name': 'file_name',
-        'type': 'file'
+        'type': 'file',
     }
     path_spec = swagger_dict['paths']['/test_http']
     path_spec['post'] = path_spec.pop('get')
@@ -72,7 +72,8 @@ def test_parameter_in_path_of_request(httprettified, swagger_dict):
     paths_spec = swagger_dict['paths']
     paths_spec['/test_http/{param_id}'] = paths_spec.pop('/test_http')
     paths_spec['/test_http/{param_id}']['get']['parameters'].append(
-        path_param_spec)
+        path_param_spec,
+    )
     register_spec(swagger_dict)
     register_get('http://localhost/test_http/42?test_param=foo')
     resource = SwaggerClient.from_url(API_DOCS_URL).api_test
@@ -91,13 +92,14 @@ def test_default_value_not_in_request(httprettified, swagger_dict):
 
 
 def test_array_with_collection_format_in_path_of_request(
-        httprettified, swagger_dict):
+        httprettified, swagger_dict,
+):
     path_param_spec = {
         'in': 'path',
         'name': 'param_ids',
         'type': 'array',
         'items': {
-            'type': 'integer'
+            'type': 'integer',
         },
         'collectionFormat': 'csv',
         'required': True,

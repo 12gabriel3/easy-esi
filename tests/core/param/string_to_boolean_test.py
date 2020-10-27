@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easy_esi_core.param import string_to_boolean
+from core.param import string_to_boolean
 
 
 def test_boolean_true_is_true_or_1():

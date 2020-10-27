@@ -14,8 +14,8 @@ from six.moves.urllib.request import pathname2url
 from six.moves.urllib.request import url2pathname
 from swagger_spec_validator.common import SwaggerValidationWarning
 
-from easy_esi_core.spec import CONFIG_DEFAULTS
-from easy_esi_core.spec import Spec
+from core.spec import CONFIG_DEFAULTS
+from core.spec import Spec
 
 
 @pytest.fixture
@@ -276,7 +276,8 @@ def check_object_deepcopy(obj):
     an equivalent instance (via equality, __eq__) and that the copied object and related properties are
     pointing to different objects (different ids).
 
-    NOTE: This method does work not really work well for all the possible types (ie. passing `str` in here would cause issue)
+    NOTE: This method does work not really work well for all the possible types
+            (ie. passing `str` in here would cause issue)
           but it's good enough to check deep-copyability of custom object types (ie. class Something(object): ...)
 
     :returns: deepcopy ob obj

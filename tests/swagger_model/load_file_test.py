@@ -4,19 +4,19 @@ import sys
 
 import pytest
 
-from easy_esi.swagger_model import load_file
+from easyESI.swagger_model import load_file
 
 
 def test_success():
-    spec_json = load_file('test-data/2.0/simple/swagger.json')
+    spec_json = load_file('tests/test-data/2.0/simple/swagger.json')
     assert '2.0' == spec_json['swagger']
 
 
 @pytest.mark.parametrize(
     'filename',
     (
-        ('test-data/2.0/simple/swagger.yaml'),
-        ('test-data/2.0/petstore/swagger.yaml'),
+        ('tests/test-data/2.0/simple/swagger.yaml'),
+        ('tests/test-data/2.0/petstore/swagger.yaml'),
     ),
 )
 def test_success_yaml(filename):
@@ -25,8 +25,8 @@ def test_success_yaml(filename):
 
 
 def test_spec_internal_representation_identical():
-    spec_json = load_file('test-data/2.0/petstore/swagger.json')
-    spec_yaml = load_file('test-data/2.0/petstore/swagger.yaml')
+    spec_json = load_file('tests/test-data/2.0/petstore/swagger.json')
+    spec_yaml = load_file('tests/test-data/2.0/petstore/swagger.yaml')
 
     assert spec_yaml == spec_json
 

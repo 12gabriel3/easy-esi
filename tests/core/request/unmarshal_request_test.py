@@ -2,10 +2,10 @@
 import pytest
 from mock import Mock
 
-from easy_esi_core.exception import SwaggerMappingError
-from easy_esi_core.operation import Operation
-from easy_esi_core.request import IncomingRequest
-from easy_esi_core.request import unmarshal_request
+from core.exception import SwaggerMappingError
+from core.operation import Operation
+from core.request import IncomingRequest
+from core.request import unmarshal_request
 
 
 def test_request_with_path_parameter(getPetByIdPetstoreOperation):

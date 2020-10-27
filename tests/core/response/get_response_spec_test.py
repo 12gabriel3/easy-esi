@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easy_esi_core.exception import MatchingResponseNotFound
-from easy_esi_core.operation import Operation
-from easy_esi_core.response import get_response_spec
+from core.exception import MatchingResponseNotFound
+from core.operation import Operation
+from core.response import get_response_spec
 
 
 @pytest.fixture

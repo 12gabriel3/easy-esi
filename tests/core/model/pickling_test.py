@@ -2,9 +2,9 @@
 from six import iterkeys
 from six.moves.cPickle import dumps
 
-from easy_esi_core.model import _from_pickleable_representation
-from easy_esi_core.model import _to_pickleable_representation
-from easy_esi_core.model import ModelDocstring
+from core.model import _from_pickleable_representation
+from core.model import _to_pickleable_representation
+from core.model import ModelDocstring
 
 
 def test_ensure_pickleable_representation_is_pickleable(cat_type):

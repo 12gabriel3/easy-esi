@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easy_esi.client import ResourceDecorator
-from easy_esi.client import SwaggerClient
+from easyESI.client import ResourceDecorator
+from easyESI.client import SwaggerClient
 
 
 def test_resource_exists(petstore_client):
@@ -21,7 +21,7 @@ def client_tags_with_spaces():
         'swagger': '2.0',
         'info': {
             'version': '',
-            'title': 'API'
+            'title': 'API',
         },
         'paths': {
             '/ping': {
@@ -29,15 +29,15 @@ def client_tags_with_spaces():
                     'operationId': 'ping',
                     'responses': {
                         '200': {
-                            'description': 'ping'
-                        }
+                            'description': 'ping',
+                        },
                     },
                     'tags': [
-                        'my tag'
-                    ]
-                }
-            }
-        }
+                        'my tag',
+                    ],
+                },
+            },
+        },
     })
 
 

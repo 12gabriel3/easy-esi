@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
-import pytest
 import typing
-from easy_esi_core.operation import Operation
-from easy_esi_core.response import IncomingResponse
+
+import pytest
 from mock import Mock
 from mock import patch
 
-from easy_esi.config import RequestConfig
-from easy_esi.exception import HTTPError
-from easy_esi.http_future import HttpFuture
+from core.operation import Operation
+from core.response import IncomingResponse
+from easyESI.config import RequestConfig
+from easyESI.exception import HTTPError
+from easyESI.http_future import HttpFuture
 
 
 def test_200_get_swagger_spec(mock_future_adapter):
@@ -29,17 +30,19 @@ def test_500_get_swagger_spec(mock_future_adapter):
     with pytest.raises(HTTPError) as excinfo:
         HttpFuture(
             future=mock_future_adapter,
-            response_adapter=response_adapter_type).result()
+            response_adapter=response_adapter_type,
+        ).result()
 
     assert excinfo.value.response.status_code == 500
 
 
-@patch('easy_esi.http_future.unmarshal_response', autospec=True)
+@patch('easyESI.http_future.unmarshal_response', autospec=True)
 def test_200_service_call(_, mock_future_adapter):
     response_adapter_instance = Mock(
         spec=IncomingResponse,
         status_code=200,
-        swagger_result='hello world')
+        swagger_result='hello world',
+    )
 
     response_adapter_type = Mock(return_value=response_adapter_instance)
 
@@ -52,12 +55,13 @@ def test_200_service_call(_, mock_future_adapter):
     assert 'hello world' == http_future.result()
 
 
-@patch('easy_esi.http_future.unmarshal_response', autospec=True)
+@patch('easyESI.http_future.unmarshal_response', autospec=True)
 def test_400_service_call(mock_unmarshal_response, mock_future_adapter):
     response_adapter_instance = Mock(
         spec=IncomingResponse,
         status_code=400,
-        swagger_result={'error': 'Blah'})
+        swagger_result={'error': 'Blah'},
+    )
     mock_unmarshal_response.side_effect = HTTPError(response_adapter_instance)
     response_adapter_type = Mock(return_value=response_adapter_instance)
 
@@ -72,14 +76,15 @@ def test_400_service_call(mock_unmarshal_response, mock_future_adapter):
     assert excinfo.value.response.status_code == 400
 
 
-@patch('easy_esi.http_future.unmarshal_response', autospec=True)
+@patch('easyESI.http_future.unmarshal_response', autospec=True)
 def test_also_return_response_true(_, mock_future_adapter):
     # Verify HTTPFuture(..., also_return_response=True).result()
     # returns the (swagger_result, http_response) and not just swagger_result
     response_adapter_instance = Mock(
         spec=IncomingResponse,
         status_code=200,
-        swagger_result='hello world')
+        swagger_result='hello world',
+    )
     response_adapter_type = Mock(return_value=response_adapter_instance)
 
     http_future = HttpFuture(

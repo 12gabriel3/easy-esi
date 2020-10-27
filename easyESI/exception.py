@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import typing
-from easy_esi_core.response import IncomingResponse
+
 from six import with_metaclass
+
+from core.response import IncomingResponse
 
 try:
     # ignored type ConnectionError is introduced in python3.3+ (mypy runs as 2.7)
@@ -65,7 +67,7 @@ class HTTPError(with_metaclass(HTTPErrorType, IOError)):
     ):
         # type: (...) -> None
         """
-        :type response: :class:`easy_esi_core.response.IncomingResponse`
+        :type response: :class:`core.response.IncomingResponse`
         :param message: Optional string message
         :param swagger_result: If the response for this HTTPError is
             documented in the swagger spec, then this should be the result
@@ -98,7 +100,7 @@ def make_http_exception(
     Return an HTTP exception class  based on the response. If a specific
     class doesn't exist for a particular HTTP status code, a more
     general :class:`HTTPError` class will be returned.
-    :type response: :class:`easy_esi_core.response.IncomingResponse`
+    :type response: :class:`core.response.IncomingResponse`
     :param message: Optional string message
     :param swagger_result: If the response for this HTTPError is
         documented in the swagger spec, then this should be the result

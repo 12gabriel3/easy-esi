@@ -3,12 +3,12 @@ import msgpack
 import pytest
 from mock import Mock
 
-from easy_esi_core.content_type import APP_MSGPACK
-from easy_esi_core.exception import SwaggerMappingError
-from easy_esi_core.operation import Operation
-from easy_esi_core.response import EMPTY_BODIES
-from easy_esi_core.response import OutgoingResponse
-from easy_esi_core.response import validate_response_body
+from core.content_type import APP_MSGPACK
+from core.exception import SwaggerMappingError
+from core.operation import Operation
+from core.response import EMPTY_BODIES
+from core.response import OutgoingResponse
+from core.response import validate_response_body
 
 
 def test_success_spec_empty_and_body_empty(minimal_swagger_spec):
@@ -120,7 +120,7 @@ def test_failure_response_content_type_not_supported_by_operation(minimal_swagge
     assert 'is not supported' in str(excinfo.value)
 
 
-def test_failure_response_content_type_not_supported_by_easy_esi_core(minimal_swagger_spec):
+def test_failure_response_content_type_not_supported_by_core(minimal_swagger_spec):
     response_spec = {
         'description': 'I return an int',
         'schema': {

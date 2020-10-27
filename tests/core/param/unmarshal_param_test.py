@@ -5,11 +5,11 @@ import pytest
 from mock import Mock
 from mock import patch
 
-from easy_esi_core.operation import Operation
-from easy_esi_core.param import Param
-from easy_esi_core.param import unmarshal_param
-from easy_esi_core.request import IncomingRequest
-from easy_esi_core.spec import Spec
+from core.operation import Operation
+from core.param import Param
+from core.param import unmarshal_param
+from core.request import IncomingRequest
+from core.spec import Spec
 
 
 @pytest.fixture
@@ -238,7 +238,7 @@ def test_body(empty_swagger_spec, param_spec):
 
 
 def assert_validate_call_count(expected_call_count, config, petstore_dict):
-    with patch('easy_esi_core.param.validate_schema_object') as m_validate:
+    with patch('core.param.validate_schema_object') as m_validate:
         petstore_spec = Spec.from_dict(petstore_dict, config=config)
         request = Mock(spec=IncomingRequest, path={'petId': 34})
         op = petstore_spec.resources['pet'].operations['getPetById']

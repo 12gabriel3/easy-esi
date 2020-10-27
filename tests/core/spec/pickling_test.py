@@ -4,8 +4,8 @@ import pytest
 from six.moves.cPickle import dumps
 from six.moves.cPickle import loads
 
-from easy_esi_core.spec import Spec
-from tests.conftest import get_url
+from core.spec import Spec
+from tests.core.conftest import get_url
 
 
 @pytest.mark.parametrize('validate_swagger_spec', [True, False])
@@ -23,7 +23,7 @@ def test_ensure_spec_is_pickleable(petstore_dict, petstore_abspath, internally_d
 
 
 def test_ensure_warning_presence_in_case_of_version_mismatch(petstore_spec):
-    with mock.patch('easy_esi_core.spec._version', '0.0.0'):
+    with mock.patch('core.spec._version', '0.0.0'):
         petstore_pickle = dumps(petstore_spec)
 
     with pytest.warns(UserWarning, match='different easy-esi-core version.*created by version 0.0.0, current version'):

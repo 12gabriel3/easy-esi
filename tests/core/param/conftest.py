@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easy_esi_core.spec import Spec
+from core.spec import Spec
 
 
 @pytest.fixture

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
-from easy_esi_core.spec import Spec
 
-from easy_esi.client import SwaggerClient
+from core.spec import Spec
+from easyESI.client import SwaggerClient
 
 
 @pytest.fixture
@@ -28,13 +28,13 @@ def minimal_swagger_dict(getPetById_spec):
     spec_dict = {
         'paths': {
             '/pet/{petId}': {
-                'get': getPetById_spec
-            }
+                'get': getPetById_spec,
+            },
         },
         'securityDefinitions': {
-            'api_key': {
+            'api-key': {
                 'type': 'apiKey',
-                'name': 'api_key',
+                'name': 'api-key',
                 'in': 'header',
             },
         },

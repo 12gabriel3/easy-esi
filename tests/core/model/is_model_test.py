@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from easy_esi_core.model import is_model
-from easy_esi_core.spec import Spec
+from core.model import is_model
+from core.spec import Spec
 
 
 @pytest.fixture
