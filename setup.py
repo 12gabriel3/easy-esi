@@ -4,6 +4,7 @@
 # Copyright (c) 2014-2016, Yelp, Inc.
 import os
 
+from setuptools import find_packages
 from setuptools import setup
 
 import easyesi
@@ -22,7 +23,7 @@ setup(
     author='Digium, Inc. , Yelp, Inc. and Gabriel Aguiar',
     author_email='opensource+aguiargab@gmail.com',
     url='https://github.com/Yelp/bravado',
-    packages=['easyesi', 'easyesi.core'],
+    packages=find_packages(),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
