@@ -1,5 +1,5 @@
 [run]
-# branch = True # TODO: Enable branch coverage
+branch = True
 source =
     easyESI/
     core/
