@@ -1,15 +1,15 @@
 [run]
 # branch = True # TODO: Enable branch coverage
 source =
-    easyESI/
-    core/
+    easyESI/*
+    core/*
 
 [report]
 show_missing = True
 skip_covered = True
 omit =
     # Omit _compat_typing as it is only used during type checking
-    easy_esi_core/_compat_typing.py
+    core/_compat_typing.py
     .tox/*
     venv/*
     /usr/*
