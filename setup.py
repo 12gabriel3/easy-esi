@@ -23,7 +23,7 @@ setup(
     author='Digium, Inc. , Yelp, Inc. and Gabriel Aguiar',
     author_email='opensource+aguiargab@gmail.com',
     url='https://github.com/Yelp/bravado',
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests/']),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
