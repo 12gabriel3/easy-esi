@@ -19,7 +19,7 @@ from easyESI.http_future import HttpFuture
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    T = typing.TypeVar('T')
+    T = typing.TypeVar('T')  # pragma: no cover
 
 
 log = logging.getLogger(__name__)

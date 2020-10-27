@@ -9,7 +9,7 @@ from core.util import RecursiveCallException
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from core.spec import Spec
+    from core.spec import Spec  # pragma: no cover
     from core._compat_typing import JSONDict
     from core._compat_typing import Func
 

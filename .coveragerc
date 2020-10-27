@@ -22,5 +22,6 @@ exclude_lines =
     raise NotImplementedError
     if __name__ == .__main__.:
     if getattr(typing, 'TYPE_CHECKING', False):
+    _compat_typing
     pragma: no cover
     @bottle.(get|post|route)

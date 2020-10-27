@@ -21,7 +21,7 @@ if getattr(typing, 'TYPE_CHECKING', False):
     from core._compat_typing import JSONDict
     from core._compat_typing import MarshalingMethod  # noqa: F401
     from core._compat_typing import UnmarshalingMethod  # noqa: F401
-    from core.spec import Spec
+    from core.spec import Spec  # pragma: no cover
 
     T = typing.TypeVar('T')
 

@@ -10,7 +10,7 @@ from core.exception import SwaggerMappingError
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from core.spec import Spec
+    from core.spec import Spec  # pragma: no cover
     from core._compat_typing import JSONDict
 
 

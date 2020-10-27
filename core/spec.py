@@ -46,7 +46,7 @@ from core.util import strip_xscope
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from core.formatter import SwaggerFormat
+    from core.formatter import SwaggerFormat  # pragma: no cover
 
     T = typing.TypeVar('T')
 

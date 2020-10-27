@@ -29,8 +29,8 @@ if getattr(typing, 'TYPE_CHECKING', False):
     from core._compat_typing import JSONDict
     from core._compat_typing import NoReturn
     from core._compat_typing import UnmarshalingMethod
-    from core.model import Model
-    from core.spec import Spec
+    from core.model import Model  # pragma: no cover
+    from core.spec import Spec  # pragma: no cover
 
 
 _NOT_FOUND = object()

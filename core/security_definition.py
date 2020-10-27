@@ -6,7 +6,7 @@ from copy import deepcopy
 
 if getattr(typing, 'TYPE_CHECKING', False):
     from core._compat_typing import JSONDict
-    from core.spec import Spec
+    from core.spec import Spec  # pragma: no cover
 
 
 log = logging.getLogger(__name__)

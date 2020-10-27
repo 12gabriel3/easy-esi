@@ -22,7 +22,7 @@ except ImportError:
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    T = typing.TypeVar('T')
+    T = typing.TypeVar('T')  # pragma: no cover
 
 
 # Dictionary of HTTP status codes to exception classes
@@ -40,7 +40,7 @@ def _register_exception(exception_class):
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    T2 = typing.TypeVar('T2', bound=type)
+    T2 = typing.TypeVar('T2', bound=type)  # pragma: no cover
 
 
 class HTTPErrorType(type):

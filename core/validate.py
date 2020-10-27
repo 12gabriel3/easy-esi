@@ -22,8 +22,8 @@ from core.swagger20_validator import get_validator_type
 if getattr(typing, 'TYPE_CHECKING', False):
     from core._compat_typing import JSONDict
     from core._compat_typing import FuncType
-    from core.operation import Operation
-    from core.spec import Spec
+    from core.operation import Operation  # pragma: no cover
+    from core.spec import Spec  # pragma: no cover
 
 
 def scrub_sensitive_value(func):

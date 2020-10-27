@@ -16,7 +16,7 @@ from core.util import sanitize_name
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from core.spec import Spec
+    from core.spec import Spec  # pragma: no cover
 
 
 log = logging.getLogger(__name__)

@@ -3,7 +3,7 @@ import typing
 import warnings
 
 if getattr(typing, 'TYPE_CHECKING', False):  # Needed to avoid cyclic import.
-    from easyESI.client import CallableOperation
+    from easyESI.client import CallableOperation  # pragma: no cover
 
 
 def warn_for_deprecated_op(op):

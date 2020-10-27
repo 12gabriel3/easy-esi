@@ -17,8 +17,8 @@ if getattr(typing, 'TYPE_CHECKING', False):
     from core._compat_typing import FuncType
     from core._compat_typing import JSONDict
 
-    CacheKey = typing.Tuple[typing.Tuple[typing.Text, int], ...]
-    T = typing.TypeVar('T')
+    CacheKey = typing.Tuple[typing.Tuple[typing.Text, int], ...]  # pragma: no cover
+    T = typing.TypeVar('T')  # pragma: no cover
 
 
 SANITIZE_RULES = [

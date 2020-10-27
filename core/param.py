@@ -16,8 +16,8 @@ from core.validate import validate_schema_object
 
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from core.operation import Operation
-    from core.spec import Spec
+    from core.operation import Operation  # pragma: no cover
+    from core.spec import Spec  # pragma: no cover
     from core._compat_typing import JSONDict
 
 

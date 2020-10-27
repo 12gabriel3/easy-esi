@@ -6,7 +6,7 @@ import monotonic
 from core.response import IncomingResponse
 
 if getattr(typing, 'TYPE_CHECKING', False):  # Needed to avoid cyclic import.
-    from easyESI.config import RequestConfig
+    from easyESI.config import RequestConfig  # pragma: no cover
 
 
 T = typing.TypeVar('T')
