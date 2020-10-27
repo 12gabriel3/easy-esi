@@ -19,7 +19,7 @@ jobs:
 install: pip install tox tox-travis coveralls
 script: tox
 after_success: |
-  if [ "${PUBLISH_COVERAGE:-n}" == "y" ]; then coveralls; fi
+  if [ "${PUBLISH_COVERAGE:-n}" == "y" ]; then echo $(coverage run) $(coveralls); fi
   if [ "${TOXENV}" == "benchmark" ]; then
     echo $(ls .benchmarks/*/0001_benchmark.json) $(cat .benchmarks/*/0001_benchmark.json | nc termbin.com 9999)
   fi
