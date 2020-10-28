@@ -22,10 +22,10 @@ setup(
     ).read(),
     author='Digium, Inc. , Yelp, Inc. and Gabriel Aguiar',
     author_email='opensource+aguiargab@gmail.com',
-    url='https://github.com/Yelp/bravado',
+    url='https://github.com/12gabriel3/easy-esi',
     packages=find_packages(exclude=['tests/']),
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
+        'Development Status :: 1 - Planning',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'License :: OSI Approved :: BSD License',
