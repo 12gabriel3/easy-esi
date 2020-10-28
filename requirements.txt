@@ -2,7 +2,7 @@ jsonref
 jsonschema[format]>=2.5.1
 pyyaml
 swagger-spec-validator>=2.0.1
-pytz
+pytz==2020.1
 msgpack>=0.5.2
 python-dateutil
 requests >= 2.17
