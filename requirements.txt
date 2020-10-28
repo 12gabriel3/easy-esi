@@ -1,0 +1,12 @@
+jsonref
+jsonschema[format]>=2.5.1
+pyyaml
+swagger-spec-validator>=2.0.1
+pytz
+msgpack>=0.5.2
+python-dateutil
+requests >= 2.17
+six
+simplejson
+monotonic
+typing_extensions

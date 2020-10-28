@@ -49,7 +49,7 @@ class FileEventual(object):
         return self.path
 
     def wait(self, **kwargs):
-        with contextlib.closing(urllib.request.urlopen(self.get_path())) as fp:
+        with contextlib.closing(urllib.request.urlopen(self.get_path())) as fp:   # nosec
             content = fp.read()
             return self.FileResponse(content)
 
