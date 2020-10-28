@@ -8,5 +8,5 @@ python-dateutil
 requests >= 2.17
 six
 simplejson
-monotonic
+monotonic==1.5
 typing_extensions
