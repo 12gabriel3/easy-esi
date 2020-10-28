@@ -1,4 +1,4 @@
-jsonref
+jsonref==0.2
 jsonschema[format]>=2.5.1
 pyyaml
 swagger-spec-validator>=2.0.1
