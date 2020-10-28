@@ -9,4 +9,4 @@ requests >= 2.17
 six
 simplejson
 monotonic
-typing_extensions
+typing_extensions==3.7.4.3
