@@ -1,5 +1,5 @@
 bottle
-ephemeral_port_reserve
+ephemeral_port_reserve==1.1.1
 httpretty
 mock
 mypy; python_version>='3.7'
