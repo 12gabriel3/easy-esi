@@ -9,6 +9,6 @@ pre-commit
 pytest
 pytest-benchmark[histogram]
 pytest-cov
-simplejson
+simplejson==3.17.2
 swagger_spec_validator
 u-msgpack-python
