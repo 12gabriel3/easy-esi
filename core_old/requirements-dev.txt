@@ -1,5 +1,5 @@
 # Unit test dependencies
-mock
+mock==4.0.2
 mypy; python_version>='3.7'
 mypy-extensions; python_version>='3.7'
 pre-commit
