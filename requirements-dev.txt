@@ -5,7 +5,7 @@ mock
 mypy; python_version>='3.7'
 mypy-extensions; python_version>='3.7'
 pip>=9.0.1 # workaround to https://github.com/pypa/pip/issues/3903
-pre-commit
+pre-commit==2.7.1
 pytest
 pytest-benchmark[histogram]
 pytest-cov
