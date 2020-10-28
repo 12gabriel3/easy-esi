@@ -2,7 +2,7 @@ bottle
 ephemeral_port_reserve
 httpretty
 mock
-mypy; python_version>='3.7'
+mypy==0.790; python_version>='3.7'
 mypy-extensions; python_version>='3.7'
 pip>=9.0.1 # workaround to https://github.com/pypa/pip/issues/3903
 pre-commit
