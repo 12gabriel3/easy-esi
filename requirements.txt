@@ -7,6 +7,6 @@ msgpack>=0.5.2
 python-dateutil
 requests >= 2.17
 six
-simplejson
+simplejson==3.17.2
 monotonic
 typing_extensions
