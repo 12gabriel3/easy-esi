@@ -1,6 +1,6 @@
 jsonref
 jsonschema[format]>=2.5.1
-pyyaml
+pyyaml==5.3.1
 swagger-spec-validator>=2.0.1
 pytz
 msgpack>=0.5.2
