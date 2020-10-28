@@ -6,7 +6,7 @@ pytz
 msgpack>=0.5.2
 python-dateutil
 requests >= 2.17
-six
+six==1.15.0
 simplejson
 monotonic
 typing_extensions
