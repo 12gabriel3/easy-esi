@@ -1,6 +1,6 @@
 bottle
 ephemeral_port_reserve
-httpretty
+httpretty==1.0.2
 mock
 mypy; python_version>='3.7'
 mypy-extensions; python_version>='3.7'
