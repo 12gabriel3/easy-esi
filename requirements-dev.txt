@@ -11,4 +11,4 @@ pytest-benchmark[histogram]
 pytest-cov
 simplejson
 swagger_spec_validator
-u-msgpack-python
+u-msgpack-python==2.7.1
