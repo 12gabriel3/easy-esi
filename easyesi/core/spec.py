@@ -22,8 +22,8 @@ from swagger_spec_validator.ref_validators import in_scope
 
 try:
     from yaml import CSafeLoader as SafeLoader
-except ImportError:
-    from yaml import SafeLoader  # type: ignore
+except ImportError:  # pragma: no cover
+    from yaml import SafeLoader  # type: ignore   # pragma: no cover
 
 from easyesi.core import formatter
 from easyesi.core import version as _version

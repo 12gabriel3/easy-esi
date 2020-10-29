@@ -8,17 +8,17 @@ from easyesi.core.response import IncomingResponse
 try:
     # ignored type ConnectionError is introduced in python3.3+ (mypy runs as 2.7)
     from builtins import ConnectionError as base_connection_error  # type: ignore
-except ImportError:
+except ImportError:  # pragma: no cover
     # ConnectionError was introduced in python 3.3+
-    base_connection_error = OSError
+    base_connection_error = OSError  # pragma: no cover
 
 
 try:
     # ignored type TimeoutError is introduced in python3.3+ (mypy runs as 2.7)
     from builtins import TimeoutError as base_timeout_error  # type: ignore
-except ImportError:
+except ImportError:  # pragma: no cover
     # TimeoutError was introduced in python 3.3+
-    base_timeout_error = OSError
+    base_timeout_error = OSError  # pragma: no cover
 
 
 if getattr(typing, 'TYPE_CHECKING', False):

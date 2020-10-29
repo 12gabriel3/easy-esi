@@ -7,11 +7,11 @@ import six
 from easyesi.core.exception import SwaggerSchemaError
 
 if getattr(typing, 'TYPE_CHECKING', False):
-    from easyesi.core._compat_typing import JSONDict
-    from easyesi.core.security_definition import SecurityDefinition
-    from easyesi.core.spec import Spec
+    from easyesi.core._compat_typing import JSONDict  # pragma: no cover
+    from easyesi.core.security_definition import SecurityDefinition  # pragma: no cover
+    from easyesi.core.spec import Spec  # pragma: no cover
 
-    T = typing.TypeVar('T')
+    T = typing.TypeVar('T')  # pragma: no cover
 
 
 log = logging.getLogger(__name__)

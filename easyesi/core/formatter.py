@@ -23,7 +23,7 @@ if getattr(typing, 'TYPE_CHECKING', False):
     from easyesi.core._compat_typing import UnmarshalingMethod  # noqa: F401
     from easyesi.core.spec import Spec  # pragma: no cover
 
-    T = typing.TypeVar('T')
+    T = typing.TypeVar('T')  # pragma: no cover
 
 
 if six.PY3:

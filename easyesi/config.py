@@ -9,9 +9,9 @@ from easyesi.response import EasyEsiResponseMetadata
 
 try:
     from typing import Type
-except ImportError:
+except ImportError:  # pragma: no cover
     # Python 3.5.0 / 3.5.1
-    from typing_extensions import Type
+    from typing_extensions import Type  # pragma: no cover
 
 
 log = logging.getLogger(__name__)

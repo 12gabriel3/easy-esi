@@ -26,19 +26,19 @@ if getattr(typing, 'TYPE_CHECKING', False):
     from easyesi.core._compat_typing import JSONDict
     from easyesi.core.spec import Spec  # pragma: no cover
 
-    class ValidatorType(typing.Protocol):
-        def __init__(
+    class ValidatorType(typing.Protocol):  # pragma: no cover
+        def __init__(  # pragma: no cover
             self,
             spec_dict,  # type: JSONDict
             format_checker,  # type: FormatChecker
             resolver,  # type: RefResolver
         ):
             # type: (...) -> None
-            pass
+            pass  # pragma: no cover
 
-        def validate(self, obj):
+        def validate(self, obj):  # pragma: no cover
             # type: (typing.Any) -> typing.Generator[ValidationError, None, None]
-            pass
+            pass  # pragma: no cover
 
 
 # Extract "original" validators as defined in jsonschema library. Saving those to constants to reduce indirections during validation.  # noqa
