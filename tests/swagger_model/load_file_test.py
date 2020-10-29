@@ -35,6 +35,6 @@ def test_non_existent_file():
     with pytest.raises(IOError) as excinfo:
         load_file(os.path.join('test-data', '2.0', 'i_dont_exist.json'))
     if sys.platform == "win32":
-        assert 'The system cannot find the file specified' in str(excinfo.value)
+        assert '[WinError 3]' in str(excinfo.value)
     else:
         assert 'No such file or directory' in str(excinfo.value)
