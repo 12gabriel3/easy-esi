@@ -50,7 +50,7 @@ from copy import deepcopy
 from six import iteritems
 from six import itervalues
 
-from easyesi.config import bravado_config_from_config_dict
+from easyesi.config import easyesi_config_from_config_dict
 from easyesi.config import RequestConfig
 from easyesi.core.docstring import create_operation_docstring
 from easyesi.core.exception import SwaggerMappingError
@@ -83,7 +83,7 @@ class SwaggerClient(object):
         :param spec_url: url pointing at the swagger API specification
         :type spec_url: str
         :param http_client: an HTTP client used to perform requests
-        :type  http_client: :class:`bravado.http_client.HttpClient`
+        :type  http_client: :class:`easyesi.http_client.HttpClient`
         :param request_headers: Headers to pass with http requests
         :type  request_headers: dict
         :param config: Config dict for easyesi and core.
@@ -128,17 +128,17 @@ class SwaggerClient(object):
         config = config or {}
 
         # Apply easyesi config defaults
-        bravado_config = bravado_config_from_config_dict(config)
+        easyesi_config = easyesi_config_from_config_dict(config)
         # remove easyesi configs from config dict
-        for key in set(bravado_config._fields).intersection(set(config)):
+        for key in set(easyesi_config._fields).intersection(set(config)):
             del config[key]
         # set easyesi config object
-        config['easyesi'] = bravado_config
+        config['easyesi'] = easyesi_config
 
         swagger_spec = Spec.from_dict(
             spec_dict, origin_url, http_client, config,
         )
-        return cls(swagger_spec, also_return_response=bravado_config.also_return_response)
+        return cls(swagger_spec, also_return_response=easyesi_config.also_return_response)
 
     def get_model(self, model_name):
         return self.swagger_spec.definitions[model_name]

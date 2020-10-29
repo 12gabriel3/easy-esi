@@ -115,7 +115,7 @@ class Spec(object):
     :param spec_dict: Swagger API specification in json-like dict form
     :param origin_url: URL from which the spec was retrieved.
     :param http_client: Used to retrieve the spec via http/https.
-    :type http_client: :class:`bravado.http_client.HTTPClient`
+    :type http_client: :class:`easyesi.http_client.HTTPClient`
     :param config: Configuration dict. See CONFIG_DEFAULTS.
     """
 

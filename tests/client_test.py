@@ -26,7 +26,7 @@ def mock_spec():
         yield _mock
 
 
-def test_remove_bravado_configs(mock_spec, processed_default_config):
+def test_remove_easyesi_configs(mock_spec, processed_default_config):
     config = CONFIG_DEFAULTS.copy()
     config['validate_swagger_spec'] = False  # core config
 

@@ -10,8 +10,8 @@ import monotonic
 import six
 from msgpack import unpackb
 
-from easyesi.config import bravado_config_from_config_dict
 from easyesi.config import CONFIG_DEFAULTS
+from easyesi.config import easyesi_config_from_config_dict
 from easyesi.config import EasyEsiConfig
 from easyesi.config import RequestConfig
 from easyesi.core.content_type import APP_JSON
@@ -161,12 +161,12 @@ class HttpFuture(typing.Generic[T]):
         )
 
     @property
-    def _bravado_config(self):
+    def _easyesi_config(self):
         # type: () -> EasyEsiConfig
         if self.operation:
             return self.operation.swagger_spec.config['easyesi']
         else:
-            return bravado_config_from_config_dict(CONFIG_DEFAULTS)
+            return easyesi_config_from_config_dict(CONFIG_DEFAULTS)
 
     def response(
         self,
@@ -204,7 +204,7 @@ class HttpFuture(typing.Generic[T]):
 
             # Trigger fallback_result if the option is set
             if fallback_result is not SENTINEL and self.request_config.force_fallback_result:
-                if self._bravado_config.disable_fallback_results:
+                if self._easyesi_config.disable_fallback_results:
                     log.warning(
                         'force_fallback_result set in request options and disable_fallback_results '
                         'set in client config; not using fallback result.',
@@ -238,7 +238,7 @@ class HttpFuture(typing.Generic[T]):
             else:
                 six.reraise(*sys.exc_info())
 
-        metadata_class = self._bravado_config.response_metadata_class
+        metadata_class = self._easyesi_config.response_metadata_class
         response_metadata = metadata_class(
             incoming_response=incoming_response,
             swagger_result=swagger_result,

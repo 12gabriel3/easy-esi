@@ -3,8 +3,8 @@ import mock
 import pytest
 
 from easyesi.config import _get_response_metadata_class
-from easyesi.config import bravado_config_from_config_dict
 from easyesi.config import CONFIG_DEFAULTS
+from easyesi.config import easyesi_config_from_config_dict
 from easyesi.config import EasyEsiConfig
 from easyesi.config import RequestConfig
 from easyesi.response import EasyEsiResponseMetadata
@@ -29,7 +29,7 @@ def test_default_value_for_every_config():
 
 
 def test_empty_config_yields_default_config(processed_default_config):
-    assert bravado_config_from_config_dict({}) == processed_default_config
+    assert easyesi_config_from_config_dict({}) == processed_default_config
 
 
 def test_config_overrides_default_config(mock_log):
@@ -41,13 +41,13 @@ def test_config_overrides_default_config(mock_log):
     expected_config_dict = config_dict.copy()
     expected_config_dict['response_metadata_class'] = ResponseMetadata
 
-    assert bravado_config_from_config_dict(config_dict)._asdict() == expected_config_dict
+    assert easyesi_config_from_config_dict(config_dict)._asdict() == expected_config_dict
     assert mock_log.warning.call_count == 0
 
 
 def test_ignore_unknown_configs(processed_default_config):
     config_dict = {'validate_swagger_spec': False}
-    assert bravado_config_from_config_dict(config_dict) == processed_default_config
+    assert easyesi_config_from_config_dict(config_dict) == processed_default_config
 
 
 def test_get_response_metadata_class_invalid_str(mock_log):

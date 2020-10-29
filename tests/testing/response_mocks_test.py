@@ -38,7 +38,7 @@ def test_response_mock_signatures():
     assert inspect.getargspec(FallbackResultEasyEsiResponseMock.__call__) == response_signature
 
 
-def test_bravado_response(mock_result):
+def test_easyesi_response(mock_result):
     response_mock = EasyEsiResponseMock(mock_result)
     response = response_mock()
 
@@ -47,14 +47,14 @@ def test_bravado_response(mock_result):
     assert response.metadata._swagger_result is mock_result
 
 
-def test_bravado_response_custom_metadata(mock_result, mock_metadata):
+def test_easyesi_response_custom_metadata(mock_result, mock_metadata):
     response_mock = EasyEsiResponseMock(mock_result, metadata=mock_metadata)
     response = response_mock()
 
     assert response.metadata is mock_metadata
 
 
-def test_fallback_result_bravado_response(mock_result):
+def test_fallback_result_easyesi_response(mock_result):
     # type: (mock.NonCallableMagicMock) -> None
     response_mock = FallbackResultEasyEsiResponseMock()
     response = response_mock(fallback_result=mock_result)
@@ -64,7 +64,7 @@ def test_fallback_result_bravado_response(mock_result):
     assert response.metadata._swagger_result is mock_result
 
 
-def test_fallback_result_bravado_response_callable(mock_result):
+def test_fallback_result_easyesi_response_callable(mock_result):
     exception = HTTPServerError(mock.Mock('incoming response', status_code=500))
 
     def handle_fallback_result(exc):
@@ -79,7 +79,7 @@ def test_fallback_result_bravado_response_callable(mock_result):
     assert response.metadata._swagger_result is mock_result
 
 
-def test_fallback_result_bravado_response_custom_metadata(mock_result, mock_metadata):
+def test_fallback_result_easyesi_response_custom_metadata(mock_result, mock_metadata):
     response_mock = FallbackResultEasyEsiResponseMock(metadata=mock_metadata)
     response = response_mock(fallback_result=mock_result)
 

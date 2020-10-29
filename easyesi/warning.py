@@ -11,7 +11,7 @@ def warn_for_deprecated_op(op):
     """Warn if requested operation has `deprecated` field flagged as True
 
     :param op: Operation object which contains operation id and operation spec
-    :type op: :class:`bravado.client.CallableOperation`
+    :type op: :class:`easyesi.client.CallableOperation`
     """
     if op.op_spec.get('deprecated', False):
         message = "[DEPRECATED] {0} has now been deprecated. ".format(

@@ -37,17 +37,17 @@ EasyEsiConfig = typing.NamedTuple(
 )
 
 
-def bravado_config_from_config_dict(config_dict):
+def easyesi_config_from_config_dict(config_dict):
     # type: (typing.Mapping[str, typing.Any]) -> 'EasyEsiConfig'
     if config_dict is None:
         config_dict = {}
-    bravado_config = {key: value for key, value in config_dict.items() if key in EasyEsiConfig._fields}
-    bravado_config = dict(CONFIG_DEFAULTS, **bravado_config)
-    bravado_config['response_metadata_class'] = _get_response_metadata_class(
-        bravado_config['response_metadata_class'],
+    easyesi_config = {key: value for key, value in config_dict.items() if key in EasyEsiConfig._fields}
+    easyesi_config = dict(CONFIG_DEFAULTS, **easyesi_config)
+    easyesi_config['response_metadata_class'] = _get_response_metadata_class(
+        easyesi_config['response_metadata_class'],
     )
     return EasyEsiConfig(
-        **bravado_config
+        **easyesi_config
     )
 
 
