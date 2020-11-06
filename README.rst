@@ -1,16 +1,8 @@
-.. image:: https://img.shields.io/travis/Yelp/bravado.svg
-  :target: https://travis-ci.org/Yelp/bravado?branch=master
+.. image:: https://travis-ci.com/12gabriel3/easy-esi.svg?branch=master
+    :target: https://travis-ci.com/12gabriel3/easy-esi
 
-.. image:: https://img.shields.io/coveralls/Yelp/bravado.svg
-  :target: https://coveralls.io/r/Yelp/bravado
-
-.. image:: https://img.shields.io/pypi/v/bravado.svg
-    :target: https://pypi.python.org/pypi/bravado/
-    :alt: PyPi version
-
-.. image:: https://img.shields.io/pypi/pyversions/bravado.svg
-    :target: https://pypi.python.org/pypi/bravado/
-    :alt: Supported Python versions
+.. image:: https://coveralls.io/repos/github/12gabriel3/easy-esi/badge.svg?branch=master
+    :target: https://coveralls.io/github/12gabriel3/easy-esi?branch=master
 
 EasyEsi
 ==========
@@ -31,7 +23,7 @@ From the OpenAPI Specification project:
     inspection.
 
 Client libraries can automatically be generated from the OpenAPI specification,
-however Easy ESIaims to be a complete replacement for code generation
+however Easy ESI aims to be a complete replacement for code generation
 (`swagger-codegen <https://github.com/wordnik/swagger-codegen>`__).
 
 Example Usage
