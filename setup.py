@@ -13,7 +13,7 @@ setup(
     name='easy-esi',
     version=easyesi.version,
     license='BSD 3-Clause License',
-    description='Library for accessing EVE Online Swagger API\'s',
+    description='Library for accessing EVE Online Swagger API',
     long_description=open(
         os.path.join(
             os.path.dirname(__file__),
@@ -21,7 +21,7 @@ setup(
         ),
     ).read(),
     author='Digium, Inc. , Yelp, Inc. and Gabriel Aguiar',
-    author_email='opensource+aguiargab@gmail.com',
+    author_email='Gabriel Aguiar+aguiargab@gmail.com',
     url='https://github.com/12gabriel3/easy-esi',
     packages=find_packages(exclude=['tests/']),
     classifiers=[
@@ -36,7 +36,7 @@ setup(
         'Programming Language :: Python :: 3.9',
     ],
     package_data={
-        'easy_esi': ['py.typed'],
+        'easyesi': ['py.typed'],
     },
     install_requires=[
         "jsonref",
@@ -53,13 +53,11 @@ setup(
         'typing_extensions',
     ],
     extras_require={
-        'fido': ['fido >= 4.2.1'],
-        ':python_version<"3.5"': ['typing'],
         'integration-tests': [
             'bottle',
             'ephemeral_port_reserve',
             'pytest',
         ],
     },
-    python_requires='!=3.0,!=3.1,!=3.2,!=3.3,!=3.4,!=3.5.0',
+    python_requires='>=3.6',
 )
